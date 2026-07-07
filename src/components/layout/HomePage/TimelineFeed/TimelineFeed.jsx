@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import "./TimelineFeed.css";
+import { useRouter } from "next/navigation";
 
 // 1. Define the dynamic posts object data array
 const postsData = [
@@ -50,9 +51,10 @@ const postsData = [
 
 // 2. Individual Post Card Component managing its own slider & interaction states
 function PostCard({ post }) {
+  const router = useRouter();
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.initialLikes);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Touch state helpers for mobile swipe detection
   const [touchStart, setTouchStart] = useState(null);
@@ -105,32 +107,32 @@ function PostCard({ post }) {
       </div>
 
       {/* Image Slider Section with Swipe Animations */}
-      <div 
+      <div
         className="post-display-viewport"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <div 
-          className="slider-track" 
+        <div
+          className="slider-track"
           style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
         >
           {post.images.map((src, index) => (
-            <img 
+            <img
               key={index}
-              src={src} 
-              alt={`Viewport view ${index + 1}`} 
+              src={src}
+              alt={`Viewport view ${index + 1}`}
               className="slider-image"
             />
           ))}
         </div>
-        
+
         {/* Navigation Indicator Dots Overlay */}
         <div className="viewport-overlay-bottom">
           <div className="slider-dots-container">
             {post.images.map((_, index) => (
-              <span 
-                key={index} 
+              <span
+                key={index}
                 className={`slider-dot ${currentImageIndex === index ? "active" : ""}`}
                 onClick={() => setCurrentImageIndex(index)}
               />
@@ -151,7 +153,7 @@ function PostCard({ post }) {
             <span>{post.commentCount}</span>
           </button>
         </div>
-        <button className="action-button-buynow">View Details</button>
+        <button className="action-button-buynow" onClick={() => router.push("/pet-details")}>View Details</button>
       </div>
 
       {/* Overlapping Avatar Elements Row */}
