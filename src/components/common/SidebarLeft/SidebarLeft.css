@@ -1,0 +1,170 @@
+/* Core Layout */
+.sidebar-left {
+  display: none; /* Auto-hidden on native mobile phones */
+  background-color: #ffffff;
+  border-right: 1px solid #f1f1f4;
+  padding: 40px 24px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 280px; /* Fixed standard sidebar width */
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 200;
+}
+
+/* Brand Logo Styling */
+.brand-logo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.app-brand-title {
+  color: #09090b;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.75px;
+  padding-left: 16px;
+  margin: 0;
+}
+
+.brand-dot {
+  color: #2d9d5e;
+}
+
+/* Navigation List */
+.navigation-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Base Link Layout & Interactions */
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #71717a;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.nav-icon {
+  font-size: 18px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+/* Hover States (Exclude the Accent Button) */
+.nav-link-item:not(.accent-compass-pill):hover {
+  color: #2d9d5e;
+  background-color: #f4f4f5;
+}
+
+.nav-link-item:not(.accent-compass-pill):hover .nav-icon {
+  transform: scale(1.05);
+}
+
+/* Active State for Regular Items */
+.nav-link-item:not(.accent-compass-pill).active {
+   background: linear-gradient(135deg, #2d9d5e, #1e7a44);
+  color: #ffffff;
+}
+
+/* Special Case: Accent Compass Pill */
+.nav-link-item.accent-compass-pill {
+  background: linear-gradient(135deg, #2d9d5e, #1e7a44);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(45, 157, 94, 0.2);
+}
+
+
+
+
+
+/* User Footer Section */
+.sidebar-user-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #f4f4f5;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-user-footer:hover {
+  background-color: #e4e4e7;
+}
+
+/* Avatar Configurations */
+.avatar-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.navbar-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  background-color: #2d9d5e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+/* Profile Details Typography */
+.meta-profile-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-profile-details h5 {
+  margin: 0;
+  color: #18181b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.meta-profile-details p {
+  margin: 2px 0 0 0;
+  font-size: 12px;
+  color: #71717a;
+  line-height: 1.2;
+}
+
+.footer-more-btn {
+  color: #a1a1aa;
+  padding: 4px;
+}
+
+/* Responsive Trigger */
+@media (min-width: 768px) {
+  .sidebar-left {
+    display: flex;
+  }
+}

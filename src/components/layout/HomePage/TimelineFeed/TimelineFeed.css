@@ -1,0 +1,265 @@
+/* Container Layout */
+.timeline-feed-container {
+    width: 100%;
+    /* max-width: 520px; */
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/* Card layout wrapper & entry transitions */
+.timeline-feed-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    margin: 0 16px 24px 16px;
+    padding: 18px;
+    border: 1px solid #f3f4f6;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); */
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.timeline-feed-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Header UI Identity */
+.post-header-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.identity-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #2d9d5e;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.identity-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.identity-meta-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: #1c1c1e;
+}
+
+.identity-meta-text span {
+    font-size: 12px;
+    color: #8e8e93;
+}
+
+/* Image Slider & Sliding Track (Hardware Accelerated Animation) */
+.post-display-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Ultra smooth slide ease */
+    will-change: transform;
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+/* Dots UI Display Frame overlay gradient */
+.viewport-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 16px 12px 16px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+}
+
+.slider-dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    pointer-events: auto;
+}
+
+.slider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-dot.active {
+    background-color: #2d9d5e;
+    transform: scale(1.1);
+    width: 14px;
+    border-radius: 4px;
+}
+
+/* Action Triggers panel components */
+.post-actions-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.actions-group-left {
+    display: flex;
+    gap: 18px;
+}
+
+.action-button-trigger {
+    background: none;
+    border: none;
+    color: #1c1c1e;
+    font-size: 14.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.1s ease, color 0.15s ease;
+}
+
+.action-button-trigger:active {
+    transform: scale(0.92);
+}
+
+.action-button-trigger i {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+/* Heart micro bounciness animation trigger classes */
+.action-button-trigger.user-liked-active {
+    color: #2d9d5e;
+    font-weight: 600;
+}
+
+.action-button-trigger.user-liked-active i {
+    animation: heartPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.action-button-buynow {
+    padding: 9px 16px;
+    background: linear-gradient(135deg, #2d9d5e, #1e7a44);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 12.5px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: background-color 0.15s;
+}
+
+.action-button-buynow:hover {
+    background-color: #e5e5ea;
+}
+
+/* Overlapping Avatar Elements Row */
+.liked-people-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.avatar-overlap-group {
+    display: flex;
+    align-items: center;
+    padding-left: 2px;
+}
+
+.overlap-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    object-fit: cover;
+    margin-right: -8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.liked-text-summary {
+    font-size: 13px;
+    color: #2c2c2e;
+    margin: 0;
+}
+
+.liked-text-summary strong {
+    font-weight: 600;
+    color: #1c1c1e;
+}
+
+/* Clean Description layout truncation definitions */
+.post-description-overlay {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #3a3a3c;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Pop keyframes for the heart action icons elements */
+@keyframes heartPop {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.4);
+    }
+
+    70% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 767px) {
+    .timeline-feed-card {
+        padding: 0;
+        border: none;
+    }
+}
+
+/* Tablet & Desktop (768px and above) */
+@media (min-width: 768px) {
+    .timeline-feed-card {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}

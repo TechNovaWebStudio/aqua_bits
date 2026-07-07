@@ -1,0 +1,18 @@
+/* Create src/components/StoriesCarousel/StoriesCarousel.css */
+.stories-carousel-strip {
+  display: flex;
+  gap: 16px;
+  padding: 12px 20px 24px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.stories-carousel-strip::-webkit-scrollbar { display: none; }
+.story-node-item { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 68px; cursor: pointer; }
+.avatar-ring-border { width: 66px; height: 66px; border-radius: 50%; padding: 2px; border: 2px solid #30d158; position: relative; margin-bottom: 6px; }
+.avatar-ring-border img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.add-icon-badge { position: absolute; bottom: -2px; right: -2px; background-color: #30d158; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ffffff; display: flex; justify-content: center; align-items: center; font-size: 10px; color: white; }
+.story-label-name { font-size: 11px; color: #a1a1aa; max-width: 68px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (min-width: 768px) {
+  .stories-carousel-strip { padding-left: 32px; padding-right: 32px; margin-left: 12px; margin-right: 12px; }
+}

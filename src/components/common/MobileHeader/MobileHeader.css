@@ -1,0 +1,33 @@
+.native-mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 150;
+}
+
+.app-logo {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.native-header-icons {
+  display: flex;
+  gap: 22px;
+  font-size: 22px;
+}
+
+.native-header-icons i {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .native-mobile-header {
+    display: none;
+  }
+}
