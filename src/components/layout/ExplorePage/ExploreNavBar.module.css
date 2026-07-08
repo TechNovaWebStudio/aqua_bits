@@ -1,0 +1,191 @@
+/* --- SEARCH & HEADER COMPONENT --- */
+.discoverHeader {
+  margin-bottom: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.discoverTitleRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.titleMeta {
+  flex: 1;
+}
+
+.titleMeta h1 {
+  margin: 0 0 8px 0;
+  font-size: 34px;
+  font-weight: 600;
+  color: #09090b;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: #52525b;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* --- ULTRA MODERN SEARCH BAR --- */
+.searchBarWrapper {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background-color: #fbfbfb;
+  border: 1px solid #e4e4e7;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.searchBarWrapper i {
+  color: #71717a;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.searchBarWrapper input {
+  background: none;
+  border: none;
+  color: #09090b;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  font-weight: 500;
+}
+
+.searchBarWrapper input::placeholder {
+  color: #a1a1aa;
+  font-weight: 400;
+}
+
+/* Glow & pop-out focus effect */
+.searchBarWrapper:focus-within {
+  background-color: #ffffff;
+  border-color: #2d9d5e;
+  box-shadow: 0 0 0 4px rgba(0, 255, 64, 0.06), 0 4px 20px rgba(0, 255, 34, 0.04);
+  transform: translateY(-1px);
+}
+
+.searchBarWrapper:focus-within i {
+  color: #2d9d5e;
+}
+
+/* --- PREMIUM TAGS SCROLLER --- */
+.trendingTagsScroller {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 4px 12px 4px;
+  /* Added slight top padding so shadows aren't clipped */
+  margin: -4px -4px 0 -4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.trendingTagsScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.tagPill {
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(45, 157, 94, 0.2);
+    /* border-color: ; */
+  border-radius: 100px;
+  color: #3f3f46;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  color: #2d9d5e;
+}
+
+.tagPill:hover {
+  background-color: #dcfce7;
+  /* color: #09090b; */
+  transform: translateY(-1px);
+}
+
+.tagPill:active {
+  transform: translateY(0px);
+}
+
+.activeTag {
+  color: #ffffff;
+  /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+  background: linear-gradient(135deg, #2d9d5e, #16a34a);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+  box-shadow:
+    0 8px 20px rgba(34, 197, 94, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.02),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+}
+
+.activeTag:hover {
+  background-color: #18181b;
+  color: #ffffff;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+@media (max-width: 768px) {
+  .titleMeta h1 {
+    font-size: 28px;
+    letter-spacing: -0.02em;
+  }
+
+  .discoverTitleRow {
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .discoverHeader {
+    margin-bottom: 28px;
+  }
+
+  .discoverTitleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .searchBarWrapper {
+    max-width: 100%;
+    padding: 12px 16px;
+  }
+
+  .titleMeta h1 {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .tagPill {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}

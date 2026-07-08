@@ -1,7 +1,9 @@
 // app/explore/page.jsx
 import MobileNavbar from "@/components/common/MobileNavbar/MobileNavbar";
 import SidebarLeft from "@/components/common/SidebarLeft/SidebarLeft";
-import Explore from "@/components/layout/ExplorePage/Explore";
+import { Explore } from "@/components/layout/ExplorePage/Explore";
+
+
 
 export const metadata = {
     title: "Explore",
@@ -69,7 +71,9 @@ export default function ExplorePage() {
             <SidebarLeft page="explore"/>
 
             <main className="main-content-stream">
+             
                 <Explore/>
+                
             </main>
 
             <MobileNavbar />

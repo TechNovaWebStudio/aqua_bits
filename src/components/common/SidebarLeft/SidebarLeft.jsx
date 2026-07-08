@@ -9,7 +9,7 @@ export default function SidebarLeft() {
   const navItems = [
     { name: "Home", path: "/", icon: "fa-solid fa-house" },
     { name: "Explore", path: "/explore", icon: "fa-solid fa-magnifying-glass" },
-    { name: "Discover", path: "/discover", icon: "fa-solid fa-compass", isAccent: true },
+    { name: "Shorts", path: "/view-short", icon: "fa-solid fa-compass", isAccent: true },
     { name: "Groups", path: "/groups", icon: "fa-solid fa-user-group" },
     { name: "Notifications", path: "/notifications", icon: "fa-regular fa-heart" },
     { name: "Messages", path: "/messages", icon: "fa-regular fa-comment-dots" },

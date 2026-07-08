@@ -1,0 +1,154 @@
+/* Container sizing wrapper */
+.pageWrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* 3 Columns on mobile with no overflow, scaling up to 4 on desktop screens */
+.shortsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+@media (min-width: 900px) {
+    .shortsGrid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+}
+
+/* Card Framing Engine */
+.card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 12 / 16;
+    border-radius: 1px;
+    overflow: hidden;
+    background-color: #111111;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* Video Player Layer Positioning */
+.videoContainer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.videoBackground {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Vignette Ambient Mask to protect white text legibility */
+.darkOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0.85) 100%);
+    z-index: 2;
+}
+
+/* Interactive Details Overlay Layout */
+.contentOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Pushes remaining items straight to the bottom */
+    color: #ffffff;
+}
+
+/* Bottom elements alignment grid */
+.bottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 6px;
+    width: 100%;
+    /* border-top: 1px solid rgb(68, 67, 67); */
+    padding-top: 10px;
+}
+
+/* Identity & Profile metadata updates */
+.userProfileRow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    /* Prevents flex-child overflow text breaks */
+    flex-grow: 1;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.userMetaText {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.userName {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.timeLabel {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* Right Side Stacked Engagement Metrics */
+.bottomRightMetrics {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.metricBubble {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+}
+
+.metricIcon {
+    font-size: 0.95rem;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+.metricCount {
+    font-size: 0.65rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 1px;
+}

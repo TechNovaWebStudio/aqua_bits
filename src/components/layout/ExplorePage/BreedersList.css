@@ -1,0 +1,280 @@
+/* Container Layout */
+.breeders-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f8fafd;
+    overflow-y: auto;
+}
+
+/* Header Alignment */
+.breeders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.badge-count {
+    background-color: #dcfce7;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 10px;
+    border-radius: 50%;
+}
+
+.see-all-btn {
+    background-color: #dcfce7;
+    color: #4f46e5;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Grid System: Clean 1, 2, and 3 column switches */
+.breeders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 640px) {
+    .breeders-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .breeders-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card Styling with Uniform Alignment Locks */
+.card {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Locks header to top and actions to bottom */
+    min-height: 340px;
+    border: 1px solid rgb(238, 236, 236);
+}
+
+/* Top Block alignment */
+.card-top {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    flex-shrink: 0;
+    /* Prevents avatar from squeezing */
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #008000
+}
+
+.doctor-info {
+    min-width: 0;
+    /* Fixes flexbox text overflow issues */
+}
+
+.doctor-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Truncates clean if name is too long */
+}
+
+.doctor-title {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Metrics (Rating/Location) Row Alignment */
+.metrics-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.rating-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.rating-badge.high {
+    background-color: #dcfce7; /* Light Green */
+    color: #15803d;            /* Dark Green Text */
+}
+
+.rating-badge.average {
+    background-color: #fef3c7; /* Light Orange/Amber */
+    color: #b45309;            /* Dark Orange Text */
+}
+
+.location-text {
+    font-size: 13px;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Experience Block Height Lock */
+.stats-row {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+    height: 40px;
+    /* Locks structural height for descriptions */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stats-row p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Tags Block Row Lock */
+.tags-container {
+    display: flex;
+    flex-wrap: nowrap;
+    /* Forces tags into a clean single line alignment */
+    overflow: hidden;
+    gap: 6px;
+    margin-bottom: 20px;
+    height: 24px;
+    align-items: center;
+}
+
+.tag-item {
+    background-color: #f1f5f9;
+    color: #64748b;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.tag-item.extra {
+    font-weight: 600;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
+
+.card-divider {
+    border: 0;
+    border-top: 1px solid #f1f5f9;
+    margin: 0 0 16px 0;
+}
+
+/* Card Footer alignment (Pricing & Button) */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: auto; */
+    width: 100%;
+    gap: 10px;
+}
+
+
+
+.type-text {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.book-btn {
+    width: 50%;
+    color: #ffffff;
+    /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+        0 8px 20px rgba(34, 197, 94, 0.25),
+        0 2px 5px rgba(0, 0, 0, 0.02),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.mess-btn {
+    width: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    color: #16a34a;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(45, 157, 94, 0.2);
+    backdrop-filter: blur(8px);
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+.book-btn:hover {
+    background-color: #1d4ed8;
+}
