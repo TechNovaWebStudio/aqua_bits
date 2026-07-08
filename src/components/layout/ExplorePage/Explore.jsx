@@ -7,7 +7,7 @@ import PostList from "./PostList";
 import ShortsList from "./ShortsList";
 
 export function Explore() {
-  const [tag, setTag] = useState('Categories');
+  const [tag, setTag] = useState('Shorts');
   return (
     <>
       {tag == 'Breeders' && <BreedersList activeTag={tag} setActiveTag={setTag} />}

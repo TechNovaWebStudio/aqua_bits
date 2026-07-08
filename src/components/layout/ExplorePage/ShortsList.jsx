@@ -7,7 +7,7 @@ const shortsData = [
     {
         id: 1,
         videoUrl: './dumo.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80',
+        // posterUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Alex Wander',
             avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80',
@@ -18,7 +18,7 @@ const shortsData = [
     {
         id: 2,
         videoUrl: './dumo2.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80',
+        // posterUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Sarah Safari',
             avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80',
@@ -29,7 +29,7 @@ const shortsData = [
     {
         id: 3,
         videoUrl: './dumo3.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+        // posterUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Takashi K.',
             avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=100&q=80',
@@ -40,7 +40,7 @@ const shortsData = [
     {
         id: 4,
         videoUrl: './dumo4.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80',
+        // posterUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Alex Wander',
             avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80',
@@ -51,7 +51,7 @@ const shortsData = [
     {
         id: 5,
         videoUrl: './dumo3.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80',
+        // posterUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Sarah Safari',
             avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80',
@@ -61,8 +61,8 @@ const shortsData = [
     },
     {
         id: 6,
-        videoUrl: './dumo2.mp4',
-        posterUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+        videoUrl: './dumo.mp4',
+        // posterUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
         user: {
             name: 'Takashi K.',
             avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=100&q=80',
@@ -100,7 +100,7 @@ const ShortCard = ({ short }) => {
                     ref={videoRef}
                     className={styles.videoBackground}
                     src={short.videoUrl}
-                    poster={short.posterUrl}
+                    // poster={short.posterUrl}
                     muted
                     loop
                     playsInline

@@ -1,6 +1,8 @@
 import MobileNavbar from "@/components/common/MobileNavbar/MobileNavbar";
 import SidebarLeft from "@/components/common/SidebarLeft/SidebarLeft";
 import BreederProfile from "@/components/layout/ProfileCarts/BreederProfile";
+import { ProfileSection } from "@/components/layout/ProfileCarts/Profile";
+import UserProfile from "@/components/layout/ProfileCarts/UserProfile";
 
 export const metadata = {
     title: "Profile",
@@ -73,7 +75,7 @@ export default function ProfilePage() {
                 <SidebarLeft />
 
                 <main className="main-content-stream">
-                    <BreederProfile/>
+                    <ProfileSection/>
                 </main>
 
                 {/* Fixed Bottom Mobile App-bar Nav */}

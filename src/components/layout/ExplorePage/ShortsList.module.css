@@ -19,13 +19,23 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 5px;
     }
+    
 }
+@media (max-width: 786px) {
+    .avatar{
+        display: none;
+    }
+    .metricIcon ,.metricCount{
+        display: none;
+    }
+}
+
 
 /* Card Framing Engine */
 .card {
     position: relative;
     width: 100%;
-    aspect-ratio: 12 / 16;
+    aspect-ratio: 11 / 16;
     border-radius: 1px;
     overflow: hidden;
     background-color: #111111;

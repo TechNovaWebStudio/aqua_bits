@@ -10,8 +10,8 @@ export default function SidebarLeft() {
     { name: "Home", path: "/", icon: "fa-solid fa-house" },
     { name: "Explore", path: "/explore", icon: "fa-solid fa-magnifying-glass" },
     { name: "Shorts", path: "/view-short", icon: "fa-solid fa-compass", isAccent: true },
+    { name: "Categories", path: "/categories", icon: "fa-solid fa-layer-group" },
     { name: "Groups", path: "/groups", icon: "fa-solid fa-user-group" },
-    { name: "Notifications", path: "/notifications", icon: "fa-regular fa-heart" },
     { name: "Messages", path: "/messages", icon: "fa-regular fa-comment-dots" },
   ];
 
@@ -24,13 +24,13 @@ export default function SidebarLeft() {
         <h1 className="app-brand-title">
           Aqua<span className="brand-dot">_</span>Bits
         </h1>
-        
+
         <nav className="sidebar-navigation">
           <ul className="navigation-links-list">
             {navItems.map((item) => {
-              const isCurrentActive = 
-                item.path === "/" 
-                  ? pathname === "/" 
+              const isCurrentActive =
+                item.path === "/"
+                  ? pathname === "/"
                   : pathname.startsWith(item.path);
 
               const itemClass = [
@@ -55,7 +55,7 @@ export default function SidebarLeft() {
       </div>
 
       {/* Profile Footer Section with Active Validation Flag */}
-      <div 
+      <div
         className={`sidebar-user-footer ${isProfileActive ? "active-profile" : ""}`}
         onClick={() => router.push("/profile")}
       >

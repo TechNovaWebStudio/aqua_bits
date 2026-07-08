@@ -1,27 +1,37 @@
 "use client";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import "./MobileNavbar.css";
 
 export default function MobileNavbar() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navItems = [
-    { id: "home", icon: "fa-solid fa-house" },
-    { id: "search", icon: "fa-solid fa-magnifying-glass" },
-    { id: "compass", icon: "fa-solid fa-compass", isAccent: true },
-    { id: "heart", icon: "fa-regular fa-heart" },
-    { id: "profile", isProfile: true }
+    { id: "home", path: "/", icon: "fa-solid fa-house" },
+    { id: "search", path: "/explore", icon: "fa-solid fa-magnifying-glass" },
+    { id: "compass", path: "/view-short", icon: "fa-solid fa-compass", isAccent: true },
+    { id: "heart", path: "/categories", icon: "fa-solid fa-layer-group"  },
+    { id: "profile", path: "/profile", isProfile: true }
   ];
+
+  // Dynamically find which index matches the current URL path
+  const activeIndex = navItems.findIndex((item) => item.path === pathname);
+
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
 
   return (
     <nav className="ios-liquid-navbar">
       {/* The fluid moving liquid glass capsule */}
-      <div 
-        className="liquid-pill" 
-        style={{ "--active-index": activeIndex }}
-      >
-        <div className="pill-glass-shine"></div>
-      </div>
+      {activeIndex !== -1 && (
+        <div 
+          className="liquid-pill" 
+          style={{ "--active-index": activeIndex }}
+        >
+          <div className="pill-glass-shine"></div>
+        </div>
+      )}
 
       {navItems.map((item, index) => {
         const isActive = activeIndex === index;
@@ -31,7 +41,7 @@ export default function MobileNavbar() {
             <button
               key="profile"
               className={`navbar-icon-unit ${isActive ? "profile-active item-active" : ""}`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleNavigation(item.path)}
               aria-label="Profile"
             >
               <img
@@ -47,7 +57,7 @@ export default function MobileNavbar() {
           <button
             key={item.id}
             className={`navbar-icon-unit ${item.isAccent ? "center-compass-accent" : ""} ${isActive ? "item-active" : ""}`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handleNavigation(item.path)}
             aria-label={item.id}
           >
             <i className={`${item.icon} nav-icon`}></i>
