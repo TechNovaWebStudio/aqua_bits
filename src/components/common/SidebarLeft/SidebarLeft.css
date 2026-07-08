@@ -1,17 +1,32 @@
-/* Core Layout */
+/* Core Structural Layout */
 .sidebar-left {
-  display: none; /* Auto-hidden on native mobile phones */
-  background-color: #ffffff;
-  border-right: 1px solid #f1f1f4;
-  padding: 40px 24px;
+  display: none;
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 280px; /* Fixed standard sidebar width */
+  min-width: 280px;
+  max-width: 280px;
   flex-direction: column;
   justify-content: space-between;
+  padding: 40px 24px;
   box-sizing: border-box;
   z-index: 200;
+
+  /* ✨ iPhone Pure White Liquid Glass Base Layer */
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+
+  /* Premium Reflection Mirror Edge Borders */
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px 24px 0 0;
+
+  /* Soft High-End Premium Shadow Depth */
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.015),
+    0 1px 3px rgba(0, 0, 0, 0.01),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 /* Brand Logo Styling */
@@ -34,83 +49,147 @@
   color: #2d9d5e;
 }
 
-/* Navigation List */
+/* Navigation List Stack Wrapper */
 .navigation-links-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
+
 }
 
-/* Base Link Layout & Interactions */
+/* Base Nav Item Layout */
 .nav-link-item {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 14px 18px;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  color: #71717a;
+  color: #000000;
   font-weight: 600;
   font-size: 15px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(45, 157, 94, 0.2);
 }
 
+.nav-link-item:not(.active) .nav-icon {
+  color: #2d9d5e !important;
+}
+
+/* Nav Item Icons Engine Configuration */
 .nav-icon {
   font-size: 18px;
   width: 24px;
   display: flex;
   justify-content: center;
-  transition: transform 0.2s ease;
+  align-items: center;
+  color: #dadadf;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.28), color 0.3s ease;
 }
 
-/* Hover States (Exclude the Accent Button) */
-.nav-link-item:not(.accent-compass-pill):hover {
+/* ✨ Magnetic Micro-Hover Effect (Excludes active selection links) */
+.nav-link-item:not(.active):hover {
+  color: #16a34a;
+  background-color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+/* Micro-interaction on Icon during hover */
+.nav-link-item:hover .nav-icon {
+  transform: scale(1.16) rotate(-3deg);
   color: #2d9d5e;
-  background-color: #f4f4f5;
 }
 
-.nav-link-item:not(.accent-compass-pill):hover .nav-icon {
+/* Active Navigation Typography & Structural States */
+.nav-link-item.active {
+  color: #ffffff;
+  /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+  background: linear-gradient(135deg, #2d9d5e, #16a34a);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+  box-shadow:
+    0 8px 20px rgba(34, 197, 94, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.02),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.nav-link-item.active .nav-icon {
+  color: #ffffff;
   transform: scale(1.05);
 }
 
-/* Active State for Regular Items */
-.nav-link-item:not(.accent-compass-pill).active {
-   background: linear-gradient(135deg, #2d9d5e, #1e7a44);
-  color: #ffffff;
+/* Special Case Accent Compass Button: Clean Floating Transparent Pill overlay */
+
+
+
+
+.nav-link-item:not(.active):hover {
+  background-color: rgba(45, 157, 94, 0.1);
+  border-color: rgba(45, 157, 94, 0.4);
 }
 
-/* Special Case: Accent Compass Pill */
-.nav-link-item.accent-compass-pill {
-  background: linear-gradient(135deg, #2d9d5e, #1e7a44);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(45, 157, 94, 0.2);
-}
-
-
-
-
-
-/* User Footer Section */
+/* User Footer Section (Liquid Glass Pod Base Container) */
 .sidebar-user-footer {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background-color: #f4f4f5;
+  padding: 14px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.005);
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(45, 157, 94, 0.2);
 }
 
+/* Profile Footer Hover Animation Frame */
 .sidebar-user-footer:hover {
-  background-color: #e4e4e7;
+  color: #16a34a;
+  background-color: rgba(45, 157, 94, 0.1);
+  border-color: rgba(45, 157, 94, 0.4);
+  backdrop-filter: blur(8px);
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
 }
 
-/* Avatar Configurations */
+
+/* ✨ Dynamic Active Condition Variant for Active Profile View */
+.sidebar-user-footer.active-profile {
+  color: #ffffff;
+  /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+  background: linear-gradient(135deg, #2d9d5e, #16a34a);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+  box-shadow:
+    0 8px 20px rgba(34, 197, 94, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.02),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-user-footer.active-profile h5 {
+  color: #ffffff;
+  /* Turns text green to show active mode context */
+}
+
+/* Avatar Sub-system Configurations */
 .avatar-wrapper {
   position: relative;
   display: flex;
@@ -122,6 +201,8 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease;
 }
 
 .online-indicator {
@@ -135,7 +216,7 @@
   border-radius: 50%;
 }
 
-/* Profile Details Typography */
+/* Profile Typography Settings */
 .meta-profile-details {
   flex-grow: 1;
   display: flex;
@@ -148,6 +229,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
+  transition: color 0.3s ease;
 }
 
 .meta-profile-details p {
@@ -162,7 +244,7 @@
   padding: 4px;
 }
 
-/* Responsive Trigger */
+/* Responsive Media Viewports Trigger */
 @media (min-width: 768px) {
   .sidebar-left {
     display: flex;

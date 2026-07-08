@@ -15,25 +15,27 @@ export default function SidebarLeft() {
     { name: "Messages", path: "/messages", icon: "fa-regular fa-comment-dots" },
   ];
 
+  // Check if profile route itself is currently active
+  const isProfileActive = pathname.startsWith("/profile");
+
   return (
     <aside className="sidebar-left">
       <div className="brand-logo-section">
         <h1 className="app-brand-title">
           Aqua<span className="brand-dot">_</span>Bits
         </h1>
+        
         <nav className="sidebar-navigation">
           <ul className="navigation-links-list">
             {navItems.map((item) => {
-              // Check if the current URL matches the item's path
               const isCurrentActive = 
                 item.path === "/" 
                   ? pathname === "/" 
                   : pathname.startsWith(item.path);
 
-              // Construct dynamic class names safely
               const itemClass = [
                 "nav-link-item",
-                // item.isAccent ? "accent-compass-pill" : "",
+                item.isAccent ? "accent-compass-pill" : "",
                 isCurrentActive ? "active" : ""
               ].filter(Boolean).join(" ");
 
@@ -42,7 +44,6 @@ export default function SidebarLeft() {
                   key={item.name}
                   className={itemClass}
                   onClick={() => router.push(item.path)}
-                  style={{ cursor: "pointer" }} // Ensures the user knows it's clickable
                 >
                   <i className={`${item.icon} nav-icon`}></i>
                   <span className="nav-text">{item.name}</span>
@@ -53,7 +54,11 @@ export default function SidebarLeft() {
         </nav>
       </div>
 
-      <div className="sidebar-user-footer">
+      {/* Profile Footer Section with Active Validation Flag */}
+      <div 
+        className={`sidebar-user-footer ${isProfileActive ? "active-profile" : ""}`}
+        onClick={() => router.push("/profile")}
+      >
         <div className="avatar-wrapper">
           <img
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"

@@ -5,16 +5,16 @@ import PetDetails from "@/components/layout/PetDetailsPage/PetDetails";
 import VideoPlay from "@/components/layout/VideoPlay/VideoPlay";
 
 export const metadata = {
-    title: "Video Details",
-    description: "Video details page.",
+  title: "Video Details",
+  description: "Video details page.",
 };
 
 export default function VideoDetails() {
-    return (
-        <>
-            {/* Structural Global Styles overriding layouts to enforce 100vh constraint */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
+  return (
+    <>
+      {/* Structural Global Styles overriding layouts to enforce 100vh constraint */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
         html, body {
           margin: 0;
           padding: 0;
@@ -68,19 +68,19 @@ export default function VideoDetails() {
           }
         }
       `}}
-            />
+      />
 
-            <div className="app-grid-wrapper">
-                {/* Fixed Left Desktop Sidebar */}
-                <SidebarLeft />
+      <div className="app-grid-wrapper">
+        {/* Fixed Left Desktop Sidebar */}
+        <SidebarLeft />
 
-                <main className="main-content-stream">
-                    <PetDetails />
-                </main>
+        <main className="main-content-stream">
+          <PetDetails />
+        </main>
 
-                {/* Fixed Bottom Mobile App-bar Nav */}
-                <MobileNavbar />
-            </div>
-        </>
-    );
+        {/* Fixed Bottom Mobile App-bar Nav */}
+        <MobileNavbar />
+      </div>
+    </>
+  );
 }

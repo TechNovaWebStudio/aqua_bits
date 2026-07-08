@@ -1,90 +1,149 @@
-.native-mobile-navbar {
+.ios-liquid-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px; /* Slightly tightened padding for perfect mathematical alignment */
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+  /* Floating iOS Dock positioning */
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 100%;
+  height: 68px;
+  padding: 0 16px;
   box-sizing: border-box;
-  z-index: 300;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); /* Respects iOS home bar */
+  z-index: 999;
+
+  /* Apple Midnight Fluid Glass (Deep Dark Base) */
+  background: linear-gradient(135deg,
+      rgba(20, 20, 23, 0.85) 0%,
+      rgba(10, 10, 12, 0.75) 100%);
+  /* Heavy blur reads cleanly over text/images scrolling underneath */
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+
+  /* Glass Borders & Drop Shadow to separate cleanly from the light body */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px 20px 0 0;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-/* The Sliding Liquid Glass Capsule */
-.sliding-pill {
+/* The Sliding Liquid Glass Capsule (Vibrant Glass Core) */
+.liquid-pill {
   position: absolute;
-  top: 12px;
-  /* (100% width - total side paddings) / 5 items */
-  width: calc((100% - 48px) / 5); 
-  height: 44px;
-  background-color: #ecfdf5;
-  border-radius: 24px;
-  z-index: 0;
+  top: 10px;
+  height: 48px;
+  width: calc((100% - 32px) / 5);
+  z-index: 1;
   pointer-events: none;
-  
-  /* Left position calculates dynamically based on active index */
-  left: calc(24px + (var(--active-index) * ((100% - 48px) / 5)));
-  
-  /* WhatsApp / Apple style spring curve */
-  transition: left 0.4s cubic-bezier(0.25, 1, 0.2, 1.1), 
-              transform 0.2s ease;
+
+  /* Liquid Emerald glow material inside the dark container */
+  background: linear-gradient(145deg,
+      rgba(16, 185, 129, 0.3) 0%,
+      rgba(4, 120, 87, 0.15) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  border-radius: 20px;
+
+  /* Dynamic position mapping */
+  left: calc(16px + (var(--active-index) * ((100% - 32px) / 5)));
+
+  /* iOS Dynamic Island style heavy spring physics curve */
+  transition: left 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.22);
+
+  /* Subtle illumination bloom */
+  box-shadow:
+    0 4px 16px rgba(16, 185, 129, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
 }
 
-/* Stretch effect slightly on fast click */
-.native-mobile-navbar:active .sliding-pill {
-  transform: scaleX(1.15);
+/* Glass Specular top-edge shine layer */
+.pill-glass-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 60%);
+  pointer-events: none;
 }
 
+/* Interactive item slots */
 .navbar-icon-unit {
+  background: none;
+  border: none;
+  outline: none;
   position: relative;
-  font-size: 20px;
-  color: #71717a;
-  cursor: pointer;
-  width: calc((100% - 48px) / 5); /* Keeps icon zones completely identical to pill width */
-  height: 44px;
+  width: calc((100% - 32px) / 5);
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-  transition: color 0.3s ease, transform 0.2s ease;
+  z-index: 2;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Text / Icon Active States */
-.navbar-icon-unit.icon-active {
+/* Light Muted Gray for unselected dark-dock icons */
+.nav-icon {
+  font-size: 21px;
+  color: #ffffff;
+  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    color 0.3s ease;
+}
+
+/* High visibility active states inside dark glass shell */
+.navbar-icon-unit.item-active .nav-icon {
+  color: #34d399;
+  transform: scale(1.18) translateY(-2px);
+  filter: drop-shadow(0 2px 8px rgba(52, 211, 153, 0.3));
+}
+
+/* Accent Compass Overrides */
+.center-compass-accent .nav-icon {
   color: #10b981;
-  transform: scale(1.1); /* Micro-interaction scale pop */
 }
 
-/* Center Compass Overrides */
-.navbar-icon-unit.center-compass-accent {
-  color: #10b981; /* Matches green layout theme */
-}
-.navbar-icon-unit.center-compass-accent.icon-active {
-  color: #047857; /* Deepens when active over the light green pill */
+.center-compass-accent.item-active .nav-icon {
+  color: #a7f3d0;
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.5));
 }
 
-/* Avatar layout fixes */
+/* User Profile Picture Avatar */
 .navbar-user-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.3s ease;
 }
 
 .profile-active .navbar-user-avatar {
-  border-color: #10b981;
+  border-color: #34d399;
+  transform: scale(1.18) translateY(-2px);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.25);
 }
 
+/* Global Dynamic Stretching Feedback */
+.ios-liquid-navbar:active .liquid-pill {
+  transform: scaleX(1.12);
+}
+
+/* Desktop override hidden state */
 @media (min-width: 768px) {
-  .native-mobile-navbar {
+  .ios-liquid-navbar {
     display: none;
   }
 }

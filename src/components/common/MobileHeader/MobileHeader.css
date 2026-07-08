@@ -1,33 +1,72 @@
-.native-mobile-header {
+.ios-liquid-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 20px;
+  padding: 16px 24px;
+  
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 150;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 999;
+  
+  /* Matched Snow Glass Mix */
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(250, 250, 250, 0.75) 100%
+  );
+  backdrop-filter: blur(30px) saturate(210%);
+  -webkit-backdrop-filter: blur(30px) saturate(210%);
+  
+  /* Clean border edge separation */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  
+  padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  border-radius: 0 0 20px 20px ;
 }
 
+/* Crisp branding type with deep jade color drop */
 .app-logo {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 850;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a 30%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .native-header-icons {
   display: flex;
-  gap: 22px;
-  font-size: 22px;
+  gap: 20px;
 }
 
-.native-header-icons i {
+.header-icon-btn {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Dark Slate icons for excellent visibility on white background */
+.native-header-icons i {
+  font-size: 21px;
+  color: #000000;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Tap active bounce response */
+.header-icon-btn:active i {
+  transform: scale(0.88);
+  color: #10b981;
 }
 
 @media (min-width: 768px) {
-  .native-mobile-header {
-    display: none;
-  }
+  .ios-liquid-header { display: none; }
 }
