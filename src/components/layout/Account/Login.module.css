@@ -1,0 +1,301 @@
+.bodyWrapper {
+    /* background-color: #f3f4f6; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+        padding: 20px 20px 20px 20px;
+
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.modalContainer {
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+
+/* Left Side: Hero Image Section with Transition */
+.heroSide {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    min-height: 600px;
+    box-sizing: border-box;
+    transition: background-image 0.6s ease-in-out;
+    /* Smooth transition when sliding images */
+}
+
+/* Overlay gradient for text readability */
+.heroSide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+}
+
+/* Top Progress Indicators */
+.storyIndicators {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.indicatorBar {
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    flex: 1;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.indicatorBar.active {
+    background-color: #2d9d5e;
+}
+
+/* Hero Text */
+.heroText {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 500;
+    max-width: 90%;
+}
+
+/* Right Side: Form Section */
+.formSide {
+    flex: 1.1;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.brandName {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 25px;
+}
+
+.formTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 30px;
+}
+
+/* Input Styling */
+.formGroup {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #313131;
+    margin-bottom: 8px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.formControl {
+    width: 100%;
+    padding: 14px 45px 14px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.formControl:focus {
+    border-color: #2d9d5e;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 18px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.1rem;
+}
+.togglePassword i{
+    color: gray;
+    font-size: 15px;
+}
+
+/* Password Rules */
+.passwordRequirements {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.reqTitle {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.reqItem {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 5px;
+    gap: 8px;
+}
+
+.checkIcon {
+    color: #10b981;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Submit Button */
+.submitBtn {
+    width: 100%;
+    color: #ffffff;
+    /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+        0 8px 20px rgba(34, 197, 94, 0.25),
+        0 2px 5px rgba(0, 0, 0, 0.02),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 5px;
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.divider:not(:empty)::before {
+    margin-right: .75em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .75em;
+}
+
+/* Social Buttons */
+.socialContainer {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.socialBtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+    transition: background-color 0.2s;
+}
+
+.socialBtn:hover {
+    background-color: #f9fafb;
+}
+
+.socialBtn img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Link */
+.loginFooter {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.loginFooter a {
+    color: #2d9d5e;
+    text-decoration: none;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Responsive Layout changes */
+@media (max-width: 768px) {
+    .bodyWrapper {
+        padding: 20px 10px 80px 10px;
+    }
+    .modalContainer {
+        flex-direction: column;
+        max-width: 450px;
+    }
+
+    .heroSide {
+        min-height: 250px;
+        padding: 25px;
+    }
+
+    .formSide {
+        padding: 35px 25px;
+    }
+}

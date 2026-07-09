@@ -1,0 +1,345 @@
+.bodyWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 20px 20px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+    /* background-color: #f8fafc; */
+}
+
+/* Main Container */
+.modalContainer {
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #e2e8f0;
+}
+
+/* Left Side: Hero Image Section with Transition */
+.heroSide {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    min-height: 600px;
+    box-sizing: border-box;
+    transition: background-image 0.6s ease-in-out;
+}
+
+/* Overlay gradient for text readability */
+.heroSide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.75) 100%);
+    z-index: 1;
+}
+
+/* Top Progress Indicators */
+.storyIndicators {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.indicatorBar {
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    flex: 1;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.indicatorBar.active {
+    background-color: #2d9d5e;
+}
+
+/* Hero Text Layout block */
+.heroTextContainer {
+    position: relative;
+    z-index: 2;
+    max-width: 90%;
+}
+
+.heroTitle {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.heroText {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Right Side: Form Section */
+.formSide {
+    flex: 1.2;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.formTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.subtitleText {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* Grid layout implementation from Sign-Up fields pattern but styled like login */
+.gridForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+/* Input Styling */
+.formGroup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #313131;
+    margin-bottom: 8px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.formControl {
+    width: 100%;
+    padding: 14px 45px 14px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.formControl:focus {
+    border-color: #2d9d5e;
+    /* background: linear-gradient(135deg, #2d9d5e, #16a34a); */
+
+}
+
+.togglePassword {
+    position: absolute;
+    right: 18px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.1rem;
+}
+.togglePassword i{
+    color: gray;
+    font-size: 15px;
+}
+
+/* Unique Status checks alignment */
+.fieldLoader {
+    position: absolute;
+    right: 18px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(17, 24, 39, 0.1);
+    border-top-color: #111827;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+.successCheckmark {
+    position: absolute;
+    right: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background-color: #2d9d5e;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Submit Button setup */
+.submitBtn {
+    grid-column: span 2;
+    width: 100%;
+    color: #ffffff;
+    /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+        0 8px 20px rgba(34, 197, 94, 0.25),
+        0 2px 5px rgba(0, 0, 0, 0.02),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 10px;
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+}
+
+/* Divider */
+.divider {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.divider:not(:empty)::before {
+    margin-right: .75em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .75em;
+}
+
+/* Social Buttons Row */
+.socialContainer {
+    grid-column: span 2;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.socialBtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+    transition: background-color 0.2s;
+}
+
+.socialBtn:hover {
+    background-color: #f9fafb;
+}
+
+.socialBtn img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Link styling matched completely */
+.loginFooter {
+    grid-column: span 2;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.loginFooter a {
+    color: #2d9d5e;
+    text-decoration: none;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Responsive Responsive Engine Sync */
+@media (max-width: 992px) {
+    .bodyWrapper {
+        padding: 20px 10px 80px 10px;
+    }
+    .modalContainer {
+        flex-direction: column;
+        max-width: 480px;
+    }
+
+    .heroSide {
+        min-height: 250px;
+        padding: 30px;
+    }
+
+    .heroTitle {
+        font-size: 1.6rem;
+    }
+
+    .formSide {
+        padding: 35px 25px;
+    }
+
+    .gridForm {
+        grid-template-columns: 1fr;
+    }
+
+    .gridForm .formGroup,
+    .submitBtn,
+    .divider,
+    .socialContainer,
+    .loginFooter {
+        grid-column: span 1;
+    }
+}

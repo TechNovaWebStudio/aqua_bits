@@ -243,6 +243,34 @@
   color: #a1a1aa;
   padding: 4px;
 }
+/* Guest State Specific Styling */
+.sidebar-user-footer.guest-state {
+  cursor: default; /* Overrides pointer if it shouldn't click the whole card */
+}
+
+.guest-avatar-icon {
+  width: 40px; /* Match your img size */
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1); /* Subtle background for glassmorphism */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #a0aec0;
+}
+
+.login-now-btn {
+  color: #3182ce; /* Catchy link color */
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.login-now-btn:hover {
+  color: #63b3ed;
+  text-decoration: underline;
+}
 
 /* Responsive Media Viewports Trigger */
 @media (min-width: 768px) {
