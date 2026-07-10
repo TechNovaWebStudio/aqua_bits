@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './VideoPlay.module.css';
 
 const VIDEO_DATA = [
@@ -31,7 +31,7 @@ const VIDEO_DATA = [
         comments: 42,
         shares: "520"
     },
-      {
+    {
         id: 4,
         src: "./dumo4.mp4",
         username: "coder_life",
@@ -48,14 +48,13 @@ export default function VideoPlay() {
     const [isRotated, setIsRotated] = useState(false);
     const [globalMuted, setGlobalMuted] = useState(true);
 
-    const videoRef = useRef(null);
+    // Array of refs to manage each individual video element
+    const videoRefs = useRef([]);
     const touchStartY = useRef(0);
-
-    const currentVideo = VIDEO_DATA[currentIndex];
-    const isLiked = !!likedVideos[currentVideo.id];
 
     const handleNextVideo = () => {
         if (currentIndex < VIDEO_DATA.length - 1) {
+            manageVideoPlayback(currentIndex + 1);
             setCurrentIndex(prev => prev + 1);
             setIsRotated(false);
         }
@@ -63,9 +62,24 @@ export default function VideoPlay() {
 
     const handlePrevVideo = () => {
         if (currentIndex > 0) {
+            manageVideoPlayback(currentIndex - 1);
             setCurrentIndex(prev => prev - 1);
             setIsRotated(false);
         }
+    };
+
+    // Pauses old video and plays the new target video cleanly
+    const manageVideoPlayback = (nextIndex) => {
+        if (videoRefs.current[currentIndex]) {
+            videoRefs.current[currentIndex].pause();
+        }
+        setTimeout(() => {
+            const nextVideo = videoRefs.current[nextIndex];
+            if (nextVideo) {
+                nextVideo.load();
+                nextVideo.play().catch(err => console.log("Autoplay caught:", err));
+            }
+        }, 50);
     };
 
     const handleDragStart = (yPosition) => {
@@ -83,22 +97,8 @@ export default function VideoPlay() {
         }
     };
 
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.load();
-            videoRef.current.play().catch(err => {
-                console.log("Autoplay check:", err);
-            });
-        }
-    }, [currentIndex]);
-
-    const toggleLike = () => {
-        setLikedVideos(prev => ({ ...prev, [currentVideo.id]: !prev[currentVideo.id] }));
-    };
-
-    const toggleRotation = (e) => {
-        e.stopPropagation();
-        setIsRotated(!isRotated);
+    const toggleLike = (id) => {
+        setLikedVideos(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
     const toggleMute = (e) => {
@@ -106,12 +106,13 @@ export default function VideoPlay() {
         setGlobalMuted(!globalMuted);
     };
 
-    const handleVideoClick = () => {
-        if (videoRef.current) {
-            if (videoRef.current.paused) {
-                videoRef.current.play();
+    const handleVideoClick = (index) => {
+        const targetVid = videoRefs.current[index];
+        if (targetVid) {
+            if (targetVid.paused) {
+                targetVid.play();
             } else {
-                videoRef.current.pause();
+                targetVid.pause();
             }
         }
     };
@@ -120,6 +121,7 @@ export default function VideoPlay() {
         <div className={styles.bodyWrapper}>
             <main className={styles.mainContainer}>
 
+                {/* Outer frame holding everything */}
                 <div
                     className={styles.feedWrapper}
                     onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
@@ -127,69 +129,74 @@ export default function VideoPlay() {
                     onMouseDown={(e) => handleDragStart(e.clientY)}
                     onMouseUp={(e) => handleDragEnd(e.clientY)}
                 >
-                    {/* The transform property smoothly shifts the card layout based on the index */}
+                    {/* The Track Container moving dynamically by percentages */}
                     <div 
-                        className={styles.videoCard} 
-                        style={{ transform: `translateY(${-currentIndex * 0}px)` }}
+                        className={styles.videoTrack} 
+                        style={{ transform: `translateY(${-currentIndex * 100}%)` }}
                     >
+                        {VIDEO_DATA.map((video, idx) => {
+                            const isLiked = !!likedVideos[video.id];
+                            return (
+                                <div key={video.id} className={styles.videoCard}>
+                                    <div className={styles.topControls}>
+                                        <button className={styles.muteBtn} onClick={toggleMute}>
+                                            <i className={`fa-solid ${globalMuted ? 'fa-volume-xmark' : 'fa-volume-high'}`}></i>
+                                        </button>
+                                    </div>
 
-                        <div className={styles.topControls}>
-                            <button className={styles.muteBtn} onClick={toggleMute}>
-                                <i className={`fa-solid ${globalMuted ? 'fa-volume-xmark' : 'fa-volume-high'}`}></i>
-                            </button>
-                        </div>
+                                    <video
+                                        className={`${styles.videoPlayer} ${isRotated ? styles.videoPlayerRotated : ''}`}
+                                        loop
+                                        autoPlay={idx === 0} // Only true autoplay on first mount
+                                        playsInline
+                                        muted={globalMuted}
+                                        ref={el => videoRefs.current[idx] = el}
+                                        onClick={() => handleVideoClick(idx)}
+                                    >
+                                        <source src={video.src} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
 
-                        <video
-                            className={`${styles.videoPlayer} ${isRotated ? styles.videoPlayerRotated : ''}`}
-                            id="feedVideo"
-                            loop
-                            autoPlay
-                            playsInline
-                            muted={globalMuted}
-                            ref={videoRef}
-                            onClick={handleVideoClick}
-                        >
-                            <source src={currentVideo.src} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                                    <div className={styles.videoOverlayInfo}>
+                                        <div className={styles.userInfo}>
+                                            <div className={styles.avatar}>
+                                                <img className={styles.avatarImg} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar" />
+                                            </div>
+                                            <div>
+                                                <span className={styles.username}>{video.username}</span>
+                                                <p className={styles.timestamp}>2 hours ago</p>
+                                            </div>
+                                            <button className={styles.followBtn}>Follow</button>
+                                        </div>
+                                        <div className={styles.discription}>
+                                            <p>{video.description}</p>
+                                        </div>
+                                    </div>
 
-                        <div className={styles.videoOverlayInfo}>
-                            <div className={styles.userInfo}>
-                                <div className={styles.avatar}>
-                                    <img className={styles.avatarImg} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar" />
+                                    {/* Action items inside each card context */}
+                                    <div className={styles.actionSidebar}>
+                                        <div className={`${styles.actionItem} ${isLiked ? styles.actionItemLiked : ''}`} onClick={() => toggleLike(video.id)}>
+                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-heart"></i></div>
+                                            <span className={styles.actionCount}>{isLiked ? 'Liked' : video.likes}</span>
+                                        </div>
+                                        <div className={styles.actionItem}>
+                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-comment-dots"></i></div>
+                                            <span className={styles.actionCount}>{video.comments}</span>
+                                        </div>
+                                        <div className={styles.actionItem}>
+                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-share"></i></div>
+                                            <span className={styles.actionCount}>{video.shares}</span>
+                                        </div>
+                                        <div className={styles.actionItem}>
+                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-bookmark"></i></div>
+                                        </div>
+                                        <div className={styles.actionItem}>
+                                            <div className={styles.actionBtnCircle} style={{ background: 'none' }}><i className="fa-solid fa-ellipsis"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span className={styles.username}>{currentVideo.username}</span>
-                                    <p className={styles.timestamp}>2hours ago</p>
-                                </div>
-                                <button className={styles.followBtn}>Follow</button>
-                            </div>
-                            <div className={styles.discription}>
-                                <p>{currentVideo.description}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.actionSidebar}>
-                        <div className={`${styles.actionItem} ${isLiked ? styles.actionItemLiked : ''}`} onClick={toggleLike}>
-                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-heart"></i></div>
-                            <span className={styles.actionCount}>{isLiked ? 'Liked' : currentVideo.likes}</span>
-                        </div>
-                        <div className={styles.actionItem}>
-                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-comment-dots"></i></div>
-                            <span className={styles.actionCount}>{currentVideo.comments}</span>
-                        </div>
-                        <div className={styles.actionItem}>
-                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-share"></i></div>
-                            <span className={styles.actionCount}>{currentVideo.shares}</span>
-                        </div>
-                        <div className={styles.actionItem}>
-                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-bookmark"></i></div>
-                        </div>
-                        <div className={styles.actionItem}>
-                            <div className={styles.actionBtnCircle} style={{ background: 'none' }}><i className="fa-solid fa-ellipsis"></i></div>
-                        </div>
-                        
+                            );
+                        })}
                     </div>
                 </div>
 
