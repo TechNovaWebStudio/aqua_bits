@@ -15,8 +15,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    /* background-color: #570c0c; */
-    /* Darkened background for modern appearance */
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -40,10 +38,11 @@
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    /* box-shadow: 0 8px 32px rgba(0,0,0,0.3); */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Added transition for smooth video loading swaps */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease-in-out;
 }
 
 /* Video element setup */
@@ -52,6 +51,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    
 }
 
 .videoPlayerRotated {
@@ -70,6 +70,8 @@
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
     z-index: 2;
     pointer-events: none;
+    /* padding-bottom: 80px; */
+
 }
 
 .userInfo {
@@ -131,8 +133,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* justify-content: center; */
     gap: 16px;
     z-index: 3;
+    /* background-color: red; */
+    
 }
 
 .actionItem {
@@ -146,8 +151,6 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    /* background: linear-gradient(135deg, #2d9d5e, #1e7a44);
-  color: #2d9d5e; */
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -155,19 +158,33 @@
     font-size: 20px;
     color: #2d9d5e;
     background-color: #f4f4f5;
-    transition: background-color 0.2s, transform 0.1s;
+    /* Clean, smooth curves for visual transitions */
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, color 0.2s ease;
 }
 
 .actionBtnCircle:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.85);
+    transform: scale(1.15); /* Sleek icon expansion bubble */
 }
 
 .actionBtnCircle:active {
     transform: scale(0.92);
 }
 
+/* Animated heartbeat state when active like is triggered */
+.actionItemLiked .actionBtnCircle {
+    animation: heartbeat 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 .actionItemLiked .actionBtnCircle i {
     color: #ff3040;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3); }
+    60% { transform: scale(0.9); }
+    100% { transform: scale(1.15); }
 }
 
 .actionCount {
@@ -177,6 +194,7 @@
     font-weight: 500;
 }
 
+/* Added spinning vinyl rotation to audio item */
 .audioDiscThumb {
     width: 32px;
     height: 32px;
@@ -184,6 +202,11 @@
     background-color: #444;
     border: 2px solid #fff;
     margin-top: 5px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
 }
 
 /* --- NAVIGATION ARROWS --- */
@@ -206,11 +229,12 @@
     cursor: pointer;
     color: #2d9d5e;
     background-color: #f4f4f5;
-    transition: background-color 0.2s;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .arrowBtn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.85);
+    transform: scale(1.1);
 }
 
 /* --- FLOATING MESSAGES CHAT BAR --- */
@@ -227,6 +251,11 @@
     cursor: pointer;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     color: #000000;
+    transition: transform 0.2s ease;
+}
+
+.floatingChatPill:hover {
+    transform: translateY(-3px);
 }
 
 .chatPillLeft {
@@ -300,18 +329,21 @@
     cursor: pointer;
     font-size: 14px;
     backdrop-filter: blur(4px);
-    transition: background 0.2s;
+    transition: transform 0.2s ease, background 0.2s;
 }
 
 .rotateToolBtn:hover, .muteBtn:hover {
     background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
 }
 
 /* --- ALL DEVICE RESPONSIVE SYSTEM --- */
 @media (max-width: 768px) {
     .mainContainer {
         padding: 0;
+        
     }
+    
 
     .feedWrapper {
         width: 100%;
@@ -320,6 +352,9 @@
         justify-content: center;
         align-items: center;
         gap: 0;
+    }
+    .videoOverlayInfo {
+        padding-bottom: 80px;
     }
 
     .videoCard {
@@ -333,17 +368,23 @@
         display: none;
     }
 
-    /* Overlay actions sidebar directly on mobile feed view */
     .actionSidebar {
         position: absolute;
+        /* height: 100%; */
         right: 15px;
-        bottom: 40px;
+        bottom: 120px;
         gap: 16px;
+        /* justify-content: center; */
     }
 
     .actionBtnCircle {
         background-color: rgba(0, 0, 0, 0.4);
         color: #ffffff;
+    }
+    
+    .actionBtnCircle:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+        transform: scale(1.15);
     }
 
     .actionCount {

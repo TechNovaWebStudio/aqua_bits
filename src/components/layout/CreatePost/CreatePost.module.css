@@ -1,0 +1,250 @@
+/* --- Base Layer Container --- */
+.dashboardContainer {
+  width: 100%;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-y: auto;
+}
+
+/* --- Header Styling --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.btnDraft {
+  background-color: #eceeff;
+  color: #4f46e5;
+}
+
+.btnDraft:hover {
+  background-color: #dddfef;
+}
+
+.btnSubmit {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.btnSubmit:hover {
+  background-color: #3b31d3;
+}
+
+/* --- Responsive Two-Column Layout Grid --- */
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Swapped column proportions for new alignment */
+  gap: 25px;
+}
+
+/* --- Cards inside Dashboard --- */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  margin-bottom: 25px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* --- Inner Grid Inputs --- */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup.fullWidth {
+  grid-column: span 2;
+}
+
+/* --- Form Fields Base Rules --- */
+.dashboardContainer label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.dashboardContainer input, 
+.dashboardContainer select, 
+.dashboardContainer textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #f7f8fa;
+  border: 1px solid #f7f8fa;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #2d3748;
+  outline: none;
+  transition: border 0.2s ease, background-color 0.2s ease;
+}
+
+.dashboardContainer input:focus, 
+.dashboardContainer select:focus, 
+.dashboardContainer textarea:focus {
+  border-color: #4f46e5;
+  background-color: #ffffff;
+}
+
+.dashboardContainer textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* --- Image Gallery Element Blocks --- */
+.mainImageContainer {
+  width: 100%;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f7f8fa;
+  margin-bottom: 15px;
+}
+
+.mainImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #a0aec0;
+}
+
+.thumbnailGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.thumbBox {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f7f8fa;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumbBox.active {
+  border-color: #4f46e5;
+}
+
+.thumbBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbBox.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0ff;
+  color: #4f46e5;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px dashed #cbd5e1;
+}
+
+.thumbBox.addBtn:hover {
+  background-color: #e5e7ff;
+}
+
+.removeIcon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #ef4444;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Media Queries for Breakpoints --- */
+
+@media (max-width: 900px) {
+  /* Collapses layout into single column stream */
+  .mainLayout {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Forces Left Column (Images & Categories) to top order positions on mobile devices */
+  .columnLeft {
+    order: 1;
+  }
+  .columnRight {
+    order: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .formGroup.fullWidth {
+    grid-column: span 1;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+  }
+}
