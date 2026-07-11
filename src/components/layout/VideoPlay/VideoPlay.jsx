@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import styles from './VideoPlay.module.css';
+import CommentPop from '@/components/common/CommentPop/CommentPop';
 
 const VIDEO_DATA = [
     {
@@ -47,8 +48,8 @@ export default function VideoPlay() {
     const [likedVideos, setLikedVideos] = useState({});
     const [isRotated, setIsRotated] = useState(false);
     const [globalMuted, setGlobalMuted] = useState(true);
+    const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
-    // Array of refs to manage each individual video element
     const videoRefs = useRef([]);
     const touchStartY = useRef(0);
 
@@ -68,7 +69,6 @@ export default function VideoPlay() {
         }
     };
 
-    // Pauses old video and plays the new target video cleanly
     const manageVideoPlayback = (nextIndex) => {
         if (videoRefs.current[currentIndex]) {
             videoRefs.current[currentIndex].pause();
@@ -121,83 +121,94 @@ export default function VideoPlay() {
         <div className={styles.bodyWrapper}>
             <main className={styles.mainContainer}>
 
-                {/* Outer frame holding everything */}
-                <div
-                    className={styles.feedWrapper}
-                    onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
-                    onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientY)}
-                    onMouseDown={(e) => handleDragStart(e.clientY)}
-                    onMouseUp={(e) => handleDragEnd(e.clientY)}
-                >
-                    {/* The Track Container moving dynamically by percentages */}
-                    <div 
-                        className={styles.videoTrack} 
-                        style={{ transform: `translateY(${-currentIndex * 100}%)` }}
+                {/* Main Content Layout Container */}
+                <div className={styles.contentLayoutContainer}>
+                    
+                    {/* Outer frame holding video feed player */}
+                    <div
+                        className={styles.feedWrapper}
+                        onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
+                        onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientY)}
+                        onMouseDown={(e) => handleDragStart(e.clientY)}
+                        onMouseUp={(e) => handleDragEnd(e.clientY)}
                     >
-                        {VIDEO_DATA.map((video, idx) => {
-                            const isLiked = !!likedVideos[video.id];
-                            return (
-                                <div key={video.id} className={styles.videoCard}>
-                                    <div className={styles.topControls}>
-                                        <button className={styles.muteBtn} onClick={toggleMute}>
-                                            <i className={`fa-solid ${globalMuted ? 'fa-volume-xmark' : 'fa-volume-high'}`}></i>
-                                        </button>
-                                    </div>
+                        <div 
+                            className={styles.videoTrack} 
+                            style={{ transform: `translateY(${-currentIndex * 100}%)` }}
+                        >
+                            {VIDEO_DATA.map((video, idx) => {
+                                const isLiked = !!likedVideos[video.id];
+                                return (
+                                    <div key={video.id} className={styles.videoCard}>
+                                        <div className={styles.topControls}>
+                                            <button className={styles.muteBtn} onClick={toggleMute}>
+                                                <i className={`fa-solid ${globalMuted ? 'fa-volume-xmark' : 'fa-volume-high'}`}></i>
+                                            </button>
+                                        </div>
 
-                                    <video
-                                        className={`${styles.videoPlayer} ${isRotated ? styles.videoPlayerRotated : ''}`}
-                                        loop
-                                        autoPlay={idx === 0} // Only true autoplay on first mount
-                                        playsInline
-                                        muted={globalMuted}
-                                        ref={el => videoRefs.current[idx] = el}
-                                        onClick={() => handleVideoClick(idx)}
-                                    >
-                                        <source src={video.src} type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
+                                        <video
+                                            className={`${styles.videoPlayer} ${isRotated ? styles.videoPlayerRotated : ''}`}
+                                            loop
+                                            autoPlay={idx === 0}
+                                            playsInline
+                                            muted={globalMuted}
+                                            ref={el => videoRefs.current[idx] = el}
+                                            onClick={() => handleVideoClick(idx)}
+                                        >
+                                            <source src={video.src} type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
 
-                                    <div className={styles.videoOverlayInfo}>
-                                        <div className={styles.userInfo}>
-                                            <div className={styles.avatar}>
-                                                <img className={styles.avatarImg} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar" />
+                                        <div className={styles.videoOverlayInfo}>
+                                            <div className={styles.userInfo}>
+                                                <div className={styles.avatar}>
+                                                    <img className={styles.avatarImg} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar" />
+                                                </div>
+                                                <div>
+                                                    <span className={styles.username}>{video.username}</span>
+                                                    <p className={styles.timestamp}>2 hours ago</p>
+                                                </div>
+                                                <button className={styles.followBtn}>Follow</button>
                                             </div>
-                                            <div>
-                                                <span className={styles.username}>{video.username}</span>
-                                                <p className={styles.timestamp}>2 hours ago</p>
+                                            <div className={styles.discription}>
+                                                <p>{video.description}</p>
                                             </div>
-                                            <button className={styles.followBtn}>Follow</button>
                                         </div>
-                                        <div className={styles.discription}>
-                                            <p>{video.description}</p>
-                                        </div>
-                                    </div>
 
-                                    {/* Action items inside each card context */}
-                                    <div className={styles.actionSidebar}>
-                                        <div className={`${styles.actionItem} ${isLiked ? styles.actionItemLiked : ''}`} onClick={() => toggleLike(video.id)}>
-                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-heart"></i></div>
-                                            <span className={styles.actionCount}>{isLiked ? 'Liked' : video.likes}</span>
-                                        </div>
-                                        <div className={styles.actionItem}>
-                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-comment-dots"></i></div>
-                                            <span className={styles.actionCount}>{video.comments}</span>
-                                        </div>
-                                        <div className={styles.actionItem}>
-                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-share"></i></div>
-                                            <span className={styles.actionCount}>{video.shares}</span>
-                                        </div>
-                                        <div className={styles.actionItem}>
-                                            <div className={styles.actionBtnCircle}><i className="fa-solid fa-bookmark"></i></div>
-                                        </div>
-                                        <div className={styles.actionItem}>
-                                            <div className={styles.actionBtnCircle} style={{ background: 'none' }}><i className="fa-solid fa-ellipsis"></i></div>
+                                        <div className={styles.actionSidebar}>
+                                            <div className={`${styles.actionItem} ${isLiked ? styles.actionItemLiked : ''}`} onClick={() => toggleLike(video.id)}>
+                                                <div className={styles.actionBtnCircle}><i className="fa-solid fa-heart"></i></div>
+                                                <span className={styles.actionCount}>{isLiked ? 'Liked' : video.likes}</span>
+                                            </div>
+                                            
+                                            {/* Open comments popup window layout toggler */}
+                                            <div 
+                                                className={`${styles.actionItem} ${isCommentsOpen ? styles.actionItemActive : ''}`} 
+                                                onClick={() => setIsCommentsOpen(!isCommentsOpen)}
+                                            >
+                                                <div className={styles.actionBtnCircle}><i className="fa-solid fa-comment-dots"></i></div>
+                                                <span className={styles.actionCount}>{video.comments}</span>
+                                            </div>
+
+                                            <div className={styles.actionItem}>
+                                                <div className={styles.actionBtnCircle}><i className="fa-solid fa-share"></i></div>
+                                                <span className={styles.actionCount}>{video.shares}</span>
+                                            </div>
+                                            <div className={styles.actionItem}>
+                                                <div className={styles.actionBtnCircle}><i className="fa-solid fa-bookmark"></i></div>
+                                            </div>
+                                            <div className={styles.actionItem}>
+                                                <div className={styles.actionBtnCircle} style={{ background: 'none' }}><i className="fa-solid fa-ellipsis"></i></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
+
+                    {/* Integrated Standalone Comment Container Node alongside video framework */}
+                    <CommentPop isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
                 </div>
 
                 <div className={styles.feedNavArrows}>
