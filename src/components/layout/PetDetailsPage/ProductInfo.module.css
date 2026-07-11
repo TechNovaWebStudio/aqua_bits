@@ -1,0 +1,247 @@
+.productContainer {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 450px;
+    padding: 16px;
+    color: #334155;
+    background: #ffffff;
+}
+
+.categoryTag {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.productName {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.inStockBadge {
+    background-color: #f0fdf4;
+    color: #16a34a;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid #bbf7d0;
+}
+
+.ratingRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.stars {
+    color: #f59e0b;
+    font-size: 14px;
+}
+
+.ratingText {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.currentPrice {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.originalPrice {
+    font-size: 16px;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.description {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 16px 0;
+}
+
+.optionSection {
+    margin-bottom: 18px;
+}
+
+.optionLabel {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.optionLabel span {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.chipGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.2s;
+}
+
+/* Yellow active accent rule based on the image mockup */
+.activeChip {
+    background-color: #facc15;
+    border-color: #facc15;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.colorGroup {
+    display: flex;
+    gap: 12px;
+}
+
+.colorCircle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+
+.activeColor::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1.5px solid #1e293b;
+    border-radius: 50%;
+}
+
+.actionRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.qtyStepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 40px;
+}
+
+.qtyStepper button {
+    width: 32px;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.qtyStepper span {
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.addToCartBtn {
+    flex: 1;
+    height: 40px;
+    background-color: #064e3b;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.buyNowBtn {
+    flex: 1;
+    height: 40px;
+    background-color: #facc15;
+    color: #1e293b;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.wishlistBtn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #f1f5f9;
+    margin: 20px 0;
+}
+
+.metaData {
+    font-size: 12px;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metaData strong {
+    color: #334155;
+}
+
+.shareRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.shareIcons {
+    font-size: 16px;
+    color: #064e3b;
+    letter-spacing: 4px;
+}

@@ -1,0 +1,202 @@
+.checkoutContainerWrapper {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.deliveryFormSection {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formBlockGroup {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.formBlockTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1a1a1a;
+}
+
+.formFieldsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.spanTwoColumns {
+    grid-column: span 2;
+}
+
+.floatingInputField {
+    position: relative;
+    background-color: #fafafa;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.floatingInputField:focus-within {
+    border-color: #0095f6;
+    background-color: #ffffff;
+}
+
+.floatingInputField input, .floatingInputField select {
+    width: 100%;
+    padding: 24px 12px 8px 12px;
+    background: none;
+    border: none;
+    color: #1a1a1a;
+    font-size: 14px;
+    outline: none;
+}
+
+.floatingInputField select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.floatingInputField label {
+    position: absolute;
+    left: 12px;
+    top: 16px;
+    font-size: 14px;
+    color: #737373;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.floatingInputField input:focus ~ label,
+.floatingInputField input:not(:placeholder-shown) ~ label,
+.floatingInputField select:focus ~ label,
+.floatingInputField select:valid ~ label {
+    top: 6px;
+    font-size: 11px;
+    color: #0095f6;
+    font-weight: 600;
+}
+
+.shippingSpeedOption {
+    border: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+}
+
+.shippingSpeedOption:hover {
+    border-color: #cccccc;
+}
+
+.shippingSpeedOption.selected {
+    border-color: #0095f6;
+    background-color: rgba(0, 149, 246, 0.04);
+}
+
+.speedLabelLeft {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.speedRadioBullet {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shippingSpeedOption.selected .speedRadioBullet {
+    border-color: #0095f6;
+}
+
+.shippingSpeedOption.selected .speedRadioBullet::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #0095f6;
+    border-radius: 50%;
+}
+
+.speedText h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #1a1a1a;
+}
+
+.speedText p {
+    font-size: 12px;
+    color: #666666;
+}
+
+.speedCostRight {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.formActionFooterRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 10px;
+}
+
+.backNavLink {
+    color: #737373;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.backNavLink:hover {
+    color: #1a1a1a;
+}
+
+.btnContinueCheckout {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnContinueCheckout:hover {
+    background-color: #333333;
+}

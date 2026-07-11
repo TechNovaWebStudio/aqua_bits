@@ -197,9 +197,9 @@ export default function VideoPlay() {
                                             <div className={styles.actionItem}>
                                                 <div className={styles.actionBtnCircle}><i className="fa-solid fa-bookmark"></i></div>
                                             </div>
-                                            <div className={styles.actionItem}>
+                                            {/* <div className={styles.actionItem}>
                                                 <div className={styles.actionBtnCircle} style={{ background: 'none' }}><i className="fa-solid fa-ellipsis"></i></div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 );

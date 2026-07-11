@@ -1,20 +1,22 @@
 /* Container Layout */
 .timeline-feed-container {
     width: 100%;
-    /* max-width: 520px; */
     margin: 0 auto;
     padding: 10px 0;
+    position: relative;
 }
 
-/* Card layout wrapper & entry transitions */
+/* Card layout structure context block definitions */
 .timeline-feed-card {
     background-color: #ffffff;
     border-radius: 24px;
     margin: 0 16px 24px 16px;
     padding: 18px;
     border: 1px solid #f3f4f6;
-    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); */
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
 }
 
 .timeline-feed-card:hover {
@@ -22,7 +24,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-/* Header UI Identity */
+/* Header Identity elements layout rules */
 .post-header-identity {
     display: flex;
     align-items: center;
@@ -58,7 +60,7 @@
     color: #8e8e93;
 }
 
-/* Image Slider & Sliding Track (Hardware Accelerated Animation) */
+/* Viewport Image sliders styling properties rules */
 .post-display-viewport {
     position: relative;
     width: 100%;
@@ -75,7 +77,6 @@
     width: 100%;
     height: 100%;
     transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    /* Ultra smooth slide ease */
     will-change: transform;
 }
 
@@ -87,7 +88,7 @@
     pointer-events: none;
 }
 
-/* Dots UI Display Frame overlay gradient */
+/* Bottom elements viewport overlay slider dot track indicator layout details */
 .viewport-overlay-bottom {
     position: absolute;
     bottom: 0;
@@ -123,7 +124,7 @@
     border-radius: 4px;
 }
 
-/* Action Triggers panel components */
+/* Panel interaction trigger layouts structural styles setup */
 .post-actions-panel {
     display: flex;
     align-items: center;
@@ -157,7 +158,6 @@
     transition: transform 0.2s ease;
 }
 
-/* Heart micro bounciness animation trigger classes */
 .action-button-trigger.user-liked-active {
     color: #2d9d5e;
     font-weight: 600;
@@ -180,10 +180,10 @@
 }
 
 .action-button-buynow:hover {
-    background-color: #e5e5ea;
+    background-color: #1a6b3b;
 }
 
-/* Overlapping Avatar Elements Row */
+/* Overlapping user profile circle components grid specifications */
 .liked-people-row {
     display: flex;
     align-items: center;
@@ -218,7 +218,7 @@
     color: #1c1c1e;
 }
 
-/* Clean Description layout truncation definitions */
+/* Post textual elements description clamping definitions layout setup */
 .post-description-overlay {
     font-size: 13.5px;
     line-height: 1.45;
@@ -230,33 +230,29 @@
     overflow: hidden;
 }
 
-/* Pop keyframes for the heart action icons elements */
 @keyframes heartPop {
-    0% {
-        transform: scale(1);
-    }
-
-    35% {
-        transform: scale(1.4);
-    }
-
-    70% {
-        transform: scale(0.85);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(1); }
+    35% { transform: scale(1.4); }
+    70% { transform: scale(0.85); }
+    100% { transform: scale(1); }
 }
 
+/* Mobile Screens View Layout Rules Rules */
 @media (max-width: 767px) {
     .timeline-feed-card {
-        padding: 0;
+        padding: 18px 0;
         border: none;
+        border-bottom: 1px solid #f3f4f6;
+        border-radius: 0;
+        margin: 0 16px;
+    }
+    .timeline-feed-card:hover {
+        transform: none;
+        box-shadow: none;
     }
 }
 
-/* Tablet & Desktop (768px and above) */
+/* Tablet & Large Desktop View layouts */
 @media (min-width: 768px) {
     .timeline-feed-card {
         margin-left: 12px;

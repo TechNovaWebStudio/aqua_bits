@@ -3,8 +3,8 @@
 import { useState } from "react";
 import "./TimelineFeed.css";
 import { useRouter } from "next/navigation";
+import CommentPop from "@/components/common/CommentPop/CommentPop";
 
-// 1. Define the dynamic posts object data array
 const postsData = [
   {
     id: 1,
@@ -26,7 +26,6 @@ const postsData = [
       "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=80&q=80"
     ]
   },
-
   {
     id: 2,
     username: "Betta_Fish",
@@ -49,14 +48,14 @@ const postsData = [
   }
 ];
 
-// 2. Individual Post Card Component managing its own slider & interaction states
 function PostCard({ post }) {
   const router = useRouter();
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.initialLikes);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
-  // Touch state helpers for mobile swipe detection
+  // Touch handlers for mobile sliders
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const minSwipeDistance = 50;
@@ -95,7 +94,7 @@ function PostCard({ post }) {
 
   return (
     <div className="timeline-feed-card">
-      {/* Header Section */}
+      {/* 1. Header identity block */}
       <div className="post-header-identity">
         <div className="identity-avatar">
           <img src={post.avatarUrl} alt={post.username} />
@@ -106,7 +105,7 @@ function PostCard({ post }) {
         </div>
       </div>
 
-      {/* Image Slider Section with Swipe Animations */}
+      {/* 2. Slider view track */}
       <div
         className="post-display-viewport"
         onTouchStart={onTouchStart}
@@ -127,7 +126,6 @@ function PostCard({ post }) {
           ))}
         </div>
 
-        {/* Navigation Indicator Dots Overlay */}
         <div className="viewport-overlay-bottom">
           <div className="slider-dots-container">
             {post.images.map((_, index) => (
@@ -141,22 +139,24 @@ function PostCard({ post }) {
         </div>
       </div>
 
-      {/* Interactive Action Layout Panel */}
+      {/* 3. Post interactions toolbar panel */}
       <div className="post-actions-panel">
         <div className="actions-group-left">
           <button className={`action-button-trigger ${liked ? "user-liked-active" : ""}`} onClick={toggleLike}>
             <i className={liked ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
             <span>{likesCount}K</span>
           </button>
-          <button className="action-button-trigger">
+          <button className="action-button-trigger" onClick={() => setIsCommentsOpen(true)}>
             <i className="fa-regular fa-comment"></i>
             <span>{post.commentCount}</span>
           </button>
         </div>
-        <button className="action-button-buynow" onClick={() => router.push("/pet-details")}>View Details</button>
+        <button className="action-button-buynow" onClick={() => router.push("/pet-details")}>
+          View Details
+        </button>
       </div>
 
-      {/* Overlapping Avatar Elements Row */}
+      {/* 4. Social statistics counter display summary */}
       <div className="liked-people-row">
         <div className="avatar-overlap-group">
           {post.likedByAvatars.map((avatar, idx) => (
@@ -168,13 +168,17 @@ function PostCard({ post }) {
         </p>
       </div>
 
-      {/* Text Post Content Block Description */}
+      {/* 5. Content text block context description details */}
       <p className="post-description-overlay">{post.description}</p>
+
+      {/* 6. Fix applied here: Destroyed completely from rendering hierarchy when state is closed */}
+      {isCommentsOpen && (
+        <CommentPop isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
+      )}
     </div>
   );
 }
 
-// 3. Main Wrapper Engine component mapping over the dataset array cleanly
 export default function TimelineFeed() {
   return (
     <div className="timeline-feed-container">

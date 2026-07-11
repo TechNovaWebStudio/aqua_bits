@@ -416,7 +416,7 @@
     .actionSidebar {
         position: absolute;
         right: 15px;
-        bottom: 60px; /* Adjusted side-button positions for the cleaner view */
+        bottom: 130px; /* Adjusted side-button positions for the cleaner view */
         gap: 16px;
     }
 }
