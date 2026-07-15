@@ -4,17 +4,18 @@ import SidebarLeft from "@/components/common/SidebarLeft/SidebarLeft";
 import VideoPlay from "@/components/layout/VideoPlay/VideoPlay";
 
 export const metadata = {
-  title: "Video Details",
-  description: "Video details page.",
+  title: "Show Short",
+  description: "Show single short",
 };
 
-export default function VideoDetails() {
+export default async function VideoDetails({ params }) {
+  // Await the params to safely read the dynamic ID
+  const resolvedParams = await params;
+  const id = resolvedParams?.id;
+
   return (
     <>
-      {/* Structural Global Styles overriding layouts to enforce 100vh constraint */}
       <style dangerouslySetInnerHTML={{__html: `
-        
-        
         .app-grid-wrapper {
           display: grid;
           grid-template-columns: 240px 1fr;
@@ -23,23 +24,18 @@ export default function VideoDetails() {
           overflow: hidden;
         }
 
-        .main-content-stream {
-          display: flex;
-          flex-direction: column;
+        .main-section {
           height: 100%;
           width: 100%;
           overflow: hidden;
-          position: relative;
         }
 
-        /* Desktop specific alignments */
         @media (min-width: 769px) {
           .mobile-only {
             display: none !important;
           }
         }
 
-        /* Mobile specific layout structures and alignment modifications */
         @media (max-width: 768px) {
           .app-grid-wrapper {
             grid-template-columns: 1fr;
@@ -55,18 +51,15 @@ export default function VideoDetails() {
       `}} />
 
       <div className="app-grid-wrapper">
-        {/* Fixed Left Desktop Sidebar — Hidden automatically on mobile */}
         <div className="desktop-only">
           <SidebarLeft />
         </div>
         
         <main className="main-section">
-          {/* Optional: Mobile Header wrapper if needed */}
           {/* <div className="mobile-only"><MobileHeader /></div> */}
-          <VideoPlay />
+          <VideoPlay id={id} />
         </main>
 
-        {/* Fixed Bottom Mobile App-bar Nav — Hidden automatically on desktop */}
         <div className="mobile-only">
           <MobileNavbar />
         </div>

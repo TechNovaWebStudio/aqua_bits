@@ -58,7 +58,6 @@
   padding: 0;
   margin: 0;
   width: 100%;
-
 }
 
 /* Base Nav Item Layout */
@@ -133,13 +132,77 @@
 }
 
 /* Special Case Accent Compass Button: Clean Floating Transparent Pill overlay */
-
-
-
-
 .nav-link-item:not(.active):hover {
   background-color: rgba(45, 157, 94, 0.1);
   border-color: rgba(45, 157, 94, 0.4);
+}
+
+/* --- Dynamic Submenu Styling --- */
+.submenu-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.submenu-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  color: #71717a;
+  transition: transform 0.3s ease;
+}
+
+.submenu-arrow.open {
+  transform: rotate(180deg);
+  color: #2d9d5e;
+}
+
+.submenu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  padding-left: 20px;
+}
+
+.submenu-list.visible {
+  max-height: 160px; /* Expands smoothly */
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.sub-icon {
+  font-size: 14px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  color: #2d9d5e;
+}
+
+.submenu-item:hover {
+  color: #16a34a;
+  background-color: rgba(45, 157, 94, 0.08);
+  border-color: rgba(45, 157, 94, 0.2);
+  transform: translateX(4px);
 }
 
 /* User Footer Section (Liquid Glass Pod Base Container) */
@@ -169,7 +232,6 @@
   transform: translateX(2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
 }
-
 
 /* ✨ Dynamic Active Condition Variant for Active Profile View */
 .sidebar-user-footer.active-profile {
@@ -243,6 +305,7 @@
   color: #a1a1aa;
   padding: 4px;
 }
+
 /* Guest State Specific Styling */
 .sidebar-user-footer.guest-state {
   cursor: default; /* Overrides pointer if it shouldn't click the whole card */

@@ -3,48 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CommentPop.module.css";
 
-// Updated with mock avatar URLs
-const INITIAL_COMMENTS = [
-  {
-    id: 1,
-    author: "jdm_culture",
-    avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", 
-    avatarColor: "#e6f4ea", 
-    avatarTextColor: "#10ac84", 
-    text: "That paint job looks incredibly pristine. Clean build! 🔥",
-    time: "2d",
-    likes: 142,
-    isLiked: false,
-    replies: [
-      {
-        id: 101,
-        author: "vtec_kickin",
-        avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
-        avatarColor: "#f1f5f9",
-        avatarTextColor: "#64748b",
-        text: "@jdm_culture Agreed, championship white hits different.",
-        time: "1d",
-        likes: 12,
-        isLiked: false,
-      },
-    ],
-  },
-  {
-    id: 2,
-    author: "honda.tuned",
-    avatarUrl: "", // Testing fallback to letter initial if empty
-    avatarColor: "#e6f4ea",
-    avatarTextColor: "#10ac84",
-    text: "Is that a genuine B16A2 engine block inside or swapped? 🤔",
-    time: "5h",
-    likes: 38,
-    isLiked: false,
-    replies: [],
-  },
-];
 
-export default function CommentPop({ isOpen, onClose }) {
-  const [comments, setComments] = useState(INITIAL_COMMENTS);
+export default function CommentPop({ isOpen, onClose ,COMMENTS }) {
+  const [comments, setComments] = useState(COMMENTS);
   const [inputValue, setInputValue] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
   const commentsBodyRef = useRef(null);

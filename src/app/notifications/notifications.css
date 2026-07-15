@@ -1,0 +1,231 @@
+/* Master Canvas Wrapper */
+.notif-page-wrapper {
+  min-height: 100vh;
+  background-color: #ffffff; /* Clean pure white background */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Central Page Sheet Container */
+.notif-container {
+  width: 100%;
+  max-width: 720px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+/* Header Sections */
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.notif-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+.notif-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+.mark-read-btn {
+  background: none;
+  border: none;
+  color: #15803d; /* Rich Green text alternative link button */
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.15s ease;
+}
+.mark-read-btn:hover { color: #166534; }
+
+/* Settings Block Widget (Subtle green tint background frame) */
+.notif-settings-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0fdf4; /* Ultra-light soft green background tint */
+  border: 1px solid #dcfce7;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+.settings-info { display: flex; flex-direction: column; gap: 2px; }
+.settings-title { font-size: 14px; font-weight: 600; color: #14532d; }
+.settings-desc { font-size: 12px; color: #166534; opacity: 0.8; }
+
+/* iOS Inspired Form Toggle Input Track Button */
+.toggle-switch-track {
+  width: 44px;
+  height: 24px;
+  background-color: #e5e7eb;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+.toggle-switch-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.switch-on { background-color: #30d158; } /* Premium dynamic green toggle trigger track state */
+.switch-on .toggle-switch-thumb { transform: translateX(20px); }
+
+/* Horizontal Tabs Control Underlines */
+.notif-tabs-strip {
+  display: flex;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.tab-item-trigger {
+  background: none;
+  border: none;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease;
+}
+.tab-item-trigger:hover { color: #111827; }
+.tab-active { color: #15803d; font-weight: 600; }
+.tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background-color: #30d158; /* Signature Green tab line indicator */
+}
+.badge-count {
+  background-color: #15803d;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 100px;
+}
+
+/* Dynamic Render Rows Card Blocks Layout */
+.notif-feed-list { display: flex; flex-direction: column; }
+
+.notif-item-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 12px;
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.12s ease;
+  border-bottom: 1px solid #f9fafb;
+}
+.notif-item-card:hover { background-color: #f9fafb; }
+.unread-highlight { background-color: #f0fdf4; } /* Subtle Green layout highlight background style for active notifications */
+.unread-highlight:hover { background-color: #e6fded; }
+
+.unread-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #30d158; /* Accent green dot */
+  border-radius: 50%;
+  position: absolute;
+  left: 2px;
+  top: 24px;
+}
+
+.notif-sender-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 14px;
+  border: 1px solid #f3f4f6;
+}
+
+.notif-content-mid { flex: 1; min-width: 0; padding-right: 12px; }
+.notif-bubble-text {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #374151;
+  margin: 0 0 4px 0;
+  word-wrap: break-word;
+}
+.user-bold { font-weight: 600; color: #111827; }
+.notif-timestamp-label { font-size: 12px; color: #9ca3af; }
+
+/* Right Align Context Actions positioning rules */
+.notif-right-action { flex-shrink: 0; display: flex; align-items: center; }
+.notif-attached-media {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Follow buttons action state controller overrides */
+.action-follow-toggle {
+  background-color: #30d158; /* Bold Green primary call to action state indicator */
+  color: white;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.action-follow-toggle:hover { background-color: #28b84e; }
+.action-follow-toggle.following-mode {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+.action-follow-toggle.following-mode:hover { background-color: #e5e7eb; }
+
+/* Empty State Handling Module blocks */
+.notif-empty-state { text-align: center; padding: 60px 20px; }
+.empty-icon-shield { font-size: 44px; margin-bottom: 16px; opacity: 0.8; }
+.notif-empty-state h3 { font-size: 16px; color: #111827; margin: 0 0 6px 0; }
+.notif-empty-state p { font-size: 13px; color: #6b7280; margin: 0; }
+
+/* ==========================================================================
+   Multi-Device Media Queries Framework Integration
+   ========================================================================== */
+@media (min-width: 640px) {
+  .notif-page-wrapper { background-color: #fafafa; padding: 40px 20px; } /* Crisp background framing on desktops */
+  .notif-container {
+    min-height: auto;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .notif-header h1 { font-size: 28px; }
+  .notif-item-card { padding: 18px 16px; }
+  .unread-pulse-dot { left: -4px; }
+}

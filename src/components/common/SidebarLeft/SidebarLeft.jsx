@@ -10,14 +10,16 @@ export default function SidebarLeft() {
   const navItems = [
     { name: "Home", path: "/", icon: "fa-solid fa-house" },
     { name: "Explore", path: "/explore", icon: "fa-solid fa-magnifying-glass" },
-    { name: "Shorts", path: "/view-short", icon: "fa-solid fa-compass", isAccent: true },
-    { name: "Categories", path: "/categories", icon: "fa-solid fa-layer-group" },
-    { name: "Groups", path: "/groups", icon: "fa-solid fa-user-group" },
-    { name: "Messages", path: "/messages", icon: "fa-regular fa-comment-dots" },
+    { name: "Create", path: "/create", icon: "fa-solid fa-plus", hasSubmenu: true },
+    { name: "Shorts", path: "/shorts", icon: "fa-solid fa-compass", isAccent: true },
+    { name: "Posts", path: "/post-feed", icon: "fa-solid fa-layer-group" },
+    // { name: "Notification", path: "/messages", icon: "fa-regular fa-comment-dots" }, 
   ];
 
   // Initialize role as 'Guest' to prevent Next.js SSR mismatch errors
   const [role, setRole] = useState("Guest");
+  // Manage visibility of "Create" sub-buttons
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   // Safely read from localStorage only after mounting on the client side
   useEffect(() => {
@@ -51,6 +53,46 @@ export default function SidebarLeft() {
                 item.isAccent ? "accent-compass-pill" : "",
                 isCurrentActive ? "active" : ""
               ].filter(Boolean).join(" ");
+
+              if (item.hasSubmenu) {
+                return (
+                  <li key={item.name} className="submenu-container">
+                    <div
+                      className={itemClass}
+                      onClick={() => setIsCreateOpen(!isCreateOpen)}
+                    >
+                      <i className={`${item.icon} nav-icon`}></i>
+                      <span className="nav-text">{item.name}</span>
+                      <i className={`fa-solid fa-chevron-down submenu-arrow ${isCreateOpen ? "open" : ""}`}></i>
+                    </div>
+                    
+                    {/* Sub-navigation items with micro-interactions */}
+                    <ul className={`submenu-list ${isCreateOpen ? "visible" : ""}`}>
+                      <li 
+                        className="submenu-item" 
+                        onClick={() => router.push("/create/short")}
+                      >
+                        <i className="fa-solid fa-clapperboard sub-icon"></i>
+                        <span>Create Short</span>
+                      </li>
+                      <li 
+                        className="submenu-item" 
+                        onClick={() => router.push("/create/post")}
+                      >
+                        <i className="fa-solid fa-pen-to-square sub-icon"></i>
+                        <span>Create Post</span>
+                      </li>
+                      <li 
+                        className="submenu-item" 
+                        onClick={() => router.push("/create/story")}
+                      >
+                        <i className="fa-solid fa-circle-play sub-icon"></i>
+                        <span>Create Story</span>
+                      </li>
+                    </ul>
+                  </li>
+                );
+              }
 
               return (
                 <li

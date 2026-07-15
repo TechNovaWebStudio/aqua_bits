@@ -58,17 +58,6 @@
     gap: 20px;
 }
 
-@media (min-width: 640px) {
-    .breeders-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .breeders-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 /* Card Styling with Uniform Alignment Locks */
 .card {
@@ -277,4 +266,43 @@
 
 .book-btn:hover {
     background-color: #1d4ed8;
+}
+
+/* Mobile Overrides */
+@media (max-width: 639px) {
+    .stats-row, .tags-container {
+        display: none !important;
+    }
+
+    .mobile-follow-count {
+        display: block;
+        font-size: 11px;
+        color: #64748b;
+        margin: 4px 0 0 0;
+    }
+
+    .card {
+        min-height: auto; /* Shrinks the card height on mobile */
+        padding: 16px;
+    }
+}
+
+/* Desktop Defaults */
+.mobile-follow-count {
+    display: none; /* Hide on desktop */
+}
+
+/* Ensure Grid remains responsive */
+.breeders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 640px) {
+    .breeders-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .breeders-grid { grid-template-columns: repeat(3, 1fr); }
 }

@@ -228,6 +228,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    
 }
 
 @keyframes heartPop {
@@ -240,16 +241,19 @@
 /* Mobile Screens View Layout Rules Rules */
 @media (max-width: 767px) {
     .timeline-feed-card {
-        padding: 18px 0;
+        padding: 0px 0;
         border: none;
         border-bottom: 1px solid #f3f4f6;
         border-radius: 0;
         margin: 0 16px;
+        background-color: transparent;
     }
     .timeline-feed-card:hover {
         transform: none;
         box-shadow: none;
     }
+    .post-description-overlay {
+    margin-bottom: 20px;}
 }
 
 /* Tablet & Large Desktop View layouts */

@@ -1,0 +1,86 @@
+.user-list-container {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.users-grid {
+  display: grid;
+  /* Mobile: 1 column */
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 600px) {
+  .users-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
+  .users-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.user-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  /* Mobile default: Row layout */
+  flex-direction: row; 
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  text-align: left;
+  gap: 15px;
+}
+
+/* Reset to column for larger screens if preferred, 
+   or keep row if you want that look everywhere */
+@media (min-width: 600px) {
+  .user-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.star-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #ccc;
+  font-size: 20px;
+}
+
+.star-icon.active {
+  color: #f1c40f;
+}
+
+.user-avatar {
+  width: 60px; /* Slightly smaller for row layout */
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.user-info p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}

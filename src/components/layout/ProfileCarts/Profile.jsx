@@ -1,38 +1,81 @@
 'use client';
+
 import { useState, useEffect } from "react";
 import BreederProfile from "./BreederProfile";
 import UserProfile from "./UserProfile";
 
-export function ProfileSection() {
-  // 1. Initialize with null or a safe default ('user' or 'breeder') to prevent SSR errors
-  const [profile, setProfile] = useState(null);
+// Pro-tip: Try moving this file into your /src or /app directory if it still fails
+import { Breeders } from "../../../../public/data"; 
+
+export function ProfileSection({ profileId }) {
+  console.log('profileId',profileId)
+  const [profileRole, setProfileRole] = useState(null);
+  const [matchedBreeder, setMatchedBreeder] = useState(null);
 
   useEffect(() => {
-    // Function to read the current role from localStorage
+    // Debugging: See exactly what profileId is arriving as
+    console.log("ProfileSection received profileId:", profileId);
+    console.log("Available Breeders Data:", Breeders);
+
+    if (profileId) {
+      // Normalize both sides: trim whitespace and convert to lower-case strings
+      const foundBreeder = Breeders?.find(
+        (b) => String(b.id).trim() === String(profileId).trim()
+      );
+      
+      console.log("Found Breeder result:", foundBreeder);
+
+      if (foundBreeder) {
+        setMatchedBreeder(foundBreeder);
+        setProfileRole('breeder'); 
+      } else {
+        setProfileRole('not-found');
+      }
+      return;
+    }
+
+    // --- Standard dynamic role logic (no profileId provided) ---
     const handleProfileChange = () => {
-      setProfile(localStorage.getItem('role'));
+      const currentRole = localStorage.getItem('role') || 'user';
+      setProfileRole(currentRole);
     };
 
-    // Run once on initial client-side mount
     handleProfileChange();
 
-    // 2. Listen for changes triggered by your login/signup buttons
     window.addEventListener("local-storage-update", handleProfileChange);
+    window.addEventListener("storage", handleProfileChange); 
 
-    // Clean up event listener when component unmounts
     return () => {
       window.removeEventListener("local-storage-update", handleProfileChange);
+      window.removeEventListener("storage", handleProfileChange);
     };
-  }, []);
+  }, [profileId]); 
 
-  // 3. Prevent rendering anything until we know the role on the client side
-  if (profile === null) {
-    return <div className="loading-spinner">Loading...</div>; // Or return null; for a blank skeleton
+  // Loading state
+  if (profileRole === null) {
+    return (
+      <div className="loading-spinner" style={{ padding: '2rem', textAlign: 'center' }}>
+        Loading Profile...
+      </div>
+    );
+  }
+
+  // Handle data not found
+  if (profileRole === 'not-found') {
+    return (
+      <div className="profile-error" style={{ padding: '2rem', textAlign: 'center' }}>
+        Breeder profile not found for ID: {String(profileId)}
+      </div>
+    );
   }
 
   return (
     <>
-      {profile === 'user' ? <UserProfile /> : <BreederProfile />}
+      {profileRole === 'user' ? (
+        <UserProfile />
+      ) : (
+        <BreederProfile breederData={matchedBreeder} />
+      )}
     </>
   );
 }

@@ -4,128 +4,83 @@ import React, { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './BreederProfile.css';
 
-export default function BreederProfile() {
+export default function BreederProfile({ breederData }) {
     const [activeTab, setActiveTab] = useState('posts');
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isContactOpen, setIsContactOpen] = useState(false);
+    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null;
+    console.log(breederData);
 
-    const toggleSettings = () => {
-        setIsSettingsOpen(!isSettingsOpen);
-        setIsContactOpen(false);
-    };
+    // Destructure values with fallback values to ensure rendering safety
+    const {
+        name = "",
+        userName = "",
+        profileImage = "",
+        coverImage = "",
+        location = "",
+        categories = [],
+        experience = "",
+        description = "",
+        bio = "",
+        counts = { followers: 0, following: 0, posts: 0 },
+        posts = [],
+        shorts = [], 
+        saved = [],
+        contact = {}
+    } = breederData || {};
 
     const toggleContact = () => {
         setIsContactOpen(!isContactOpen);
-        setIsSettingsOpen(false);
     };
 
     const renderGridItems = () => {
         switch (activeTab) {
             case 'shorts':
-                return (
-                    <>
-                        <div className="grid-tile-item asset-shorts animate-fade-in">
+                if (shorts && shorts.length > 0) {
+                    return shorts.map((short) => (
+                        <div key={short.id} className="grid-tile-item asset-shorts animate-fade-in">
                             <i className="fa-solid fa-play media-badge-icon"></i>
                             <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> 142K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 12.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 412</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> {short.views || 0}</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {short.likes || 0}</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {short.comments?.length || short.comments || 0}</span>
                             </div>
-                            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&q=80&w=400" alt="Shorts 1" />
+                            {/* Uses videoURL fallback if explicit preview image path does not exist */}
+                            <img src={short.image || short.videoURL || "/images/default-video-placeholder.jpg"} alt={short.caption || "Shorts Video"} />
                         </div>
-                        <div className="grid-tile-item asset-shorts animate-fade-in">
-                            <i className="fa-solid fa-play media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> 142K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 12.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 412</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&q=80&w=400" alt="Shorts 2" />
-                        </div>
-                        <div className="grid-tile-item asset-shorts animate-fade-in">
-                            <i className="fa-solid fa-play media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> 142K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 12.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 412</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&q=80&w=400" alt="Shorts 3" />
-                        </div>
-                        <div className="grid-tile-item asset-shorts animate-fade-in">
-                            <i className="fa-solid fa-play media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> 98K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 8.9K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 195</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=400" alt="Shorts 4" />
-                        </div>
-                    </>
-                );
+                    ));
+                }
+                return <p className="no-data-msg">No shorts available.</p>;
+
             case 'saved':
-                return (
-                    <div className="grid-tile-item animate-fade-in">
-                        <div className="grid-hover-overlay">
-                            <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 11K</span>
-                            <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 84</span>
+                if (saved && saved.length > 0) {
+                    return saved.map((item) => (
+                        <div key={item.id} className="grid-tile-item animate-fade-in">
+                            <div className="grid-hover-overlay">
+                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {item.likes || 0}</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {item.comments?.length || 0}</span>
+                            </div>
+                            <img src={item.image} alt={item.caption || "Saved Post"} />
                         </div>
-                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=400" alt="Saved 1" />
-                    </div>
-                );
+                    ));
+                }
+                return <p className="no-data-msg">No saved items available.</p>;
+
             case 'posts':
             default:
-                return (
-                    <>
-                        <div className="grid-tile-item" onClick={() => alert('Opening post chosen...')}>
+                if (posts && posts.length > 0) {
+                    return posts.map((post) => (
+                        <div key={post.id} className="grid-tile-item" onClick={() => alert(`Opening: ${post.caption}`)}>
                             <i className="fa-solid fa-image media-badge-icon"></i>
                             <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 9.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 86</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> {post.views || 0}</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {post.likes || 0}</span>
+                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {post.comments?.length || 0}</span>
                             </div>
-                            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=400" alt="Post 1" />
+                            <img src={post.image} alt={post.caption || "Post Image"} />
                         </div>
-                        <div className="grid-tile-item" onClick={() => alert('Opening post chosen...')}>
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 9.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 86</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=400" alt="Post 2" />
-                        </div>
-                        <div className="grid-tile-item" onClick={() => alert('Opening post chosen...')}>
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 9.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 86</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=400" alt="Post 3" />
-                        </div>
-                        <div className="grid-tile-item" onClick={() => alert('Opening post chosen...')}>
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 9.4K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 86</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=400" alt="Post 4" />
-                        </div>
-                        <div className="grid-tile-item">
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 14.2K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 310</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1611245555447-e80ee5c66495?auto=format&fit=crop&q=80&w=400" alt="Post 5" />
-                        </div>
-                        <div className="grid-tile-item">
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> 22.8K</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> 402</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=400" alt="Post 6" />
-                        </div>
-                    </>
-                );
+                    ));
+                }
+                return <p className="no-data-msg">No posts available.</p>;
         }
     };
 
@@ -134,50 +89,26 @@ export default function BreederProfile() {
             <main className="main-content">
                 {/* PROFILE BANNER ELEMENT */}
                 <section className="profile-banner">
-                    <img src="https://t4.ftcdn.net/jpg/02/60/01/79/360_F_260017906_I3iTlhPqmkjdw6c9gTJkLcjN1BDjqgYy.jpg" alt="Profile Banner" />
-                    <div className="banner-overlay-tag">
-                        <i className="fa-solid fa-pen-to-square"></i> Edit Banner
-                    </div>
+                    <img src={coverImage || "/images/default-cover.jpg"} alt={`${name}'s Profile Banner`} />
+                    {role === 'breeder' && (
+                        <div className="banner-overlay-tag">
+                            <i className="fa-solid fa-pen-to-square"></i> Edit Banner
+                        </div>
+                    )}
                 </section>
 
                 {/* PROFILE CARD */}
                 <div className="profile-card-wrapper">
                     <header className="profile-header-container">
                         <div className="profile-avatar-left">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqkuY6VixTcPld0X9pD8zdiO-bK1YTFtPcPtGZ4oIkK1pHk6WrGo1Ff9PU&s=10" alt="Profile Avatar" />
+                            <img src={profileImage || "/images/default-avatar.jpg"} alt={`${name}'s Profile Avatar`} />
                         </div>
 
                         <div className="profile-details-right">
                             <div className='usename-section'>
                                 <div>
-                                    <h2>Aqua_World</h2>
-                                    <p className='username'>em1_1999s</p>
-                                </div>
-                                <div className="settings-wrapper-anchor">
-                                    <button className="btn-icon-only settings-trigger" onClick={toggleSettings}>
-                                        <i className="fa-solid fa-gear"></i>
-                                    </button>
-
-                                    {/* COMPACT SETTINGS POPUP */}
-                                    {isSettingsOpen && (
-                                        <div className="compact-settings-popup animate-popup-scale">
-                                            <button
-                                                className="popup-option text-danger"
-                                                onClick={() => {
-                                                    localStorage.clear();
-                                                    window.location.href = "/";
-                                                }}
-                                            >
-                                                <i className="fa-solid fa-right-from-bracket"></i> Log Out
-                                            </button>
-                                            <button className="popup-option" onClick={() => { alert('Managing Accounts...'); setIsSettingsOpen(false); }}>
-                                                <i className="fa-solid fa-users-gear"></i> Manage Accounts
-                                            </button>
-                                            <button className="popup-option" onClick={() => setIsSettingsOpen(false)}>
-                                                <i className="fa-solid fa-user-shield"></i> Privacy Center
-                                            </button>
-                                        </div>
-                                    )}
+                                    <h2>{name}</h2>
+                                    <p className='username'>{userName}</p>
                                 </div>
                             </div>
 
@@ -188,20 +119,31 @@ export default function BreederProfile() {
                                     <button className="btn-action" onClick={toggleContact}>Contact</button>
 
                                     {/* COMPACT CONTACT POPUP */}
-                                    {isContactOpen && (
+                                    {isContactOpen && contact && (
                                         <div className="compact-settings-popup contact-popup animate-popup-scale">
-                                            <a href="tel:+1234567890" className="popup-option">
-                                                <i className="fa-solid fa-phone color-phone"></i> +1 (234) 567-890
-                                            </a>
-                                            <a href="mailto:em1_media@domain.com" className="popup-option">
-                                                <i className="fa-solid fa-envelope color-email"></i> Email Channel
-                                            </a>
-                                            <a href="https://www.instagram.com/404.scripts/" target="_blank" rel="noopener noreferrer" className="popup-option">
-                                                <i className="fa-brands fa-instagram color-instagram"></i> Instagram
-                                            </a>
-                                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="popup-option">
-                                                <i className="fa-brands fa-facebook color-facebook"></i> Facebook
-                                            </a>
+                                            {contact.phone && (
+                                                <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="popup-option">
+                                                    <i className="fa-solid fa-phone color-phone"></i> {contact.phone}
+                                                </a>
+                                            )}
+                                            
+                                            {contact.email && (
+                                                <a href={`mailto:${contact.email}`} className="popup-option">
+                                                    <i className="fa-solid fa-envelope color-email"></i> Email Channel
+                                                </a>
+                                            )}
+                                            
+                                            {contact.instagram && (
+                                                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="popup-option">
+                                                    <i className="fa-brands fa-instagram color-instagram"></i> Instagram
+                                                </a>
+                                            )}
+                                            
+                                            {contact.facebook && (
+                                                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="popup-option">
+                                                    <i className="fa-brands fa-facebook color-facebook"></i> Facebook
+                                                </a>
+                                            )}
                                         </div>
                                     )}
                                 </div>
@@ -209,31 +151,30 @@ export default function BreederProfile() {
 
                             <section className="stats-grid">
                                 <div className="stat-card">
-                                    <div className="stat-value">500K</div>
-                                    <div className="stat-label">Post</div>
+                                    <div className="stat-value">{counts.posts}</div>
+                                    <div className="stat-label">Posts</div>
                                 </div>
                                 <div className="stat-card">
-                                    <div className="stat-value" id="followerCount">23.5M</div>
+                                    <div className="stat-value" id="followerCount">{counts.followers}</div>
                                     <div className="stat-label">Followers</div>
                                 </div>
                                 <div className="stat-card">
-                                    <div className="stat-value">50</div>
+                                    <div className="stat-value">{counts.following}</div>
                                     <div className="stat-label">Following</div>
                                 </div>
                             </section>
 
                             {/* BIO BOX */}
                             <div className="bio-row-detailed">
-                                <span className="bio-category">Breeder</span>
+                                {experience && <span className="bio-category">Experience: {experience}</span>}
                                 <div className="bio-six-lines">
-                                    <p>EM1 VTEC dynamic performance track build.</p>
-                                    <p>Tokyo Tech Hub Sector-3 / Global Shipping.</p>
-                                    <p>DM directly or via mail at em1_media@domain.com</p>
+                                    <p>{description || bio}</p>
                                     <div className="bio-tags-row">
-                                        <span className="bio-inline-tag">#JDM</span>
-                                        <span className="bio-inline-tag">#VTEC</span>
-                                        <span className="bio-inline-tag">#TrackBuild</span>
-                                        <span className="bio-inline-tag">#Classic</span>
+                                        {categories.map((categoryItem, index) => (
+                                            <span key={index} className="bio-inline-tag">
+                                                #{categoryItem.replace(/\s+/g, '')}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +192,7 @@ export default function BreederProfile() {
                             <i className="fa-solid fa-clapperboard"></i> <span>Shorts</span>
                         </button>
                         <button className={`tab-item-btn ${activeTab === 'saved' ? 'active' : ''}`} onClick={() => setActiveTab('saved')}>
-                            <i className="fa-regular fa-bookmark"></i> <span>Saved</span>
+                            <i className="fa-solid fa-bookmark"></i> <span>Saved</span>
                         </button>
                     </div>
                 </div>

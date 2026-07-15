@@ -119,7 +119,7 @@ export default function UpdateProfile() {
         e.preventDefault();
         setIsOnboardingComplete(true);
         // 1. Elevate role to admin/breeder in memory
-        localStorage.setItem("role", "admin");
+        localStorage.setItem("role", "breeder");
 
         // 2. Alert the sidebar to update dynamically without reloading
         window.dispatchEvent(new Event("local-storage-update"));

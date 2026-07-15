@@ -9,7 +9,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-font-smoothing: antialiased;
 }
-/* Add this class right below your .feedWrapper definitions */
+
 .contentLayoutContainer {
     display: flex;
     align-items: flex-end;
@@ -19,11 +19,6 @@
     position: relative;
     max-width: 100%;
 }
-
-/* Ensure existing .feedWrapper has overflow hidden removed so mobile panel can extend out */
-
-
-/* Leave all your remaining standard video rules completely as they were... */
 
 .mainContainer {
     display: flex;
@@ -35,18 +30,7 @@
     overflow: hidden;
 }
 
-/* --- VIDEO FEED AREA FRAME --- */
-.feedWrapper {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
-    height: 90vh;
-    max-height: 750px;
-    position: relative;
-    max-width: 100%;
-    overflow: hidden; /* Clips adjacent videos in the sliding track */
-    border-radius: 12px;
-}
+/* --- VIDEO FEED AREA --- */
 .feedWrapper {
     display: flex;
     align-items: flex-end;
@@ -57,21 +41,18 @@
     overflow: hidden;
 }
 
-/* Kinetic sliding track for vertical reels physics */
 .videoTrack {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* Replicates the standard viewport scrolling curve */
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Individual Video Card Setup */
 .videoCard {
     width: 420px;
     height: 100%;
-    min-height: 100%; /* Keeps item size absolute inside track flex container */
+    min-height: 100%; 
     background-color: #1a1a1a;
     overflow: hidden;
     position: relative;
@@ -81,7 +62,7 @@
     flex-shrink: 0;
 }
 
-/* --- PLAYER ELEMENT CONTROLS --- */
+/* --- PLAYER COMPONENT CONTROLS --- */
 .videoPlayer {
     width: 100%;
     height: 100%;
@@ -95,7 +76,6 @@
     width: 135%;
 }
 
-/* Overlay details inside the video bottom */
 .videoOverlayInfo {
     position: absolute;
     bottom: 0;
@@ -156,14 +136,47 @@
     background: rgba(255, 255, 255, 0.1);
 }
 
-.discription p {
-    font-size: 14px;
-    color: #e1e1e1;
-    line-height: 1.4;
-    margin: 0;
+/* --- NEW WIDTH-FORMAT INLINE TRUNCATION SYSTEM --- */
+.descriptionContainer {
+    position: relative;
+    width: 100%;
+    pointer-events: auto; /* Restores click capabilities over overlay */
 }
 
-/* --- RIGHT SIDE ACTION CONTROLS --- */
+.description {
+    font-size: 14px;
+    color: #e1e1e1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.textClip {
+    display: inline-block;
+    max-width: 180px; /* Constrains description length horizontally by width */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.showMoreBtn {
+    background: none;
+    border: none;
+    color: #3ea6ff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 6px;
+    white-space: nowrap;
+}
+
+.showMoreBtn:hover {
+    color: #65b8ff;
+    text-decoration: underline;
+}
+
+/* --- ACTION SIDEBAR --- */
 .actionSidebar {
     display: flex;
     flex-direction: column;
@@ -205,20 +218,8 @@
     transform: scale(0.92);
 }
 
-/* Heartbeat state when active like is triggered */
-.actionItemLiked .actionBtnCircle {
-    animation: heartbeat 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
 .actionItemLiked .actionBtnCircle i {
     color: #ff3040;
-}
-
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.3); }
-    60% { transform: scale(0.9); }
-    100% { transform: scale(1.15); }
 }
 
 .actionCount {
@@ -229,22 +230,7 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* Spinning vinyl layout rotation hook */
-.audioDiscThumb {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #444;
-    border: 2px solid #fff;
-    margin-top: 5px;
-    animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-
-/* --- NAVIGATION DESKTOP ARROWS --- */
+/* --- NAVIGATION ARROWS & CHAT PILL --- */
 .feedNavArrows {
     position: absolute;
     right: 40px;
@@ -272,7 +258,6 @@
     transform: scale(1.1);
 }
 
-/* --- FLOATING MESSAGES CHAT BAR --- */
 .floatingChatPill {
     position: absolute;
     bottom: 30px;
@@ -326,7 +311,6 @@
     margin-left: 0;
 }
 
-/* --- UTILITY MEDIA LAYOUT BUTTONS --- */
 .topControls {
     position: absolute;
     top: 15px;
@@ -337,7 +321,7 @@
     z-index: 10;
 }
 
-.rotateToolBtn, .muteBtn {
+.muteBtn {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
@@ -349,14 +333,13 @@
     transition: transform 0.2s ease, background 0.2s;
 }
 
-.rotateToolBtn:hover, .muteBtn:hover {
+.muteBtn:hover {
     background: rgba(0, 0, 0, 0.7);
     transform: scale(1.05);
 }
 
-/* --- MOBILE DEVICE RESPONSIVE LAYOUT SYSTEM --- */
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    /* Reset layout wrappers to enforce absolute true full-screen */
     .bodyWrapper {
         height: 100vh;
         width: 100vw;
@@ -366,7 +349,7 @@
 
     .contentLayoutContainer {
         width: 100vw;
-        height: 100vh; /* Force to take up full screen height instead of 90vh */
+        height: 100vh; 
         max-height: none;
         gap: 0;
         padding: 0 !important;
@@ -401,11 +384,11 @@
     .videoPlayer {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures video scales to fill the display edge-to-edge */
+        object-fit: cover; 
     }
 
     .videoOverlayInfo {
-        padding-bottom: 70px; /* Adjusted safe region layout */
+        padding-bottom: 70px; 
     }
 
     .feedNavArrows,
@@ -416,7 +399,8 @@
     .actionSidebar {
         position: absolute;
         right: 15px;
-        bottom: 130px; /* Adjusted side-button positions for the cleaner view */
+        bottom: 130px; 
         gap: 16px;
     }
 }
+

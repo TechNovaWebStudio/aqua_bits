@@ -4,54 +4,15 @@ import { useState } from "react";
 import "./TimelineFeed.css";
 import { useRouter } from "next/navigation";
 import CommentPop from "@/components/common/CommentPop/CommentPop";
-
-const postsData = [
-  {
-    id: 1,
-    username: "Koi_Pond",
-    timeAgo: "2 hours ago",
-    avatarUrl: "https://c1.wallpaperflare.com/preview/93/792/921/water-fish-japan-carp.jpg",
-    description: "Exploring the beautiful landscapes and capturing moments that stay forever. This weekend getaway was exactly what I needed to recharge!",
-    initialLikes: 15.2,
-    commentCount: 428,
-    images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRex8DjTM34OQY5n3fsThrF4386btxG4zXsSHhNCI3EC0ro2FEEx9u6moc&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNVi2Jia8CJijunqY_9rqPx0OWxfB6bHi1LgkV7S_Ey1Lt3wz2D9P-ZKx&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0pJO6ztanhZ5OYlV-ZQ6wEX6fAltGIQ6zucfuFfmEKZjoQSxmiDTn7EV&s=10"
-    ],
-    likedBySummary: "alex_jdm",
-    likedByAvatars: [
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80",
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80",
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=80&q=80"
-    ]
-  },
-  {
-    id: 2,
-    username: "Betta_Fish",
-    timeAgo: "2 hours ago",
-    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgMDldL5dZxdLVQbbJ3n9GQsdSKIHyv6oNmHFnsyKNrg&s=10",
-    description: "Exploring the beautiful landscapes and capturing moments that stay forever. This weekend getaway was exactly what I needed to recharge!",
-    initialLikes: 15.2,
-    commentCount: 428,
-    images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNl48QUBFhZYPhdxEckRGXBVw6l2rHc4wsIG8pwrDrpM_W2RCcNhNrz_8W&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgiPtNPgAx81ViBxADvVDzZV-azLKT-vVH2-sunSYAZ2QG9Yn-ZmGAPExN&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHJPJctyN9ey-wFI-sZScsZ-2Vb7D9U988lUjdwsVQW98Xc-YuTTKBVY&s=10"
-    ],
-    likedBySummary: "alex_jdm",
-    likedByAvatars: [
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80",
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80",
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=80&q=80"
-    ]
-  }
-];
+import { POSTS_DATA } from "../../../../../public/data";
 
 function PostCard({ post }) {
   const router = useRouter();
   const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(post.initialLikes);
+
+  // Safely extract numeric likes
+  const initialLikesVal = typeof post.initialLikes === "number" ? post.initialLikes : 0;
+  const [likesCount, setLikesCount] = useState(initialLikesVal);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
@@ -85,23 +46,85 @@ function PostCard({ post }) {
   const toggleLike = () => {
     if (liked) {
       setLiked(false);
-      setLikesCount(post.initialLikes);
+      setLikesCount(initialLikesVal);
     } else {
       setLiked(true);
-      setLikesCount(parseFloat((post.initialLikes + 0.1).toFixed(1)));
+      setLikesCount(parseFloat((initialLikesVal + 0.1).toFixed(1)));
     }
   };
+
+  const timeAgo = (date) => {
+    const now = new Date();
+    const past = new Date(date);
+
+    const seconds = Math.floor((now - past) / 1000);
+
+    const intervals = [
+      { label: "year", seconds: 31536000 },
+      { label: "month", seconds: 2592000 },
+      { label: "week", seconds: 604800 },
+      { label: "day", seconds: 86400 },
+      { label: "hour", seconds: 3600 },
+      { label: "min", seconds: 60 },
+    ];
+
+    for (const interval of intervals) {
+      const count = Math.floor(seconds / interval.seconds);
+
+      if (count >= 1) {
+        return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
+      }
+    }
+
+    for (const interval of intervals) {
+      const count = Math.floor(seconds / interval.seconds);
+
+      if (count >= 1) {
+        return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
+      }
+    }
+
+    return "just now";
+  };
+
+  // Safely get a primitive value for likes display text
+  const renderLikesDisplay = () => {
+    if (typeof post.likes === "object" && post.likes !== null) {
+      return post.likes.user || "Someone";
+    }
+    return post.likes;
+  };
+
+  // Format numbers to 1K, 10K, 100K, 1M, etc.
+  const formatCount = (num) => {
+    if (!num || isNaN(num)) return "0";
+    const numericValue = typeof num === "string" ? parseFloat(num) : num;
+    
+    if (numericValue >= 1000000) {
+      return (numericValue / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    }
+    if (numericValue >= 1000) {
+      return (numericValue / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+    return numericValue.toString();
+  };
+
+  // FIX: Safely calculate comment length since post.comments is an array of objects
+  const commentCount = Array.isArray(post.comments) ? post.comments.length : (post.comments || 0);
+  
+  // Safely track share counts if present in data, otherwise default to 0
+  const shareCount = post.shares || 0;
 
   return (
     <div className="timeline-feed-card">
       {/* 1. Header identity block */}
       <div className="post-header-identity">
         <div className="identity-avatar">
-          <img src={post.avatarUrl} alt={post.username} />
+          <img src={post.avatar} alt={post.username} />
         </div>
         <div className="identity-meta-text">
           <h4>{post.username}</h4>
-          <span>{post.timeAgo}</span>
+          <span>{timeAgo(post.uploadTime)}</span>
         </div>
       </div>
 
@@ -116,7 +139,7 @@ function PostCard({ post }) {
           className="slider-track"
           style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
         >
-          {post.images.map((src, index) => (
+          {post.images?.map((src, index) => (
             <img
               key={index}
               src={src}
@@ -128,7 +151,7 @@ function PostCard({ post }) {
 
         <div className="viewport-overlay-bottom">
           <div className="slider-dots-container">
-            {post.images.map((_, index) => (
+            {post.images?.map((_, index) => (
               <span
                 key={index}
                 className={`slider-dot ${currentImageIndex === index ? "active" : ""}`}
@@ -144,11 +167,19 @@ function PostCard({ post }) {
         <div className="actions-group-left">
           <button className={`action-button-trigger ${liked ? "user-liked-active" : ""}`} onClick={toggleLike}>
             <i className={liked ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
-            <span>{likesCount}K</span>
+            <span>{formatCount(typeof renderLikesDisplay() === 'string' ? 1000 : renderLikesDisplay())}</span>
           </button>
+
+          {/* FIX APPLIED HERE: rendering commentCount instead of post.comments */}
           <button className="action-button-trigger" onClick={() => setIsCommentsOpen(true)}>
             <i className="fa-regular fa-comment"></i>
-            <span>{post.commentCount}</span>
+            <span>{formatCount(commentCount)}</span>
+          </button>
+
+          {/* Added Share Action Button */}
+          <button className="action-button-trigger">
+            <i className="fa-regular fa-share-from-square"></i>
+            <span>{formatCount(shareCount)}</span>
           </button>
         </div>
         <button className="action-button-buynow" onClick={() => router.push("/pet-details")}>
@@ -159,21 +190,21 @@ function PostCard({ post }) {
       {/* 4. Social statistics counter display summary */}
       <div className="liked-people-row">
         <div className="avatar-overlap-group">
-          {post.likedByAvatars.map((avatar, idx) => (
-            <img key={idx} src={avatar} alt="Likers icon profile" className="overlap-avatar" />
+          {post.likedBy?.map((avatar, idx) => (
+            <img key={avatar.id || idx} src={avatar.avatar} alt="Likers icon profile" className="overlap-avatar" />
           ))}
         </div>
         <p className="liked-text-summary">
-          Liked by <strong>{post.likedBySummary}</strong> and <strong>{likesCount}K others</strong>
+          Liked by <strong>{renderLikesDisplay()}</strong> and <strong>{formatCount(likesCount * 1000)} others</strong>
         </p>
       </div>
 
       {/* 5. Content text block context description details */}
       <p className="post-description-overlay">{post.description}</p>
 
-      {/* 6. Fix applied here: Destroyed completely from rendering hierarchy when state is closed */}
+      {/* 6. Comment Modal */}
       {isCommentsOpen && (
-        <CommentPop isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
+        <CommentPop COMMENTS= {post.comments} isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
       )}
     </div>
   );
@@ -182,7 +213,7 @@ function PostCard({ post }) {
 export default function TimelineFeed() {
   return (
     <div className="timeline-feed-container">
-      {postsData.map((post) => (
+      {POSTS_DATA.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
     </div>

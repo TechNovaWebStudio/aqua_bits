@@ -1,0 +1,49 @@
+/* Base Container for the entire application view */
+.layoutContainer {
+  display: flex;
+  flex-direction: row; /* Desktop first layout orientation */
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* Sidebar Wrapper setup */
+.sidebarWrapper {
+  width: 260px; /* Adjust this width to match your exact Sidebar design size */
+  flex-shrink: 0; /* Prevents the sidebar from getting squished */
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+/* Dashboard content setup - Now completely pushed past the sidebar boundary */
+.mainContent {
+  flex: 1;
+  min-width: 0; /* Critical browser fix to prevent wide tables from breaking layout */
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* --- RESPONSIVE BREAKPOINT FOR MOBILE & TABLETS --- */
+@media (max-width: 768px) {
+  .layoutContainer {
+    flex-direction: column; /* Stack components on small viewports */
+  }
+
+  .sidebarWrapper {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .mainContent {
+    height: auto;
+    overflow-y: visible;
+    padding: 16px;
+  }
+}

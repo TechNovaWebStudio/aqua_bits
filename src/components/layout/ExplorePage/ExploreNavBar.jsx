@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styles from './ExploreNavBar.module.css';
 
 // Mock data for tags (Adjust or pass via props as needed)
-const TAGS = ['Shorts', 'Breeders', 'Sellers', 'Posts', ];
+const TAGS = [ 'Catogerys' ,'Shorts', 'Posts', 'Breeders', 'Users',  ];
 
 export function ExploreNavBar({activeTag,setActiveTag}) {
     // 1. Defined missing state variables to prevent runtime crashes

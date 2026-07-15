@@ -149,7 +149,7 @@
 /* Laptop Specific Layout */
 @media (min-width: 1024px) {
   .rightSideCommentWrapper {
-    height: 50vh; /* 50% of viewport height */
+    height: 70vh; /* 50% of viewport height */
     width: 100%;
     margin-bottom: 20px;
   }

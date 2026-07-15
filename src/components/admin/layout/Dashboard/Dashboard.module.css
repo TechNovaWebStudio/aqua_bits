@@ -1,0 +1,262 @@
+.dashboardBody {
+    --bg-main: #F8F9FA;
+    --sidebar-active: #D4F463;
+    --sidebar-bg: #032B2B;
+    --text-dark: #1A1D1F;
+    --text-muted: #6F767E;
+    --card-bg: #FFFFFF;
+    --border-color: #EFEFEF;
+    --accent-green: #0D4747;
+    
+    --status-instock: #EAFAF1;
+    --status-instock-text: #27AE60;
+    --status-low: #FFF9E6;
+    --status-low-text: #F39C12;
+    --status-out: #FCE4D6;
+    --status-out-text: #E67E22;
+    
+    width: 100%;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+.mainContent {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ==========================================
+   METRICS ROW AND CATEGORY RIBBONS (GRIDS)
+========================================== */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.summaryCard {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.summaryIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.summaryCard.total .summaryIcon { background-color: #F0F5F5; color: var(--accent-green); }
+.summaryCard.low .summaryIcon { background-color: #FFF9E6; color: #F39C12; }
+.summaryCard.out .summaryIcon { background-color: #FCE4D6; color: #E67E22; }
+.summaryDetails p { font-size: 12px; color: var(--text-muted); }
+.summaryDetails h2 { font-size: 24px; font-weight: 700; margin-top: 4px; }
+.cardMore { position: absolute; right: 20px; top: 20px; color: var(--text-muted); cursor: pointer; }
+
+.categoriesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+}
+
+.categoryCard {
+    background-color: var(--card-bg);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.categoryCard.active { background-color: var(--accent-green); color: #FFFFFF; }
+.categoryCard h4 { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 16px; }
+.categoryCard.active h4 { color: #A3B3B3; }
+.categoryMetrics { display: flex; align-items: baseline; gap: 8px; }
+.categoryMetrics h3 { font-size: 22px; font-weight: 700; }
+
+.trendBadge { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+.trendBadge.up { background-color: #EAFAF1; color: #27AE60; }
+.trendBadge.down { background-color: #FCE4D6; color: #E67E22; }
+.categoryCard.active .trendBadge.up { background-color: rgba(255,255,255,0.15); color: var(--sidebar-active); }
+.categoryIcon { position: absolute; right: 16px; bottom: 16px; color: var(--text-muted); opacity: 0.4; font-size: 14px; }
+.categoryCard.active .categoryIcon { color: var(--sidebar-active); opacity: 1; }
+
+/* ==========================================
+   MANAGEMENT TOOLBAR & DATA GRID 
+========================================== */
+.tableContainer {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 16px;
+}
+
+.tableToolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.tableToolbar .searchBar {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+}
+
+.tableToolbar .searchBar input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    outline: none;
+    font-size: 14px;
+}
+
+.tableToolbar .searchBar i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.toolbarRight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    flex-grow: 1;
+}
+
+.btnPrimary { background-color: var(--sidebar-active); color: var(--sidebar-bg); border: none; flex-grow: 2; }
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dataTable th {
+    padding: 14px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #FAFBFB;
+}
+
+.dataTable td {
+    padding: 16px;
+    font-size: 13px;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.statusPill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.statusPill.instock { background-color: var(--status-instock); color: var(--status-instock-text); }
+.statusPill.lowstock { background-color: var(--status-low); color: var(--status-low-text); }
+.statusPill.outstock { background-color: var(--status-out); color: var(--status-out-text); }
+
+.actionsCell i { margin-right: 12px; color: var(--text-muted); cursor: pointer; }
+.actionsCell i:hover { color: var(--text-dark); }
+
+.tableFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.pagination { display: flex; gap: 6px; }
+
+.pageNum {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.pageNum.active { background-color: var(--accent-green); color: white; border-color: var(--accent-green); }
+
+/* ==========================================
+   RESPONSIVE UPGRADE BREAKPOINTS
+========================================== */
+@media (min-width: 768px) {
+    .tableToolbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .tableToolbar .searchBar { max-width: 280px; }
+    .toolbarRight { width: auto; }
+    .btn { flex-grow: 0; }
+    .tableFooter { flex-direction: row; }
+}
+
+@media (min-width: 1025px) {
+    .mainContent {
+        padding: 32px;
+    }
+    .categoriesGrid { grid-template-columns: repeat(4, 1fr); }
+}
