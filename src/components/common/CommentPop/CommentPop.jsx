@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CommentPop.module.css";
 
-export default function CommentPop({ isOpen = false, onClose, COMMENTS = [] }) {
+export default function CommentPop({ isOpen = false, onClose, COMMENTS  }) {
   // Safe initialization: guarantee it is an array even if COMMENTS is undefined
   const [comments, setComments] = useState(COMMENTS || []);
   const [inputValue, setInputValue] = useState("");
