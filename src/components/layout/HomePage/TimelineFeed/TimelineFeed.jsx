@@ -99,7 +99,7 @@ function PostCard({ post }) {
   const formatCount = (num) => {
     if (!num || isNaN(num)) return "0";
     const numericValue = typeof num === "string" ? parseFloat(num) : num;
-    
+
     if (numericValue >= 1000000) {
       return (numericValue / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
     }
@@ -111,7 +111,7 @@ function PostCard({ post }) {
 
   // FIX: Safely calculate comment length since post.comments is an array of objects
   const commentCount = Array.isArray(post.comments) ? post.comments.length : (post.comments || 0);
-  
+
   // Safely track share counts if present in data, otherwise default to 0
   const shareCount = post.shares || 0;
 
@@ -182,7 +182,8 @@ function PostCard({ post }) {
             <span>{formatCount(shareCount)}</span>
           </button>
         </div>
-        <button className="action-button-buynow" onClick={() => router.push("/pet-details")}>
+        <button className="action-button-buynow" onClick={() => router.push(`/pet-details/${post.id}`)}>
+
           View Details
         </button>
       </div>
@@ -204,7 +205,7 @@ function PostCard({ post }) {
 
       {/* 6. Comment Modal */}
       {isCommentsOpen && (
-        <CommentPop COMMENTS= {post.comments} isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
+        <CommentPop COMMENTS={post.comments} isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
       )}
     </div>
   );

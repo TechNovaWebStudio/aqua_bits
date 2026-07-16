@@ -1,15 +1,21 @@
-import MobileHeader from "@/components/common/MobileHeader/MobileHeader";
 import MobileNavbar from "@/components/common/MobileNavbar/MobileNavbar";
 import SidebarLeft from "@/components/common/SidebarLeft/SidebarLeft";
 import PetDetails from "@/components/layout/PetDetailsPage/PetDetails";
-import VideoPlay from "@/components/layout/VideoPlay/VideoPlay";
+import { POSTS_DATA } from "../../../../public/data";
 
 export const metadata = {
   title: "Video Details",
   description: "Video details page.",
 };
 
-export default function VideoDetails() {
+export default async function VideoDetails({ params }) {
+  // Await params to ensure compatibility across Next.js versions (e.g., Next.js 15)
+  const resolvedParams = await params;
+  const targetId = parseInt(resolvedParams.id, 10);
+
+  // Locate matching post data from your array
+  const matchedPost = POSTS_DATA.find((item) => item.id === targetId) || null;
+
   return (
     <>
       {/* Structural Global Styles overriding layouts to enforce 100vh constraint */}
@@ -25,7 +31,7 @@ export default function VideoDetails() {
         }
         
         .app-grid-wrapper {
-          display: flex; /* Changed from grid to flex to eliminate overlap */
+          display: flex;
           flex-direction: row;
           height: 100vh;
           width: 100vw;
@@ -44,7 +50,7 @@ export default function VideoDetails() {
           flex: 1;
           display: flex;
           flex-direction: column;
-          min-width: 0; /* Important: Prevents flex children from breaking width boundaries */
+          min-width: 0;
           height: 100%;
           overflow: hidden;
           position: relative;
@@ -63,7 +69,7 @@ export default function VideoDetails() {
           }
 
           .main-content-stream {
-            height: calc(100vh - 60px); /* Adjusts perfectly for your bottom mobile navbar height */
+            height: calc(100vh - 60px);
             width: 100%;
           }
         }
@@ -75,7 +81,8 @@ export default function VideoDetails() {
         <SidebarLeft />
 
         <main className="main-content-stream">
-          <PetDetails />
+          {/* Feed the fetched object straight into the details layout component */}
+          <PetDetails post={matchedPost} />
         </main>
 
         {/* Fixed Bottom Mobile App-bar Nav */}

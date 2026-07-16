@@ -6,16 +6,27 @@ import PostInfo from "./PostInfo";
 import ProductInfo from "./ProductInfo";
 import AddressInfo from "./AddressInfo";
 
-export default function PetDetails() {
-    // Gallery States
-    const [activeImg, setActiveImg] = useState(
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNl48QUBFhZYPhdxEckRGXBVw6l2rHc4wsIG8pwrDrpM_W2RCcNhNrz_8W&s=10"
-    );
+export default function PetDetails({ post }) {
+    // Graceful fallback condition if no matching data object was found
+    if (!post) {
+        return (
+            <div style={{ padding: "2rem", textAlign: "center", color: "#666" }}>
+                <h2>Post Not Found</h2>
+                <p>The pet detail listing you are looking for does not exist.</p>
+            </div>
+        );
+    }
+
+    // Dynamic Image Gallery extracted directly from item props
+    const galleryImages = post.images || [];
+
+    // Gallery States mapped safely to item details
+    const [activeImg, setActiveImg] = useState(galleryImages[0] || "");
     const [activeThumb, setActiveThumb] = useState(0);
 
-    // Social Interaction States
+    // Social Interaction States populated dynamically
     const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(248);
+    const [likeCount, setLikeCount] = useState(post.likes || 0);
     const [isCommentsOpen, setIsCommentsOpen] = useState(true);
     const [shareCopied, setShareCopied] = useState(false);
 
@@ -36,17 +47,8 @@ export default function PetDetails() {
         pincode: ""
     });
 
-    const galleryImages = [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNl48QUBFhZYPhdxEckRGXBVw6l2rHc4wsIG8pwrDrpM_W2RCcNhNrz_8W&s=10",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgiPtNPgAx81ViBxADvVDzZV-azLKT-vVH2-sunSYAZ2QG9Yn-ZmGAPExN&s=10",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHJPJctyN9ey-wFI-sZScsZ-2Vb7D9U988lUjdwsVQW98Xc-YuTTKBVY&s=10"
-    ];
-
-    const likedUsers = [
-        { name: "alex_j", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" },
-        { name: "sam_dev", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" },
-        { name: "linda.k", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" }
-    ];
+    // Mapped straight out of database profile structures
+    const likedUsers = post.likedBy || [];
 
     const handleThumbClick = (url, index) => {
         setActiveImg(url);
@@ -101,7 +103,7 @@ export default function PetDetails() {
             {/* LEFT COLUMN: VISUAL GALLERY MODULE */}
             <section className={styles.postGallerySection}>
                 <div className={styles.mainStageImage}>
-                    <img src={activeImg} alt="Featured Post Visual" />
+                    {activeImg && <img src={activeImg} alt="Featured Post Visual" />}
                     <div className={styles.liveBadge}>FEATURED POST</div>
                 </div>
 
@@ -133,6 +135,9 @@ export default function PetDetails() {
                         handleShare={handleShare}
                         likedUsers={likedUsers}
                         onNext={() => setCurrentStep("product-config")}
+                        // You can now also pass description, username, etc., to PostInfo if needed:
+                        postDescription={post.description}
+                        username={post.username}
                     />
                 )}
 

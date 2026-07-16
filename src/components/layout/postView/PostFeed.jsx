@@ -5,13 +5,27 @@ import styles from './PostFeed.module.css';
 import CommentPop from '@/components/common/CommentPop/CommentPop';
 import { POSTS_DATA } from '../../../../public/data';
 
-export default function PostFeed() {
+export default function PostFeed({ targetId }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [likedPosts, setLikedPosts] = useState({});
     const [bookmarkedPosts, setBookmarkedPosts] = useState({});
     const [activeImageIndexes, setActiveImageIndexes] = useState({});
     const [customComments, setCustomComments] = useState({});
-    const [feedPosts, setFeedPosts] = useState(POSTS_DATA);
+    
+    // Initialize state by moving the matched ID post to the front of the feed list
+    const [feedPosts, setFeedPosts] = useState(() => {
+        if (!targetId) return POSTS_DATA;
+        
+        // Coerce targetId string matching just in case data uses numeric IDs
+        const matchedPost = POSTS_DATA.find(post => String(post.id) === String(targetId));
+        
+        if (matchedPost) {
+            const remainingPosts = POSTS_DATA.filter(post => String(post.id) !== String(targetId));
+            return [matchedPost, ...remainingPosts];
+        }
+        
+        return POSTS_DATA;
+    });
 
     // UI state toggles - initialized to false so mobile starts closed
     const [isCommentPopOpen, setIsCommentPopOpen] = useState(false);
@@ -245,7 +259,7 @@ export default function PostFeed() {
                     {/* LAPTOP ONLY: Fixed full-time comments board */}
                     {isLaptopSize && activePost && (
                         <CommentPop
-                            COMMENTS={activePost.comments} // Fixed: changed 'post.comments' to 'activePost.comments'
+                            COMMENTS={activePost.comments}
                             isOpen={true}
                             onClose={() => { }}
                             post={activePost}
