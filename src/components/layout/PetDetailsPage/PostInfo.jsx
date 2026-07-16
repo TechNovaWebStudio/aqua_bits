@@ -70,7 +70,7 @@ export default function PostInfo({
 
             {isCommentsOpen && (
                 <div className={styles.rightSideCommentWrapper}>
-                    <CommentPop isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
+                    <CommentPop COMMENTS={[]}isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
                 </div>
             )}
 
