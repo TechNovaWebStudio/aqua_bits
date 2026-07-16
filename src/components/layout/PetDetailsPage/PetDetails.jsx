@@ -22,6 +22,7 @@ export default function PetDetails({ post }) {
     // Dynamic Image Gallery: Extracts from post.images or falls back to data inside petDetails array
     const galleryImages = post.images || 
         (Array.isArray(post.petDetails) ? post.petDetails.flatMap(pet => pet.images || []) : []);
+        // console.log(galleryImages)
 
     // Gallery Stage States
     const [activeImg, setActiveImg] = useState(galleryImages[0] || "");
@@ -45,8 +46,8 @@ export default function PetDetails({ post }) {
     const [currentStep, setCurrentStep] = useState("post");
     
     // Product Configuration Matrix States
-    const [productName, setProductName] = useState("Premium Ergonomic Cat Tree & Multi-Level Nest");
-    const [productPrice, setProductPrice] = useState(89.00);
+    const [productName, setProductName] = useState(post.petDetails.petName);
+    const [productPrice, setProductPrice] = useState(post.petDetails.price);
     const [productQuantity, setProductQuantity] = useState(1);
     
     // Delivery Destination Coordinates
@@ -158,6 +159,7 @@ export default function PetDetails({ post }) {
                 {currentStep === "product-config" && (
                     <ProductInfo
                         productName={productName}
+                        postDescription={post.description}
                         setProductName={setProductName}
                         productPrice={productPrice}
                         setProductPrice={setProductPrice}
@@ -165,6 +167,8 @@ export default function PetDetails({ post }) {
                         setProductQuantity={setProductQuantity}
                         onBack={() => setCurrentStep("post")}
                         onNext={() => setCurrentStep("address")}
+                        petDetails={post.petDetails}
+
                     />
                 )}
 

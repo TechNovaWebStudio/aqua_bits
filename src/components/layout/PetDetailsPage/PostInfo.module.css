@@ -1,25 +1,31 @@
 .postViewWrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%; /* Ensures it fills available horizontal space */
+  min-height: 100%;
+  width: 100%;
   padding: 20px;
   box-sizing: border-box;
 }
 
+/* --- HEADER / IDENTITY INFO --- */
 .postHeaderIdentity {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .identityAvatar {
+  flex-shrink: 0;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   border: 2px solid #10ac84;
   padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .identityAvatar img {
@@ -31,20 +37,31 @@
 
 .identityMetaText {
   flex: 1;
+  min-width: 0;
 }
 
 .identityMetaText h4 {
   font-size: 15px;
   font-weight: 600;
   margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .identityMetaText span {
   font-size: 12px;
   color: #8e8e93;
+  display: block;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .viewProfileBtn {
+  flex-shrink: 0;
   background-color: #f1f5f9;
   border: none;
   color: #334155;
@@ -53,17 +70,29 @@
   padding: 8px 14px;
   border-radius: 18px;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.viewProfileBtn:hover {
+  background-color: #e2e8f0;
+}
+
+.viewProfileBtn:active {
+  transform: scale(0.97);
+}
+
+/* --- PRODUCT TITLE & TAGS --- */
 .postTitle {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.3;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
+  color: #1e293b;
 }
 
 .tagContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 16px;
 }
@@ -77,13 +106,19 @@
   font-weight: 500;
 }
 
+/* --- POST DESCRIPTION --- */
 .postDescription {
   font-size: 15px;
   line-height: 1.6;
   color: #475569;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
+.postDescription p {
+  margin: 0;
+}
+
+/* --- LIKED USERS ROW --- */
 .likedUsersSection {
   display: flex;
   align-items: center;
@@ -103,27 +138,36 @@
   object-fit: cover;
   border: 2px solid #ffffff;
   margin-right: -8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.likedUserAvatar:last-child {
+  margin-right: 0;
 }
 
 .likedUsersText {
   font-size: 13px;
   color: #475569;
+  line-height: 1.4;
 }
 
+/* --- ACTIONS BAR --- */
 .socialActionsBar {
   display: flex;
+  align-items: center;
   gap: 12px;
   margin-bottom: 20px;
   border-top: 1px solid #f1f5f9;
   border-bottom: 1px solid #f1f5f9;
   padding: 12px 0;
+  width: 100%;
 }
 
 .actionBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
   background-color: #f8fafc;
   border: 1px solid #e2e8f0;
   padding: 8px 16px;
@@ -132,6 +176,29 @@
   font-weight: 600;
   color: #475569;
   cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.actionBtn svg {
+  flex-shrink: 0;
+}
+
+.btnLabel {
+  display: inline;
+}
+
+.btnCount {
+  display: inline;
+}
+
+.actionBtn:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.actionBtn:active {
+  transform: scale(0.97);
 }
 
 .actionLiked {
@@ -146,13 +213,12 @@
   border-color: rgba(16, 172, 132, 0.2);
 }
 
-/* Laptop Specific Layout */
-@media (min-width: 1024px) {
-  .rightSideCommentWrapper {
-    height: 70vh; /* 50% of viewport height */
-    width: 100%;
-    margin-bottom: 20px;
-  }
+/* --- COMMENTS MODULE CONTAINER --- */
+.rightSideCommentWrapper {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .rightSideCommentWrapper :global(.CommentPop_commentsPanel__94a3b) {
@@ -165,8 +231,10 @@
   border-radius: 12px;
 }
 
+/* --- BOTTOM PURCHASE ACTION --- */
 .purchaseContainer {
   margin-top: auto;
+  padding-top: 10px;
 }
 
 .buyNowBtn {
@@ -182,9 +250,51 @@
   box-shadow: 0 4px 14px rgba(16, 172, 132, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
 }
 
 .buyNowBtn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* PHONE SPECIFIC REDUCTIONS */
+@media (max-width: 640px) {
+  .socialActionsBar {
+    gap: 8px;
+    justify-content: space-between; /* Spreads buttons evenly across mobile layout width */
+  }
+
+  .actionBtn {
+    flex: 1; /* Makes all 3 buttons fill the layout bar evenly */
+    padding: 10px 6px;
+    font-size: 12px;
+    border-radius: 14px;
+  }
+
+  /* REMOVE LABELS HERE */
+  .btnLabel {
+    display: none !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .postTitle {
+    font-size: 20px;
+  }
+  .viewProfileBtn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .postTitle {
+    font-size: 28px;
+  }
+  .rightSideCommentWrapper {
+    height: 450px;
+    max-height: 50vh;
+  }
 }

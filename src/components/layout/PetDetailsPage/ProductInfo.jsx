@@ -10,114 +10,112 @@ export default function ProductInfo({
     setProductPrice,
     productQuantity = 1,
     setProductQuantity,
-    onBack, // Allows navigating back to the 'post' step
-    onNext,  // Triggers the next phase (e.g., checkout/address)
-    petDetails = [] // Passed down from parent post object
+    onBack,
+    onNext,
+    petDetails,
+    sizes = ['Pair', 'Piece', 'Trio'],
+    postDescription
 }) {
-    // Safely extract the primary item info from incoming dynamic database item rows
-    const fallbackItem = petDetails && petDetails[0] ? petDetails[0] : {};
-    
-    const displayCategory = fallbackItem.category || "Pet Accessory";
-    const initialDescription = fallbackItem.description || 
-        "Configure your listing modifications below. Adjust quantity values, dimensional frameworks, and finish preferences prior to confirmation.";
+    // Local state to manage the chosen tier size
+    const [size, setSize] = useState(sizes[0] || '');
 
-    // Sync state values with parent dynamically if the props change downstream
+    // Dynamically retrieve shipping methods from petDetails, falling back safely if undefined
+    const shippingMethods = petDetails?.shippingMethods || [];
+
+    // Initialize state using the dynamic methods array safely
+    const [selectedMethod, setSelectedMethod] = useState(null);
+
+    // Set default shipping method once dynamic data is available
     useEffect(() => {
-        if (fallbackItem.name && fallbackItem.name !== productName) {
-            setProductName(fallbackItem.name);
+        if (shippingMethods.length > 0 && !selectedMethod) {
+            setSelectedMethod(shippingMethods[0]);
         }
-        if (fallbackItem.price && fallbackItem.price !== productPrice) {
-            setProductPrice(Number(fallbackItem.price));
-        }
-    }, [fallbackItem, setProductName, setProductPrice]);
+    }, [shippingMethods.length]); // Track array length changes safely instead of checking the object itself
 
-    // Dynamic Option arrays derived from database info or safe defaults if not provided
-    const sizes = fallbackItem.availableSizes || ["Small", "Medium", "Large"];
-    const materials = fallbackItem.availableMaterials || ["Premium Blend", "Eco-Fiber", "Natural Wood"];
-    const colors = fallbackItem.availableColors || [
-        { name: "Grey", hex: "#e2e8f0" },
-        { name: "Burgundy", hex: "#581c1c" },
-        { name: "Green", hex: "#0f766e" },
-        { name: "Blue", hex: "#0369a1" },
-        { name: "Black", hex: "#111827" }
-    ];
-
-    // Local configuration selections
-    const [size, setSize] = useState(sizes[1] || sizes[0] || "Medium");
-    const [material, setMaterial] = useState(materials[0] || "Premium Blend");
-    const [color, setColor] = useState(colors[0]?.name || "Grey");
-
-    // Reset local selections gracefully if configuration types alter on post switch
+    // Keep parent streams synchronized
     useEffect(() => {
-        if (sizes.length > 0) setSize(sizes[1] || sizes[0]);
-        if (materials.length > 0) setMaterial(materials[0]);
-        if (colors.length > 0) setColor(colors[0]?.name);
-    }, [fallbackItem]);
+        const targetName = petDetails?.petName;
+        const targetPrice = petDetails?.price;
 
-    // Safely handles quantity updates even if setProductQuantity isn't passed
+        if (targetName && targetName !== productName && typeof setProductName === "function") {
+            setProductName(targetName);
+        }
+        if (targetPrice && Number(targetPrice) !== productPrice && typeof setProductPrice === "function") {
+            setProductPrice(Number(targetPrice));
+        }
+    }, [petDetails, productName, productPrice, setProductName, setProductPrice]);
+
     const handleQuantityChange = (updater) => {
         if (typeof setProductQuantity === "function") {
             setProductQuantity(updater);
         }
     };
 
-    // Packages selected variations up to the checkout routing logic
     const handleBuyNow = () => {
         if (typeof onNext === "function") {
             onNext({
-                name: productName,
-                price: productPrice,
+                name: productName || petDetails?.petName,
+                price: productPrice || petDetails?.price,
                 quantity: productQuantity,
-                attributes: {
-                    size,
-                    material,
-                    color
-                }
+                shipping: selectedMethod,
+                size: size, // Include selected size tier in submit hook payload
+                details: petDetails
             });
         }
     };
 
+    const petBaseRate = Number(productPrice || petDetails?.price || 0);
+    // Explicitly parse the boolean value safely
+    const isShippingAvailable = petDetails?.shippingAvailable === true;
+    const cumulativeShippingCost = (isShippingAvailable && selectedMethod) ? Number(selectedMethod.amount) : 0;
+    const finalValuation = (petBaseRate * productQuantity) + cumulativeShippingCost;
+
     return (
         <div className={styles.productContainer}>
-            {/* Navigation Return Button */}
-            {onBack && (
-                <button type="button" className={styles.backButton} onClick={onBack}>
-                    ← Back to Post Info
-                </button>
-            )}
-
-            {/* Category & Title */}
-            <span className={styles.categoryTag}>{displayCategory}</span>
-            <div className={styles.titleRow}>
-                <h1 className={styles.productName}>{productName}</h1>
-                <span className={styles.inStockBadge}>
-                    {fallbackItem.status || "Available"}
-                </span>
-            </div>
-
-            {/* Ratings */}
-            <div className={styles.ratingRow}>
-                <span className={styles.stars}>★★★★★</span>
-                <span className={styles.ratingText}>
-                    {fallbackItem.rating || "5.0"} ({fallbackItem.reviewsCount || "Custom Order"})
-                </span>
-            </div>
-
-            {/* Dynamic Price section */}
-            <div className={styles.priceRow}>
-                <span className={styles.currentPrice}>${Number(productPrice).toFixed(2)}</span>
-                {fallbackItem.originalPrice && (
-                    <span className={styles.originalPrice}>${Number(fallbackItem.originalPrice).toFixed(2)}</span>
+            {/* Categorization & Badges */}
+            <div className={styles.badgeRow}>
+                {onBack && (
+                    <button type="button" className={styles.backButton} onClick={onBack}>
+                        ← Back to Listings
+                    </button>
                 )}
+                <span className={styles.inStockBadge}>Breeder</span>
             </div>
 
-            {/* Description */}
-            <p className={styles.description}>{initialDescription}</p>
+            {/* Title Identity */}
+            <h1 className={styles.productName}>{productName || petDetails?.petName}</h1>
 
-            {/* Size Options */}
-            {sizes.length > 0 && (
+            {/* Micro Health Banner */}
+            <div className={styles.healthStrip}>
+                <span className={styles.healthText}> {postDescription}</span>
+                {/* <span className={styles.healthDot} />
+                <span className={styles.healthText}><strong>Health Status:</strong> {petDetails?.healthStatus}</span> */}
+            </div>
+
+
+            {/* Core Traits Specifications Grid */}
+            <div className={styles.featuresGrid}>
+                <div className={styles.featureCard}>
+                    <span className={styles.featureLabel}>Age :-</span>
+                    <span className={styles.featureValue}>{petDetails?.age}</span>
+                </div>
+                <div className={styles.featureCard}>
+                    <span className={styles.featureLabel}>Quality :-</span>
+                    <span className={styles.featureValue}>Good</span>
+                </div>
+                <div className={styles.featureCard}>
+                    <span className={styles.featureLabel}>Minimum QUT :-</span>
+                    <span className={styles.featureValue}>{petDetails?.basicQuantity}   </span>
+                </div>
+                <div className={styles.featureCard}>
+                    <span className={styles.featureLabel}>Total Stock :-</span>
+                    <span className={styles.featureValue}>{petDetails?.totalStock} left</span>
+                </div>
+            </div>
+
+            <div>
+                <span className={styles.sectionLabel}>Select Unit</span>
                 <div className={styles.optionSection}>
-                    <label className={styles.optionLabel}>Size Tier</label>
                     <div className={styles.chipGroup}>
                         {sizes.map((s) => (
                             <button
@@ -131,86 +129,95 @@ export default function ProductInfo({
                         ))}
                     </div>
                 </div>
-            )}
+            </div>
 
-            {/* Material Options */}
-            {materials.length > 0 && (
-                <div className={styles.optionSection}>
-                    <label className={styles.optionLabel}>Material Selection</label>
-                    <div className={styles.chipGroup}>
-                        {materials.map((m) => (
-                            <button
-                                key={m}
-                                type="button"
-                                className={`${styles.chip} ${material === m ? styles.activeChip : ""}`}
-                                onClick={() => setMaterial(m)}
-                            >
-                                {m}
-                            </button>
-                        ))}
-                    </div>
+            {/* Financial Frame Card */}
+            <div className={styles.priceCard}>
+                <div className={styles.priceInfo}>
+                    <span className={styles.currentPrice}>₹{petBaseRate.toLocaleString('en-IN')}</span>
+                    <span className={styles.unitType}>per {petDetails?.basicQuantity || "unit"}</span>
                 </div>
-            )}
+            </div>
 
-            {/* Color Options */}
-            {colors.length > 0 && (
-                <div className={styles.optionSection}>
-                    <label className={styles.optionLabel}>Color Palette: <span>{color}</span></label>
-                    <div className={styles.colorGroup}>
-                        {colors.map((c) => (
-                            <button
-                                key={c.name}
-                                type="button"
-                                className={`${styles.colorCircle} ${color === c.name ? styles.activeColor : ""}`}
-                                style={{ backgroundColor: c.hex }}
-                                onClick={() => setColor(c.name)}
-                                title={c.name}
-                            />
-                        ))}
+            {/* Interactive Transit Allocation */}
+            <div className={styles.shippingSection}>
+                <span className={styles.sectionLabel}>Transit Assignment</span>
+
+                {!isShippingAvailable ? (
+                    <div className={styles.disabledShippingBox}>
+                        🏡 Delivery Unavailable — Private Regional Pickup Only
                     </div>
-                </div>
-            )}
+                ) : (
+                    <div className={styles.formBlockGroup}>
+                        <h3 className={styles.formBlockTitle}>
+                            <i className="fa-solid fa-truck-fast" style={{ color: '#0095f6' }}></i> Shipping Method
+                        </h3>
 
-            {/* Actions Footer Panel */}
+                        {shippingMethods.map((method, index) => {
+                            const isSelected = selectedMethod?.shippingMethod === method.shippingMethod;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`${styles.shippingSpeedOption} ${isSelected ? styles.selected : ''}`}
+                                    onClick={() => setSelectedMethod(method)}
+                                >
+                                    <div className={styles.speedLabelLeft}>
+                                        <div className={`${styles.speedRadioBullet} ${isSelected ? styles.radioActive : ''}`}></div>
+                                        <div className={styles.speedText}>
+                                            <h4>{method.shippingMethod}</h4>
+                                            <p>Reliable logistics transit for your new companion.</p>
+                                        </div>
+                                    </div>
+                                    <div className={styles.speedCostRight}>
+                                        ₹{Number(method.amount).toLocaleString('en-IN')}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
+
+            {/* Core Action UI Row */}
             <div className={styles.actionRow}>
-                {/* Quantity Stepper */}
                 <div className={styles.qtyStepper}>
-                    <button 
-                        type="button" 
-                        onClick={() => handleQuantityChange(p => Math.max(1, p - 1))}
+                    <button
+                        type="button"
+                        onClick={() => handleQuantityChange(p => Math.max(petDetails?.minimumOrderQuantity || 1, p - 1))}
                     >
-                        -
+                        −
                     </button>
                     <span>{productQuantity}</span>
-                    <button 
-                        type="button" 
-                        onClick={() => handleQuantityChange(p => p + 1)}
+                    <button
+                        type="button"
+                        onClick={() => handleQuantityChange(p => Math.min(petDetails?.totalStock || 99, p + 1))}
                     >
                         +
                     </button>
                 </div>
 
-                {/* Buy Now Button */}
                 <button type="button" className={styles.buyNowBtn} onClick={handleBuyNow}>
                     Proceed to Delivery
                 </button>
 
-                {/* Wishlist Heart Toggle */}
-                <button type="button" className={styles.wishlistBtn} aria-label="Add to wishlist">
-                    ♡
-                </button>
+
             </div>
 
             <hr className={styles.divider} />
 
-            {/* Metadata Footer Summary */}
-            <div className={styles.metaData}>
-                <div><strong>Base Item:</strong> {productName}</div>
-                <div><strong>SKU:</strong> {fallbackItem.sku || "N/A"}</div>
-                <div><strong>Live Total:</strong> ${(productPrice * productQuantity).toFixed(2)}</div>
-                <div className={styles.shareRow}>
-                    <strong>Share Configurations :</strong> 
-                    <span className={styles.shareIcons}> Ⓜ ⓕ ⓣ ⓘ </span>
+            {/* Cost Ledger Summary Box */}
+            <div className={styles.summaryBox}>
+                <div className={styles.summaryLine}>
+                    <span>Base Value ({productQuantity} × item):</span>
+                    <strong>₹{(petBaseRate * productQuantity).toLocaleString('en-IN')}</strong>
+                </div>
+                <div className={styles.summaryLine}>
+                    <span>Logistics Premium:</span>
+                    <strong>₹{cumulativeShippingCost.toLocaleString('en-IN')}</strong>
+                </div>
+                <div className={styles.totalLine}>
+                    <span>Total Valuation:</span>
+                    <span className={styles.totalPrice}>₹{finalValuation.toLocaleString('en-IN')}</span>
                 </div>
             </div>
         </div>

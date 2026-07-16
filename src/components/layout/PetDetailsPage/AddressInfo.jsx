@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styles from './AddressInfo.module.css'; 
 
 // Added cartItems as a prop to receive product details
-export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
-  const [shippingCost, setShippingCost] = useState(0.00);
+export default function AddressInfo({ handleConfirmOrder, cartItems = [], onBack }) {
+  // Static shipping cost (defaults to FREE) since selection is removed
+  const shippingCost = 0.00; 
   
   const [address, setAddress] = useState({
     firstName: '',
@@ -42,10 +43,6 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
     }
   };
 
-  const handleShippingChange = (cost) => {
-    setShippingCost(cost);
-  };
-
   const executeWhatsAppRedirect = (event) => {
     event.preventDefault(); 
 
@@ -56,21 +53,17 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
     const shopPhoneNumber = "919074906624"; 
     const fullName = `${address.firstName} ${address.lastName}`.trim() || "N/A";
 
-    // 1. Calculate items subtotal and format the item list text
     let itemsSubtotal = 0;
     let itemsListText = '';
 
     if (cartItems && cartItems.length > 0) {
       cartItems.forEach((item, index) => {
-        // Fallback names/prices if keys differ in your project (e.g., item.title or item.rate)
         const name = item.name || "Product";
         const qty = item.quantity || 1;
         const price = item.price || 0;
         const lineTotal = price * qty;
         
         itemsSubtotal += lineTotal;
-        
-        // Formats each line: "1. 🛍️ Product Name (x2) - $30.00"
         itemsListText += `${index + 1}. 🛍️ ${name} (x${qty}) - $${lineTotal.toFixed(2)}\n`;
       });
     } else {
@@ -79,7 +72,6 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
 
     const grandTotal = itemsSubtotal + shippingCost;
 
-    // 2. Structural text breakdown payload sequence
     const messageText = `Hello! I'd like to confirm my order. Here are my details:\n\n` +
                         `👤 *Customer Details:* \n` +
                         `Name: ${fullName}\n` +
@@ -88,7 +80,7 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
                         `City: ${address.city || "N/A"} - ${address.pincode || "N/A"}\n\n` +
                         `📦 *Order Summary:* \n` +
                         `${itemsListText}\n` +
-                        `🚚 *Shipping:* ${shippingCost === 0 ? 'FREE Standard Courier' : `$${shippingCost.toFixed(2)} Priority Express`}\n` +
+                        `🚚 *Shipping:* FREE Standard Courier\n` +
                         `💵 *Grand Total:* **$${grandTotal.toFixed(2)}**`;
 
     const encodedMessage = encodeURIComponent(messageText);
@@ -100,6 +92,18 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
   return (
     <div className={styles.checkoutContainerWrapper}>
       <section className={styles.deliveryFormSection}>
+        
+        {/* New Header Container with Back Icon, Title, and Description */}
+        <div className={styles.checkoutHeader}>
+          <div className={styles.titleRow} onClick={onBack}>
+            <i className="fa-solid fa-arrow-left" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
+            <h2>Checkout</h2>
+          </div>
+          <p className={styles.headerDescription}>
+            Please fill in your delivery details below. Once submitted, your order details will be generated and confirmed with us directly over WhatsApp.
+          </p>
+        </div>
+
         <form id="deliveryDetailsForm" onSubmit={executeWhatsAppRedirect}>
           
           {/* Contact Information */}
@@ -241,46 +245,8 @@ export default function AddressInfo({ handleConfirmOrder, cartItems = [] }) {
             </div>
           </div>
 
-          {/* Shipping Method */}
-          <div className={styles.formBlockGroup}>
-            <h3 className={styles.formBlockTitle}>
-              <i className="fa-solid fa-truck-fast" style={{ color: '#0095f6' }}></i> Shipping Method
-            </h3>
-            
-            <div 
-              className={`${styles.shippingSpeedOption} ${shippingCost === 0.00 ? styles.selected : ''}`} 
-              onClick={() => handleShippingChange(0.00)}
-            >
-              <div className={styles.speedLabelLeft}>
-                <div className={styles.speedRadioBullet}></div>
-                <div className={styles.speedText}>
-                  <h4>Standard Courier Delivery</h4>
-                  <p>Estimated tracking delivery windows span 3-5 business days</p>
-                </div>
-              </div>
-              <div className={styles.speedCostRight}>FREE</div>
-            </div>
-
-            <div 
-              className={`${styles.shippingSpeedOption} ${shippingCost === 15.00 ? styles.selected : ''}`} 
-              onClick={() => handleShippingChange(15.00)}
-            >
-              <div className={styles.speedLabelLeft}>
-                <div className={styles.speedRadioBullet}></div>
-                <div className={styles.speedText}>
-                  <h4>Priority Express Dispatch</h4>
-                  <p>Guaranteed priority overnight distribution pipeline. 1-2 business days</p>
-                </div>
-              </div>
-              <div className={styles.speedCostRight}>$15.00</div>
-            </div>
-          </div>
-
-          {/* Form Action Footer Row */}
-          <div className={styles.formActionFooterRow}>
-            <span className={styles.backNavLink}>
-              <i className="fa-solid fa-chevron-left" style={{ fontSize: '12px' }}></i> Return to Cart
-            </span>
+          {/* Form Action Button Centered/Full-width inside card */}
+          <div className={styles.submitButtonContainer}>
             <button type="submit" className={styles.btnContinueCheckout}>
               Confirm Order via WhatsApp
             </button>

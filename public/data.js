@@ -69,7 +69,25 @@ export const POSTS_DATA = [
             }
         ],
         uploadTime: "2026-07-15T10:30:00Z",
-        petDetails: null
+        petDetails: {
+            petName: "Premium Oranda Goldfish",
+            price: 1250,
+            units: "pieces",
+            basicQuantity: "1 fish",
+            minimumOrderQuantity: 1,
+            totalStock: 30,
+            age: "4 months",
+            healthStatus: "Quarantined & Active",
+            shippingAvailable: false,
+            shippingMethods: [
+                { shippingMethod: "Professional Courier", amount: 100 },
+                { shippingMethod: "Pet Van", amount: 350 }
+            ],
+            catogerys: {
+                qut: "fish",
+                subQut: "goldfish"
+            }
+        }
     },
     {
         id: 2,
@@ -78,7 +96,7 @@ export const POSTS_DATA = [
         ],
         username: "em1_1999s",
         userTitle: "Astro Enthusiast",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        avatar: "https://images.unsplash.com/photo-15007003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
         description: "Stargazing on a clear night sky. Absolute bliss. 🌌 #universe #galaxy #longexposure #space",
         likes: 8400,
         likedBy: [
@@ -127,7 +145,22 @@ export const POSTS_DATA = [
             }
         ],
         uploadTime: "2026-07-14T22:15:00Z",
-        petDetails: null
+        petDetails: {
+            petName: "Indian Fantail Pigeon (Black Self)",
+            price: 3200,
+            units: "pair",
+            basicQuantity: "1 pair",
+            minimumOrderQuantity: 1,
+            totalStock: 8,
+            age: "5 months",
+            healthStatus: "Vaccinated & Active",
+            shippingAvailable: false,
+            shippingMethods: [],
+            catogerys: {
+                qut: "birds",
+                subQut: "pigeon"
+            }
+        }
     },
     {
         id: 3,
@@ -189,14 +222,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-14T14:45:00Z",
         petDetails: {
             petName: "Zebra Finch / Gouldian Finch",
-            price: 25.00,
-            currency: "USD",
+            price: 2000,
+            units: "pair",
             basicQuantity: "1 pair",
             minimumOrderQuantity: 1,
             totalStock: 45,
             age: "3-5 months",
             healthStatus: "Vaccinated & Active",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "TTDC Courier", amount: 100 },
+                { shippingMethod: "Pet Van", amount: 400 }
+            ],
+            catogerys: {
+                qut: "birds",
+                subQut: "finch"
+            }
         }
     },
     {
@@ -246,14 +287,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-13T09:20:00Z",
         petDetails: {
             petName: "Society Finch",
-            price: 18.50,
-            currency: "USD",
+            price: 1500,
+            units: "pieces",
             basicQuantity: "1 bird",
             minimumOrderQuantity: 2,
             totalStock: 60,
             age: "4 months",
             healthStatus: "Excellent",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "Professional Courier", amount: 100 },
+                { shippingMethod: "TTDC Courier", amount: 100 }
+            ],
+            catogerys: {
+                qut: "birds",
+                subQut: "finch"
+            }
         }
     },
     {
@@ -270,7 +319,7 @@ export const POSTS_DATA = [
         likes: 18900,
         likedBy: [
             { name: "deer_run", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" },
-            { name: "photo_pro", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&q=80" },
+            { name: "photo_pro", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=crop&w=100&q=80" },
             { name: "forest_dreamer", avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=100&q=80" }
         ],
         commentsCount: 3,
@@ -291,7 +340,7 @@ export const POSTS_DATA = [
             {
                 id: 2,
                 author: "photo_pro",
-                avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&q=80",
+                avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=crop&w=100&q=80",
                 avatarColor: "#f1f5f9",
                 avatarTextColor: "#64748b",
                 text: "The depth of field works beautifully here.",
@@ -316,14 +365,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-12T16:10:00Z",
         petDetails: {
             petName: "Albino Koi Guppy (Trio - 1M 2F)",
-            price: 15.00,
-            currency: "USD",
+            price: 1200,
+            units: "trio",
             basicQuantity: "1 Trio",
             minimumOrderQuantity: 1,
             totalStock: 120,
             age: "2.5 months",
             healthStatus: "Quarantined & Stable",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "Professional Courier", amount: 100 },
+                { shippingMethod: "TTDC Courier", amount: 100 }
+            ],
+            catogerys: {
+                qut: "fish",
+                subQut: "guppy"
+            }
         }
     },
     {
@@ -373,14 +430,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-11T11:05:00Z",
         petDetails: {
             petName: "Imported Japanese Nishikigoi Koi",
-            price: 45.00,
-            currency: "USD",
+            price: 3600,
+            units: "pieces",
             basicQuantity: "1 fish",
             minimumOrderQuantity: 1,
             totalStock: 35,
             age: "6 months (4-6 inches)",
             healthStatus: "Highly Active",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "Pet Van", amount: 450 },
+                { shippingMethod: "Professional Courier", amount: 100 }
+            ],
+            catogerys: {
+                qut: "fish",
+                subQut: "koi"
+            }
         }
     },
     {
@@ -454,14 +519,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-10T18:30:00Z",
         petDetails: {
             petName: "Halfmoon Orange Betta (Male)",
-            price: 12.99,
-            currency: "USD",
+            price: 950,
+            units: "pieces",
             basicQuantity: "1 fish",
             minimumOrderQuantity: 1,
             totalStock: 25,
             age: "3.5 months",
             healthStatus: "Flawless Fins & Active",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "Professional Courier", amount: 100 },
+                { shippingMethod: "TTDC Courier", amount: 100 }
+            ],
+            catogerys: {
+                qut: "fish",
+                subQut: "betta"
+            }
         }
     },
     {
@@ -510,14 +583,19 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-09T07:40:00Z",
         petDetails: {
             petName: "Rhode Island Red Layer Hens",
-            price: 22.00,
-            currency: "USD",
+            price: 650,
+            units: "pieces",
             basicQuantity: "1 hen",
             minimumOrderQuantity: 3,
             totalStock: 50,
             age: "18 weeks (Point of Lay)",
             healthStatus: "Fully De-wormed & Vaccinated",
-            shippingAvailable: false
+            shippingAvailable: false,
+            shippingMethods: [],
+            catogerys: {
+                qut: "birds",
+                subQut: "chicken"
+            }
         }
     },
     {
@@ -579,14 +657,19 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-08T13:55:00Z",
         petDetails: {
             petName: "Doll-Faced White Persian Kitten",
-            price: 450.00,
-            currency: "USD",
+            price: 25000,
+            units: "pieces",
             basicQuantity: "1 kitten",
             minimumOrderQuantity: 1,
             totalStock: 4,
             age: "10 weeks",
             healthStatus: "Vet Checked / Litter Trained",
-            shippingAvailable: false
+            shippingAvailable: false,
+            shippingMethods: [],
+            catogerys: {
+                qut: "cats",
+                subQut: "persian"
+            }
         }
     },
     {
@@ -649,14 +732,22 @@ export const POSTS_DATA = [
         uploadTime: "2026-07-07T20:00:00Z",
         petDetails: {
             petName: "Purebred Angora / Netherland Dwarf Rabbit",
-            price: 65.00,
-            currency: "USD",
+            price: 3500,
+            units: "pieces",
             basicQuantity: "1 rabbit",
             minimumOrderQuantity: 1,
             totalStock: 12,
             age: "2 months",
             healthStatus: "Healthy & Well Socialized",
-            shippingAvailable: true
+            shippingAvailable: true,
+            shippingMethods: [
+                { shippingMethod: "Pet Van", amount: 500 },
+                { shippingMethod: "Professional Courier", amount: 100 }
+            ],
+            catogerys: {
+                qut: "rabbits",
+                subQut: "dwarf"
+            }
         }
     }
 ];
