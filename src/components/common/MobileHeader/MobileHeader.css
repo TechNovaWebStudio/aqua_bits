@@ -29,14 +29,26 @@
 }
 
 /* Crisp branding type with deep jade color drop */
-.app-logo {
-  font-size: 22px;
-  font-weight: 850;
-  letter-spacing: -0.5px;
-  margin: 0;
-  background: linear-gradient(135deg, #0f172a 30%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Directly targets .logo without requiring parent wrapping class */
+.logo {
+  height: 25px; /* Aligns perfectly with native-header-icons */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* The Logo image itself */
+.logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 .native-header-icons {

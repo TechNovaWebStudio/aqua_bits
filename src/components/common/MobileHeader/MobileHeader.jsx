@@ -21,7 +21,9 @@ export default function MobileHeader() {
 
   return (
     <header className="ios-liquid-header">
-      <h1 className="app-logo">Aqua_Bits</h1>
+      <div className="logo" onClick={() => router.push("/")}>
+        <img src="/Logo.png" alt="Brand Logo" />
+      </div>
       <div className="native-header-icons">
         <button className="header-icon-btn" aria-label="Favorites">
           <i className="fa-regular fa-heart"></i>

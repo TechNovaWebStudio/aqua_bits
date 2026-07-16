@@ -13,7 +13,6 @@ export default function SidebarLeft() {
     { name: "Create", path: "/create", icon: "fa-solid fa-plus", hasSubmenu: true },
     { name: "Shorts", path: "/shorts", icon: "fa-solid fa-compass", isAccent: true },
     { name: "Posts", path: "/post-feed", icon: "fa-solid fa-layer-group" },
-    // { name: "Notification", path: "/messages", icon: "fa-regular fa-comment-dots" }, 
   ];
 
   // Initialize role as 'Guest' to prevent Next.js SSR mismatch errors
@@ -36,9 +35,9 @@ export default function SidebarLeft() {
   return (
     <aside className="sidebar-left">
       <div className="brand-logo-section">
-        <h1 className="app-brand-title">
-          Aqua<span className="brand-dot">_</span>Bits
-        </h1>
+        <div className="logo" onClick={() => router.push("/")}>
+          <img src="/Logo.png" alt="Brand Logo" />
+        </div>
 
         <nav className="sidebar-navigation">
           <ul className="navigation-links-list">
@@ -65,25 +64,25 @@ export default function SidebarLeft() {
                       <span className="nav-text">{item.name}</span>
                       <i className={`fa-solid fa-chevron-down submenu-arrow ${isCreateOpen ? "open" : ""}`}></i>
                     </div>
-                    
+
                     {/* Sub-navigation items with micro-interactions */}
                     <ul className={`submenu-list ${isCreateOpen ? "visible" : ""}`}>
-                      <li 
-                        className="submenu-item" 
+                      <li
+                        className="submenu-item"
                         onClick={() => router.push("/create/short")}
                       >
                         <i className="fa-solid fa-clapperboard sub-icon"></i>
                         <span>Create Short</span>
                       </li>
-                      <li 
-                        className="submenu-item" 
+                      <li
+                        className="submenu-item"
                         onClick={() => router.push("/create/post")}
                       >
                         <i className="fa-solid fa-pen-to-square sub-icon"></i>
                         <span>Create Post</span>
                       </li>
-                      <li 
-                        className="submenu-item" 
+                      <li
+                        className="submenu-item"
                         onClick={() => router.push("/create/story")}
                       >
                         <i className="fa-solid fa-circle-play sub-icon"></i>
