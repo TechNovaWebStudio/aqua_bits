@@ -32,7 +32,7 @@ export default function PostInfo({
             </div>
 
             <h1 className={styles.postTitle}>{productName}</h1>
-            
+
             <div className={styles.tagContainer}>
                 <span className={styles.postTag}>#Fish</span>
                 <span className={styles.postTag}>#Betta</span>
@@ -70,7 +70,18 @@ export default function PostInfo({
 
             {isCommentsOpen && (
                 <div className={styles.rightSideCommentWrapper}>
-                    <CommentPop COMMENTS={[]}isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
+                    <CommentPop COMMENTS={[{
+                        id: 1,
+                        author: "minimalist_home",
+                        avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+                        avatarColor: "#fce8e6",
+                        avatarTextColor: "#d93025",
+                        text: "They look so unbelievably soft. Like living velvet!",
+                        time: "1M",
+                        likes: 143,
+                        isLiked: false,
+                        replies: []
+                    }]} isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} />
                 </div>
             )}
 
