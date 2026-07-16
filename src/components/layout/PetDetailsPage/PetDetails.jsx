@@ -19,10 +19,9 @@ export default function PetDetails({ post }) {
         );
     }
 
-    // Dynamic Image Gallery: Extracts from post.images or falls back to data inside petDetails array
-    const galleryImages = post.images || 
-        (Array.isArray(post.petDetails) ? post.petDetails.flatMap(pet => pet.images || []) : []);
-        // console.log(galleryImages)
+    // Dynamic Image Gallery: Optional chaining (?.) ഉപയോഗിച്ച് സുരക്ഷിതമാക്കി
+    const galleryImages = post?.images || 
+        (Array.isArray(post?.petDetails) ? post.petDetails.flatMap(pet => pet.images || []) : []);
 
     // Gallery Stage States
     const [activeImg, setActiveImg] = useState(galleryImages[0] || "");
@@ -30,24 +29,24 @@ export default function PetDetails({ post }) {
 
     // Sync gallery stages if post payload updates or drops down from props
     useEffect(() => {
-        if (galleryImages.length > 0) {
+        if (galleryImages && galleryImages.length > 0) {
             setActiveImg(galleryImages[0]);
             setActiveThumb(0);
         }
     }, [post]);
 
-    // Social Interaction States populated dynamically
+    // Social Interaction States
     const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(post.likes || 0);
+    const [likeCount, setLikeCount] = useState(post?.likes || 0);
     const [isCommentsOpen, setIsCommentsOpen] = useState(true);
     const [shareCopied, setShareCopied] = useState(false);
 
-    // Flow Routing Architecture State: 'post', 'product-config', 'address'
+    // Flow Routing Architecture State
     const [currentStep, setCurrentStep] = useState("post");
     
-    // Product Configuration Matrix States
-    const [productName, setProductName] = useState(post.petDetails.petName);
-    const [productPrice, setProductPrice] = useState(post.petDetails.price);
+    // Product Configuration Matrix States (?. ഉപയോഗിച്ച് സുരക്ഷിതമാക്കി)
+    const [productName, setProductName] = useState(post?.petDetails?.petName || "");
+    const [productPrice, setProductPrice] = useState(post?.petDetails?.price || 0);
     const [productQuantity, setProductQuantity] = useState(1);
     
     // Delivery Destination Coordinates
@@ -59,7 +58,7 @@ export default function PetDetails({ post }) {
         pincode: ""
     });
 
-    const likedUsers = post.likedBy || [];
+    const likedUsers = post?.likedBy || [];
 
     const handleThumbClick = (url, index) => {
         setActiveImg(url);
@@ -168,7 +167,6 @@ export default function PetDetails({ post }) {
                         onBack={() => setCurrentStep("post")}
                         onNext={() => setCurrentStep("address")}
                         petDetails={post.petDetails}
-
                     />
                 )}
 
