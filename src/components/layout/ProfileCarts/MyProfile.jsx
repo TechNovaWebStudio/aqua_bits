@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './MyProfile.css';
 
@@ -8,8 +8,14 @@ export default function MyProfile() {
     const [activeTab, setActiveTab] = useState('posts');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isContactOpen, setIsContactOpen] = useState(false);
-    const role = localStorage.getItem('role')
+    const [role, setRole] = useState(null); // 👈 localStorage സെർവറിൽ ക്രാഷാകാതിരിക്കാൻ state ആക്കി മാറ്റി
 
+    // ബ്രൗസറിൽ എത്തുമ്പോൾ മാത്രം localStorage റീഡ് ചെയ്യുന്നു
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setRole(localStorage.getItem('role'));
+        }
+    }, []);
 
     const toggleSettings = () => {
         setIsSettingsOpen(!isSettingsOpen);
@@ -161,7 +167,7 @@ export default function MyProfile() {
                                     </button>
 
                                     {/* COMPACT SETTINGS POPUP */}
-                                    {isSettingsOpen && role == 'breeder' (
+                                    {isSettingsOpen && role === 'breeder' && ( // 👈 ഇവിടെയുള്ള Syntax Error തിരുത്തി '&&' ചേർത്തു
                                         <div className="compact-settings-popup animate-popup-scale">
                                             <button
                                                 className="popup-option text-danger"
@@ -184,7 +190,7 @@ export default function MyProfile() {
                             </div>
 
                             <div className="username-row">
-                                {role == 'breeder' ?
+                                {role === 'breeder' ?
                                     <>
                                         <button className="btn-action btn-follow-alt">Edit Profile</button>
                                         <button className="btn-action ">Dashbord</button>
