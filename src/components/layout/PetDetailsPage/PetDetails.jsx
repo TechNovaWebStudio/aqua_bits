@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./PetDetails.module.css";
 import PostInfo from "./PostInfo";
 import ProductInfo from "./ProductInfo";
 import AddressInfo from "./AddressInfo";
 
 export default function PetDetails({ post }) {
+    console.log("Rendering PetDetails with post data:", post);
+    
     // Graceful fallback condition if no matching data object was found
     if (!post) {
         return (
@@ -17,12 +19,21 @@ export default function PetDetails({ post }) {
         );
     }
 
-    // Dynamic Image Gallery extracted directly from item props
-    const galleryImages = post.images || [];
+    // Dynamic Image Gallery: Extracts from post.images or falls back to data inside petDetails array
+    const galleryImages = post.images || 
+        (Array.isArray(post.petDetails) ? post.petDetails.flatMap(pet => pet.images || []) : []);
 
-    // Gallery States mapped safely to item details
+    // Gallery Stage States
     const [activeImg, setActiveImg] = useState(galleryImages[0] || "");
     const [activeThumb, setActiveThumb] = useState(0);
+
+    // Sync gallery stages if post payload updates or drops down from props
+    useEffect(() => {
+        if (galleryImages.length > 0) {
+            setActiveImg(galleryImages[0]);
+            setActiveThumb(0);
+        }
+    }, [post]);
 
     // Social Interaction States populated dynamically
     const [liked, setLiked] = useState(false);
@@ -47,7 +58,6 @@ export default function PetDetails({ post }) {
         pincode: ""
     });
 
-    // Mapped straight out of database profile structures
     const likedUsers = post.likedBy || [];
 
     const handleThumbClick = (url, index) => {
@@ -135,9 +145,13 @@ export default function PetDetails({ post }) {
                         handleShare={handleShare}
                         likedUsers={likedUsers}
                         onNext={() => setCurrentStep("product-config")}
-                        // You can now also pass description, username, etc., to PostInfo if needed:
                         postDescription={post.description}
                         username={post.username}
+                        userTitle={post.userTitle}
+                        avatar={post.avatar}
+                        comments={post.comments}
+                        shares={post.shares}
+                        petDetails={post.petDetails}
                     />
                 )}
 
