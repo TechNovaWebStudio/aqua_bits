@@ -8,7 +8,7 @@ import UserProfile from "./UserProfile";
 import { Breeders } from "../../../../public/data"; 
 
 export function ProfileSection({ profileId }) {
-  console.log('profileId',profileId)
+  console.log('profileId', profileId)
   const [profileRole, setProfileRole] = useState(null);
   const [matchedBreeder, setMatchedBreeder] = useState(null);
 
@@ -36,18 +36,27 @@ export function ProfileSection({ profileId }) {
 
     // --- Standard dynamic role logic (no profileId provided) ---
     const handleProfileChange = () => {
-      const currentRole = localStorage.getItem('role') || 'user';
-      setProfileRole(currentRole);
+      // സെർവർ-സൈഡിൽ റൺ ചെയ്യുമ്പോൾ localStorage ക്രാഷാകാതിരിക്കാൻ window ചെക്ക് ചെയ്യുന്നു
+      if (typeof window !== 'undefined') {
+        const currentRole = localStorage.getItem('role') || 'user';
+        setProfileRole(currentRole);
+      } else {
+        setProfileRole('user'); // Fallback for server-side initial pass
+      }
     };
 
     handleProfileChange();
 
-    window.addEventListener("local-storage-update", handleProfileChange);
-    window.addEventListener("storage", handleProfileChange); 
+    if (typeof window !== 'undefined') {
+      window.addEventListener("local-storage-update", handleProfileChange);
+      window.addEventListener("storage", handleProfileChange); 
+    }
 
     return () => {
-      window.removeEventListener("local-storage-update", handleProfileChange);
-      window.removeEventListener("storage", handleProfileChange);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener("local-storage-update", handleProfileChange);
+        window.removeEventListener("storage", handleProfileChange);
+      }
     };
   }, [profileId]); 
 
