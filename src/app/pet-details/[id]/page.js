@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import MobileNavbar from "@/components/common/MobileNavbar/MobileNavbar";
 import SidebarLeft from "@/components/common/SidebarLeft/SidebarLeft";
 import PetDetails from "@/components/layout/PetDetailsPage/PetDetails";
