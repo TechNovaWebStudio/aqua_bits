@@ -1,55 +1,62 @@
-/* Container sizing wrapper */
-.pageWrapper {
+/* Viewport Base setup */
+.viewportContainer {
     width: 100%;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 20px ;
+    padding: 20px;
     box-sizing: border-box;
+    background-color: #ffffff;
+    min-height: 100vh;
     overflow-y: auto;
 }
 
-/* 3 Columns on mobile with no overflow, scaling up to 4 on desktop screens */
-.shortsGrid {
+/* Strict 1px Grid Layout Model */
+.magazineGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin-top: 16px;
 }
 
-@media (min-width: 900px) {
-    .shortsGrid {
+@media (min-width: 640px) {
+    .magazineGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .magazineGrid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
-    }
-    
-}
-@media (max-width: 786px) {
-    .avatar{
-        display: none;
-    }
-    .metricIcon ,.metricCount{
-        display: none;
+        gap: 1px;
     }
 }
 
+/* Card Framing Layout */
+.cardLink {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
 
-/* Card Framing Engine */
 .card {
     position: relative;
     width: 100%;
-    aspect-ratio: 11 / 16;
-    border-radius: 1px;
+    aspect-ratio: 10 / 16;
+    border-radius: 0px !important; /* Strict sharp corners layout */
     overflow: hidden;
-    background-color: #111111;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.3s ease;
+    background-color: #16161a;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
 }
 
-.card:hover {
-    transform: translateY(-3px);
+.cardActive {
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-/* Video Player Layer Positioning */
-.videoContainer {
+/* Video Engine Layer */
+.mediaContainer {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -57,108 +64,179 @@
     z-index: 1;
 }
 
-.videoBackground {
+.videoStream {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-/* Vignette Ambient Mask to protect white text legibility */
-.darkOverlay {
+.cardActive .videoStream {
+    transform: scale(1.03);
+}
+
+/* Multi-layer Vignette overlay */
+.cinematicOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(0, 0, 0, 0) 50%,
-            rgba(0, 0, 0, 0.85) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.1) 70%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
     z-index: 2;
 }
 
-/* Interactive Details Overlay Layout */
-.contentOverlay {
+/* Symmetrical Unified Dashboard Panel */
+.glassPanel {
     position: absolute;
-    inset: 0;
-    z-index: 3;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    /* Pushes remaining items straight to the bottom */
-    color: #ffffff;
-}
-
-/* Bottom elements alignment grid */
-.bottomSection {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 6px;
-    width: 100%;
-    /* border-top: 1px solid rgb(68, 67, 67); */
-    padding-top: 10px;
-}
-
-/* Identity & Profile metadata updates */
-.userProfileRow {
-    width: 100%;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 4;
+    background: rgba(15, 15, 18, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 10px ;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Profile Metadata Presentation styles */
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     min-width: 0;
-    /* Prevents flex-child overflow text breaks */
     flex-grow: 1;
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+.avatarWrapper {
+    position: relative;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.userMetaText {
+.avatarImage {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #ffffff;
+}
+
+.onlineStatus {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 8px;
+    height: 8px;
+    background-color: #00ff66;
+    border: 1.5px solid rgba(22, 22, 26, 1);
+    border-radius: 50%;
+}
+
+.profileMeta {
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-.userName {
+.profileName {
+    color: #ffffff;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.timeLabel {
-    font-size: 0.75rem;
-    opacity: 0.6;
+.captionText {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.72rem;
+    margin: 2px 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Right Side Stacked Engagement Metrics */
-.bottomRightMetrics {
+/* Harmonized Symmetrical Icon Metrics Layout */
+.actionsGroup {
     display: flex;
-    gap: 20px;
-    align-items: center;
+    gap: 14px;
     flex-shrink: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding-left: 14px;
 }
 
-.metricBubble {
+.actionItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #ffffff;
+    justify-content: center;
+    min-width: 24px;
 }
 
-.metricIcon {
+/* Uniform design settings applied to all metric icons */
+.actionIcon {
     font-size: 0.95rem;
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.metricCount {
+.actionItem:hover .actionIcon { 
+    transform: scale(1.2);
+    color: #ffffff; /* Preserves solid high-end color pairing across elements */
+}
+
+.actionCount {
     font-size: 0.65rem;
-    font-weight: 500;
-    opacity: 0.9;
-    margin-top: 1px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Fluid Alignment Engineering */
+@media (max-width: 768px) {
+    .glassPanel {
+        bottom: 6px;
+        left: 6px;
+        right: 6px;
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .avatarImage {
+        width: 28px;
+        height: 28px;
+    }
+
+    .profileName {
+        font-size: 0.75rem;
+    }
+
+    .captionText {
+        display: none; /* Safely collapses caption text space on handheld screen limits */
+    }
+
+    .actionsGroup {
+        gap: 10px;
+        padding-left: 10px;
+    }
+    
+    .actionIcon {
+        font-size: 0.85rem;
+    }
+    
+    .actionCount {
+        font-size: 0.6rem;
+    }
 }

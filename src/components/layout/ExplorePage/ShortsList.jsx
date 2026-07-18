@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { FaEye, FaComment } from 'react-icons/fa';
-// 1. Import Link from Next.js
+import { FaHeart, FaComment } from 'react-icons/fa';
 import Link from 'next/link'; 
 import styles from './ShortsList.module.css';
 import { ExploreNavBar } from './ExploreNavBar';
@@ -10,14 +9,17 @@ import { SHORTS_DATA } from '../../../../public/data';
 
 const ShortCard = ({ short }) => {
     const videoRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseEnter = () => {
+        setIsHovered(true);
         if (videoRef.current) {
             videoRef.current.play().catch((err) => console.log("Autoplay blocked:", err));
         }
     };
 
     const handleMouseLeave = () => {
+        setIsHovered(false);
         if (videoRef.current) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
@@ -25,54 +27,51 @@ const ShortCard = ({ short }) => {
     };
 
     const commentCount = Array.isArray(short.comments) ? short.comments.length : (short.comments || 0);
-    const viewCount = Array.isArray(short.views) ? short.views.length : (short.views || 0);
+    const likeCount = Array.isArray(short.views) ? short.views.length : (short.views || 0); 
 
     return (
-        /* 2. Wrap the entire card in a Link tag pointing to `/shorts/[id]` */
         <Link href={`/shorts/${short.id}`} className={styles.cardLink}>
             <div
-                className={styles.card}
+                className={`${styles.card} ${isHovered ? styles.cardActive : ''}`}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                {/* Background Video element */}
-                <div className={styles.videoContainer}>
+                {/* Visual Engine Layer */}
+                <div className={styles.mediaContainer}>
                     <video
                         ref={videoRef}
-                        className={styles.videoBackground}
+                        className={styles.videoStream}
                         src={short.videoUrl}
                         muted
                         loop
                         playsInline
                     />
-                    <div className={styles.darkOverlay} />
+                    <div className={styles.cinematicOverlay} />
                 </div>
 
-                {/* Interactive Bottom Profile/Engagement Details Layer */}
-                <div className={styles.contentOverlay}>
-                    <div className={styles.bottomSection}>
-
-                        {/* User Details Row */}
-                        <div className={styles.userProfileRow}>
-                            <img src={short.avatar} alt={short.username} className={styles.avatar} />
-                            <div className={styles.userMetaText}>
-                                <span className={styles.userName}>{short.username}</span>
-                                <span className={styles.timeLabel}>2h ago</span>
-                            </div>
+                {/* Bottom Balanced Model Control Panel */}
+                <div className={styles.glassPanel}>
+                    <div className={styles.profileSection}>
+                        <div className={styles.avatarWrapper}>
+                            <img src={short.avatar} alt={short.username} className={styles.avatarImage} />
+                            <div className={styles.onlineStatus} />
                         </div>
-
-                        {/* Right Side Stacked Icons Metrics */}
-                        <div className={styles.bottomRightMetrics}>
-                            <div className={styles.metricBubble}>
-                                <FaEye className={styles.metricIcon} />
-                                <span className={styles.metricCount}>{viewCount}</span>
-                            </div>
-                            <div className={styles.metricBubble}>
-                                <FaComment className={styles.metricIcon} />
-                                <span className={styles.metricCount}>{commentCount}</span>
-                            </div>
+                        <div className={styles.profileMeta}>
+                            <h4 className={styles.profileName}>@{short.username}</h4>
+                            <p className={styles.captionText}>{short.title || 'Exclusive Feed'}</p>
                         </div>
+                    </div>
 
+                    {/* Symmetrically Paired Actions Panel */}
+                    <div className={styles.actionsGroup}>
+                        <div className={styles.actionItem}>
+                            <FaHeart className={styles.actionIcon} />
+                            <span className={styles.actionCount}>{likeCount}</span>
+                        </div>
+                        <div className={styles.actionItem}>
+                            <FaComment className={styles.actionIcon} />
+                            <span className={styles.actionCount}>{commentCount}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,16 +80,16 @@ const ShortCard = ({ short }) => {
 };
 
 export default function ShortsList({ activeTag, setActiveTag }) {
-    const [shortsData, setShortsData] = useState(SHORTS_DATA);
+    const [shortsData] = useState(SHORTS_DATA);
 
     return (
-        <div className={styles.pageWrapper}>
+        <div className={styles.viewportContainer}>
             <ExploreNavBar activeTag={activeTag} setActiveTag={setActiveTag} />
-            <div className={styles.shortsGrid}>
+            <main className={styles.magazineGrid}>
                 {shortsData.map((short) => (
                     <ShortCard key={short.id} short={short} />
                 ))}
-            </div>
+            </main>
         </div>
     );
 }

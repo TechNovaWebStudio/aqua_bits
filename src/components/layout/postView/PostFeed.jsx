@@ -5,73 +5,74 @@ import styles from './PostFeed.module.css';
 import CommentPop from '@/components/common/CommentPop/CommentPop';
 import { POSTS_DATA } from '../../../../public/data';
 
-export default function PostFeed({ targetId }) {
+export default function PostFeed({ targetId, onBack }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [likedPosts, setLikedPosts] = useState({});
     const [bookmarkedPosts, setBookmarkedPosts] = useState({});
     const [activeImageIndexes, setActiveImageIndexes] = useState({});
     const [customComments, setCustomComments] = useState({});
+    const [isDescExpanded, setIsDescExpanded] = useState(false);
     
-    // Initialize state by moving the matched ID post to the front of the feed list
+    const trackRef = useRef(null);
+
     const [feedPosts, setFeedPosts] = useState(() => {
         if (!targetId) return POSTS_DATA;
-        
-        // Coerce targetId string matching just in case data uses numeric IDs
         const matchedPost = POSTS_DATA.find(post => String(post.id) === String(targetId));
-        
         if (matchedPost) {
             const remainingPosts = POSTS_DATA.filter(post => String(post.id) !== String(targetId));
             return [matchedPost, ...remainingPosts];
         }
-        
         return POSTS_DATA;
     });
 
-    // UI state toggles - initialized to false so mobile starts closed
     const [isCommentPopOpen, setIsCommentPopOpen] = useState(false);
     const [isLaptopSize, setIsLaptopSize] = useState(false);
 
-    const touchStartY = useRef(0);
     const activePost = feedPosts[currentIndex];
 
-    // Read screen width size client-side
     useEffect(() => {
-        const handleResize = () => {
-            setIsLaptopSize(window.innerWidth >= 1024);
-        };
-        handleResize(); // Init on mount
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+        setIsDescExpanded(false);
+    }, [currentIndex]);
+
+    const handleTrackScroll = (e) => {
+        const { scrollTop, clientHeight } = e.currentTarget;
+        const nextIndex = Math.round(scrollTop / clientHeight);
+        if (nextIndex !== currentIndex && nextIndex >= 0 && nextIndex < feedPosts.length) {
+            setCurrentIndex(nextIndex);
+            setIsCommentPopOpen(false);
+        }
+    };
+
+    const scrollToPostIndex = (index) => {
+        if (trackRef.current) {
+            const containerHeight = trackRef.current.clientHeight;
+            trackRef.current.scrollTo({
+                top: index * containerHeight,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     const handleNextPost = () => {
         if (currentIndex < feedPosts.length - 1) {
-            setCurrentIndex(prev => prev + 1);
-            setIsCommentPopOpen(false);
+            scrollToPostIndex(currentIndex + 1);
         }
     };
 
     const handlePrevPost = () => {
         if (currentIndex > 0) {
-            setCurrentIndex(prev => prev - 1);
-            setIsCommentPopOpen(false);
+            scrollToPostIndex(currentIndex - 1);
         }
     };
 
-    const handleDragStart = (yPosition) => {
-        touchStartY.current = yPosition;
-    };
-
-    const handleDragEnd = (yPosition) => {
-        const deltaY = touchStartY.current - yPosition;
-        const swipeThreshold = 50;
-
-        if (deltaY > swipeThreshold) {
-            handleNextPost();
-        } else if (deltaY < -swipeThreshold) {
-            handlePrevPost();
-        }
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLaptopSize(window.innerWidth >= 1024);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const toggleLike = (id) => {
         setLikedPosts(prev => ({ ...prev, [id]: !prev[id] }));
@@ -81,7 +82,7 @@ export default function PostFeed({ targetId }) {
         setBookmarkedPosts(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
-    const handleImageScroll = (postId, e) => {
+    const handleImageHorizontalScroll = (postId, e) => {
         const { scrollLeft, clientWidth } = e.currentTarget;
         const index = Math.round(scrollLeft / clientWidth);
         setActiveImageIndexes(prev => ({ ...prev, [postId]: index }));
@@ -114,36 +115,20 @@ export default function PostFeed({ targetId }) {
     const formatCount = (count, activeState) => {
         const parsed = parseFloat(count);
         const adjusted = activeState ? parsed + 1 : parsed;
-        if (adjusted >= 1000) {
-            return (adjusted / 1000).toFixed(1) + 'K';
-        }
+        if (adjusted >= 1000) return (adjusted / 1000).toFixed(1) + 'K';
         return adjusted;
-    };
-
-    const handleCommentBtnClick = () => {
-        // Only open the popup manually on mobile sizes
-        if (!isLaptopSize) {
-            setIsCommentPopOpen(true);
-        }
     };
 
     return (
         <div className={styles.bodyWrapper}>
             <main className={styles.mainContainer}>
-
                 <div className={styles.contentLayoutContainer}>
-
-                    {/* Visual Media Card Panel */}
-                    <div
-                        className={styles.feedWrapper}
-                        onTouchStart={(e) => handleDragStart(e.touches[0].clientY)}
-                        onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientY)}
-                        onMouseDown={(e) => handleDragStart(e.clientY)}
-                        onMouseUp={(e) => handleDragEnd(e.clientY)}
-                    >
+                    
+                    <div className={styles.feedWrapper}>
                         <div
+                            ref={trackRef}
                             className={styles.postTrack}
-                            style={{ transform: `translateY(${-currentIndex * 100}%)` }}
+                            onScroll={handleTrackScroll}
                         >
                             {feedPosts.map((post) => {
                                 const isLiked = !!likedPosts[post.id];
@@ -153,32 +138,53 @@ export default function PostFeed({ targetId }) {
                                 return (
                                     <div key={post.id} className={styles.postCard}>
                                         <div className={styles.galleryViewport}>
+                                            
+                                            {/* Header Navigation Bar */}
+                                            <div className={styles.topNavigationHeader}>
+                                                <button className={styles.navHeaderBtn} onClick={onBack}>
+                                                    <i className="fa-solid fa-chevron-left"></i>
+                                                </button>
+                                                
+                                                {/* Premium Floating Media Count Pill Layout */}
+                                                {post.images.length > 1 && (
+                                                    <div className={styles.premiumCountBadge}>
+                                                        <span>{currentImgIdx + 1} / {post.images.length}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Horizontal Slide Scroll track */}
                                             <div
                                                 className={styles.imageScrollTrack}
-                                                onScroll={(e) => handleImageScroll(post.id, e)}
+                                                onScroll={(e) => handleImageHorizontalScroll(post.id, e)}
                                             >
                                                 {post.images.map((imgUrl, imgIdx) => (
                                                     <div key={imgIdx} className={styles.imageSlide}>
                                                         <img
                                                             src={imgUrl}
                                                             alt={`Frame ${imgIdx + 1}`}
-                                                            className={`${styles.galleryImage} ${currentImgIdx === imgIdx ? styles.imageActive : ''}`}
+                                                            className={styles.galleryImage}
                                                             draggable="false"
                                                         />
                                                     </div>
                                                 ))}
                                             </div>
 
+                                            <div className={styles.bottomShadowScrim} />
+
+                                            {/* Dot Trackers Layer: Explicitly structured inside bottom zone */}
                                             {post.images.length > 1 && (
-                                                <div className={styles.galleryIndicator}>
-                                                    <span>{currentImgIdx + 1}</span>
-                                                    <span className={styles.indicatorDivider}>/</span>
-                                                    <span>{post.images.length}</span>
+                                                <div className={styles.dotsIndicatorContainer}>
+                                                    {post.images.map((_, imgIdx) => (
+                                                        <span
+                                                            key={imgIdx}
+                                                            className={`${styles.indicatorDot} ${currentImgIdx === imgIdx ? styles.dotIsActive : ''}`}
+                                                        />
+                                                    ))}
                                                 </div>
                                             )}
 
-                                            <div className={styles.bottomShadowScrim} />
-
+                                            {/* Text Metadata Panel */}
                                             <div className={styles.imageOverlayMetadata}>
                                                 <div className={styles.profileRow}>
                                                     <div className={styles.profileMeta}>
@@ -195,22 +201,21 @@ export default function PostFeed({ targetId }) {
                                                 </div>
 
                                                 <div className={styles.descriptionBox}>
-                                                    <p className={styles.clampedDescription}>{post.description}</p>
+                                                    <p className={`${styles.clampedDescription} ${isDescExpanded ? styles.expanded : ''}`}>
+                                                        {post.description}
+                                                    </p>
+                                                    {post.description && post.description.length > 45 && !isDescExpanded && (
+                                                        <button 
+                                                            className={styles.moreToggleBtn} 
+                                                            onClick={() => setIsDescExpanded(true)}
+                                                        >
+                                                            more
+                                                        </button>
+                                                    )}
                                                 </div>
-
-                                                {post.images.length > 1 && (
-                                                    <div className={styles.galleryDots}>
-                                                        {post.images.map((_, imgIdx) => (
-                                                            <div
-                                                                key={imgIdx}
-                                                                className={`${styles.dot} ${currentImgIdx === imgIdx ? styles.dotActive : ''}`}
-                                                            />
-                                                        ))}
-                                                    </div>
-                                                )}
                                             </div>
 
-                                            {/* Action overlays on media */}
+                                            {/* Side Utility Buttons */}
                                             <div className={styles.floatingActions}>
                                                 <button
                                                     className={`${styles.actionItem} ${isLiked ? styles.liked : ''}`}
@@ -223,8 +228,8 @@ export default function PostFeed({ targetId }) {
                                                 </button>
 
                                                 <button
-                                                    className={`${styles.actionItem} ${styles.commentTriggerBtn}`}
-                                                    onClick={handleCommentBtnClick}
+                                                    className={`${styles.actionItem}`}
+                                                    onClick={() => !isLaptopSize && setIsCommentPopOpen(true)}
                                                 >
                                                     <div className={styles.actionCircle}>
                                                         <i className="fa-solid fa-comment-dots"></i>
@@ -256,7 +261,7 @@ export default function PostFeed({ targetId }) {
                         </div>
                     </div>
 
-                    {/* LAPTOP ONLY: Fixed full-time comments board */}
+                    {/* Desktop Right Side Comments */}
                     {isLaptopSize && activePost && (
                         <CommentPop
                             COMMENTS={activePost.comments}
@@ -270,6 +275,7 @@ export default function PostFeed({ targetId }) {
                     )}
                 </div>
 
+                {/* Vertical Scroll Handlers */}
                 <div className={styles.feedScrollControls}>
                     <button className={styles.controlArrow} onClick={handlePrevPost} disabled={currentIndex === 0}>
                         <i className="fa-solid fa-chevron-up"></i>
@@ -283,10 +289,9 @@ export default function PostFeed({ targetId }) {
                         <i className="fa-solid fa-chevron-down"></i>
                     </button>
                 </div>
-
             </main>
 
-            {/* PHONE/TABLET ONLY: Dynamic floating component */}
+            {/* Mobile Comment Sheets Component */}
             {!isLaptopSize && activePost && (
                 <CommentPop
                     COMMENTS={activePost.comments}

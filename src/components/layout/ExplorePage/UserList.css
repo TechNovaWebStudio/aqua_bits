@@ -1,86 +1,246 @@
+/* Base Layout Styles */
 .user-list-container {
   padding: 20px;
+  width: 100%;
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
   overflow-y: auto;
 }
 
-.users-grid {
-  display: grid;
-  /* Mobile: 1 column */
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 20px;
+.user-list-header {
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 
-/* Tablet: 2 columns */
+.user-list-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-list-header .subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* Base Grid (Mobile First: Stacked list rows) */
+.users-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* --- MOBILE LAYOUT ONLY (under 600px) --- */
+@media (max-width: 599px) {
+  .users-grid {
+    gap: 0;
+    padding-bottom: 70px;
+  }
+  .user-card {
+    background: #ffffff;
+    border-bottom: 1px solid rgb(241, 241, 241);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    /* Force single row */
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-avatar-wrapper {
+    flex-shrink: 0;
+  }
+
+  .user-avatar,
+  .user-initials-fallback {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+    border-radius: 50%;
+  }
+
+  .user-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    min-width: 0;
+    /* Keeps names from overflowing */
+  }
+
+  .user-identity h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .username-tag {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  /* Hide the role badge on tiny screens to optimize single-row space */
+  .user-role-badge {
+    display: none;
+  }
+
+  .view-profile-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+      0 8px 20px rgba(34, 197, 94, 0.25),
+      0 2px 5px rgba(0, 0, 0, 0.02),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+/* --- TABLET & DESKTOP LAYOUT (600px and above) --- */
 @media (min-width: 600px) {
   .users-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .user-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    /* Traditional Grid block cards */
+    align-items: center;
+    text-align: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03); */
+  }
+
+  .user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+  }
+
+  .card-avatar-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 1px #e2e8f0;
+  }
+
+  .user-initials-fallback {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+      0 8px 20px rgba(34, 197, 94, 0.25),
+      0 2px 5px rgba(0, 0, 0, 0.02),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.15);
+  }
+
+  .user-identity {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .name-group {
+    margin-bottom: 10px;
+  }
+
+  .user-identity h3 {
+    margin: 0 0 2px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .username-tag {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  .user-role-badge {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .view-profile-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background-color: #ffffff;
+    color: #2d9d5e;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .view-profile-btn:hover {
+    background: linear-gradient(135deg, #2d9d5e, #16a34a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
+    box-shadow:
+      0 8px 20px rgba(34, 197, 94, 0.25),
+      0 2px 5px rgba(0, 0, 0, 0.02),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-color: #2d9d5e;
   }
 }
 
-/* Desktop: 4 columns */
+/* Multi-column Scaling adjustments */
 @media (min-width: 1024px) {
+  .users-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
   .users-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.user-card {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  /* Mobile default: Row layout */
-  flex-direction: row; 
-  align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
-  text-align: left;
-  gap: 15px;
-}
-
-/* Reset to column for larger screens if preferred, 
-   or keep row if you want that look everywhere */
-@media (min-width: 600px) {
-  .user-card {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-.star-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: #ccc;
-  font-size: 20px;
-}
-
-.star-icon.active {
-  color: #f1c40f;
-}
-
-.user-avatar {
-  width: 60px; /* Slightly smaller for row layout */
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-info h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.user-info p {
-  margin: 5px 0 0;
-  color: #666;
-  font-size: 0.9rem;
 }

@@ -1,50 +1,60 @@
 .container {
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   overflow-y: auto;
 }
 
-/* Base Mobile Layout (Single Column Stack) */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+/* --- Pinterest Masonry Framework --- */
+.masonryGrid {
+  column-count: 1;
+  column-gap: 16px;
+  width: 100%;
 }
 
 .card {
   position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  /* 3rd Doubt Resolution: Stop layout from splicing item blocks elements into separate tracking tracks */
+  break-inside: avoid;
   border-radius: 16px;
   overflow: hidden;
-  height: 300px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #f5f5f5; 
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.imageBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
+.cardImage {
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
-/* Dark gradient mask at bottom for readable text overlays */
+/* Linear-gradient overlay ensuring visual variance contrast */
 .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
+  padding: 24px 12px 12px 12px;
   box-sizing: border-box;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
   z-index: 2;
 }
 
@@ -53,92 +63,91 @@
   justify-content: space-between;
   align-items: center;
   color: #ffffff;
+  gap: 8px; /* Safe padding constraint prevent columns rubbing together */
 }
 
+/* --- Username Overflow Issue Protection Rules --- */
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  min-width: 0; /* Vital trigger mechanism enabling inner text block contraction calculations */
+  flex: 1;      /* Instructs information layout to dynamically fill remaining container spaces */
 }
 
 .avatar {
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.8);
   object-fit: cover;
+  flex-shrink: 0; /* Stops the user photo avatar circle from compressing flat */
 }
 
 .metaText {
   display: flex;
   flex-direction: column;
+  min-width: 0; /* Allows standard flex-item to truncate correctly instead of auto expanding */
+  width: 100%;
 }
 
 .userName {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  
+  /* Text Truncation Triggers (Adds "...") */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .timeAgo {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.85);
+  
+  /* Text Truncation Triggers (Adds "...") */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* --- Metric Actions Column Alignments --- */
 .stats {
   display: flex;
-  gap: 14px;
-  font-size: 13px;
-  font-weight: 500;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0; /* Ensures metric counters maintain exact size shapes */
 }
 
 .statItem {
   display: flex;
   align-items: center;
   gap: 4px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 
-/* --- Tablet & Desktop Bento Layout Definitions --- */
+/* --- Media Queries Viewports --- */
+@media (min-width: 480px) {
+  .masonryGrid {
+    column-count: 2;
+  }
+}
+
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 240px;
+  .masonryGrid {
+    column-count: 3;
   }
+}
 
-  /* Specific image sizing based on the bento aspect ratios */
-  .largeRock {
-    grid-column: span 4;
-    grid-row: span 1.5;
-    height: auto;
-  }
-
-  .loneWalker {
-    grid-column: span 2;
-    grid-row: span 1.5;
-    height: auto;
-  }
-
-  .caravan {
-    grid-column: span 2;
-    grid-row: span 2;
-    height: auto;
-  }
-
-  .sunsetPicnic {
-    grid-column: span 2;
-    grid-row: span 2;
-    height: auto;
-  }
-
-  .canyon {
-    grid-column: span 2;
-    grid-row: span 2;
-    height: auto;
+@media (min-width: 1024px) {
+  .masonryGrid {
+    column-count: 4;
   }
 }

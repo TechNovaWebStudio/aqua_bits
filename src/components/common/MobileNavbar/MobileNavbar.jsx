@@ -24,8 +24,8 @@ export default function MobileNavbar() {
   const navItems = [
     { id: "home", path: "/", icon: "fa-solid fa-house" },
     { id: "search", path: "/explore", icon: "fa-solid fa-magnifying-glass" },
-    { id: "compass", path: "/view-short", icon: "fa-solid fa-compass", isAccent: true },
-    { id: "heart", path: "/categories", icon: "fa-solid fa-layer-group" },
+    { id: "compass", path: "/shorts", icon: "fa-solid fa-compass", isAccent: true },
+    { id: "Posts", path: "/post-feed", icon: "fa-solid fa-layer-group" },
     { id: "profile", path: profilePath, isProfile: true }
   ];
 

@@ -5,8 +5,8 @@
     display: flex;
     overflow: hidden;
     box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: radial-gradient(circle at 50% 50%, #f4f6f9 0%, #e4ebf6 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: white;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -19,17 +19,16 @@
     width: 100%;
 }
 
-/* Base Wrapper centered on all screens */
 .contentLayoutContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0; /* Creates an integrated single card layout when split */
+    gap: 0;
     height: 90vh;
     max-height: 800px;
     position: relative;
     width: 100%;
-    max-width: 580px; /* Base container size for smaller devices */
+    max-width: 580px;
     padding: 0 20px;
 }
 
@@ -41,10 +40,9 @@
     border-radius: 28px;
     overflow: hidden;
     box-shadow: 0 32px 64px rgba(10, 15, 30, 0.12);
-    background-color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    background-color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 2;
-    
 }
 
 .postTrack {
@@ -52,26 +50,84 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.postTrack::-webkit-scrollbar {
+    display: none;
 }
 
 .postCard {
     width: 100%;
     height: 100%;
     min-height: 100%;
-    background-color: #ffffff;
     flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     overflow: hidden;
-    
 }
 
 .galleryViewport {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: #0b0c10;
+    background-color: #000000;
     overflow: hidden;
+}
 
+.topNavigationHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.navHeaderBtn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.navHeaderBtn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* HIGHLY ATTRACTIVE INSTAGRAM STYLE INTERACTIVE COUNTER PILL */
+.premiumCountBadge {
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .imageScrollTrack {
@@ -92,11 +148,11 @@
     height: 100%;
     flex-shrink: 0;
     scroll-snap-align: start;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    background-color: #000000;
+    position: relative;
 }
 
 .galleryImage {
@@ -105,12 +161,6 @@
     object-fit: contain;
     user-select: none;
     -webkit-user-drag: none;
-    transform: scale(1.05);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.imageActive {
-    transform: scale(1);
 }
 
 .bottomShadowScrim {
@@ -118,33 +168,42 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 45%, rgba(0, 0, 0, 0.95) 100%);
+    height: 45%;
+    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.85) 100%);
     pointer-events: none;
     z-index: 2;
 }
 
-.galleryIndicator {
+/* EXPLICIT INSIDE IMAGE DOT TRACKER CONFIGURATION */
+.dotsIndicatorContainer {
     position: absolute;
-    top: 24px;
-    left: 24px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 125px; /* Safely floating completely inside above text details */
     display: flex;
     align-items: center;
-    gap: 4px;
-    z-index: 5;
+    justify-content: center;
+    gap: 5px;
+    z-index: 8;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 5px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-.indicatorDivider {
-    color: rgba(255, 255, 255, 0.4);
+.indicatorDot {
+    width: 5.5px;
+    height: 5.5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.dotIsActive {
+    background-color: #ffffff;
+    transform: scale(1.3);
 }
 
 .imageOverlayMetadata {
@@ -152,11 +211,11 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 30px 90px 30px 30px;
+    padding: 30px 95px 24px 24px;
     z-index: 3;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     box-sizing: border-box;
 }
 
@@ -170,12 +229,16 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
+    flex: 1;
+    margin-right: 12px;
 }
 
 .avatarWrapper {
     position: relative;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
 }
 
 .avatarImg {
@@ -190,8 +253,8 @@
     position: absolute;
     bottom: 1px;
     right: 1px;
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background-color: #10b981;
     border: 2px solid #ffffff;
@@ -200,6 +263,7 @@
 .avatarInfo {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .username {
@@ -207,74 +271,89 @@
     font-weight: 700;
     color: #ffffff;
     margin: 0;
-}
-
-.userTitle {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 1px;
-}
-
-.followBtn {
-    background-color: #ffffff;
-    color: #111827;
-    border: none;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.followBtn:hover {
-    transform: scale(1.05);
-}
-
-.descriptionBox {
-    width: 100%;
-}
-
-.clampedDescription {
-    font-size: 13px;
-    line-height: 1.45;
-    color: rgba(255, 255, 255, 0.95);
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.galleryDots {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
+.userTitle {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.dot {
-    width: 12px;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.followBtn {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
 }
 
-.dotActive {
+.followBtn:hover {
     background-color: #ffffff;
-    width: 22px;
+    color: #111827;
 }
 
-/* Floating overlay actions bar */
+.descriptionBox {
+    position: relative;
+    width: 100%;
+}
+
+.clampedDescription {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 45px;
+}
+
+.clampedDescription.expanded {
+    display: block;
+    overflow: visible;
+    padding-right: 0;
+}
+
+.moreToggleBtn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.moreToggleBtn:hover {
+    color: #ffffff;
+}
+
 .floatingActions {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
     position: absolute;
-    right: 24px;
-    bottom: 30px;
+    right: 16px;
+    bottom: 24px;
     z-index: 4;
 }
 
@@ -290,13 +369,13 @@
 }
 
 .actionCircle {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(30, 30, 30, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -308,26 +387,18 @@
 .actionItem span {
     font-size: 11px;
     font-weight: 600;
-    margin-top: 4px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    margin-top: 5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .actionItem:hover .actionCircle {
-    transform: scale(1.08);
-    background-color: rgba(0, 0, 0, 0.6);
+    transform: scale(1.06);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-.liked .actionCircle {
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.3);
-}
+.liked .actionCircle { color: #ef4444; }
+.bookmarked .actionCircle { color: #f59e0b; }
 
-.bookmarked .actionCircle {
-    color: #f59e0b;
-    border-color: rgba(245, 158, 11, 0.3);
-}
-
-/* Pagination arrows */
 .feedScrollControls {
     position: absolute;
     right: -70px;
@@ -359,7 +430,7 @@
 }
 
 .controlArrow:disabled {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: not-allowed;
 }
 
@@ -375,235 +446,43 @@
 .pageDivider { color: #9ca3af; font-size: 10px; margin: 2px 0; }
 .totalPage { color: #9ca3af; font-weight: 500; }
 
-/* Hidden on mobile/tablets, only shown on laptop screen sizing */
-.laptopCommentsPanel {
-    display: none;
-}
-
-/* ==========================================================================
-   LAPTOP SIZE (Width >= 1024px): Side-by-side split screen view
-   ========================================================================== */
 @media (min-width: 1024px) {
     .contentLayoutContainer {
-        max-width: 1050px; /* Expand to accommodate media card AND full comments side-panel */
+        max-width: 1010px;
     }
 
     .feedWrapper {
         width: 550px;
         flex-shrink: 0;
-        border-radius: 28px 0 0 28px; /* Curve left side, flatten inside joint */
+        border-radius: 28px 0 0 28px;
         border-right: none;
-    }
-
-    .commentTriggerBtn {
-        cursor: default; /* Desktop indicator doesn't trigger overlays */
-        pointer-events: none;
-    }
-
-    /* Pinned desktop split layout comments panel */
-    .laptopCommentsPanel {
-        display: flex;
-        flex-direction: column;
-        width: 460px;
-        height: 100%;
-        background-color: #ffffff;
-        border-radius: 0 28px 28px 0; /* Curve inside joints out on right */
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-left: none;
-        box-shadow: 20px 32px 64px rgba(10, 15, 30, 0.08);
-        overflow: hidden;
-        z-index: 1;
-    }
-
-    .panelHeader {
-        padding: 24px;
-        border-bottom: 1px solid #f3f4f6;
-    }
-
-    .panelUserMeta {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .panelAvatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .panelUsername {
-        font-size: 14px;
-        font-weight: 700;
-        color: #111827;
-        margin: 0;
-    }
-
-    .panelUserTitle {
-        font-size: 11px;
-        color: #6b7280;
-        margin: 2px 0 0 0;
-    }
-
-    .panelBody {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 24px;
-        overflow-y: auto;
-    }
-
-    .panelBody::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .panelBody::-webkit-scrollbar-thumb {
-        background-color: #e5e7eb;
-        border-radius: 4px;
-    }
-
-    .panelDescriptionBlock {
-        padding-bottom: 16px;
-    }
-
-    .panelDescText {
-        font-size: 13px;
-        line-height: 1.5;
-        color: #374151;
-        margin: 0;
-    }
-
-    .panelDescUser {
-        font-weight: 700;
-        color: #111827;
-        margin-right: 6px;
-    }
-
-    .panelDivider {
-        border: none;
-        height: 1px;
-        background-color: #f3f4f6;
-        margin: 0 0 16px 0;
-    }
-
-    .panelCommentsList {
-        flex-grow: 1;
-    }
-
-    .panelEmptyText {
-        color: #9ca3af;
-        font-size: 12.5px;
-        text-align: center;
-        margin-top: 40px;
-    }
-
-    .panelCommentNode {
-        margin-bottom: 16px;
-    }
-
-    .panelCommentText {
-        font-size: 13px;
-        line-height: 1.45;
-        color: #4b5563;
-        margin: 0;
-    }
-
-    .panelCommentUser {
-        font-weight: 700;
-        color: #111827;
-        margin-right: 6px;
-    }
-
-    .panelFooterForm {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 16px 24px 24px 24px;
-        border-top: 1px solid #f3f4f6;
-    }
-
-    .panelInput {
-        flex-grow: 1;
-        border: 1px solid #e5e7eb;
-        background-color: #f9fafb;
-        border-radius: 12px;
-        padding: 10px 16px;
-        font-size: 13px;
-        color: #111827;
-        outline: none;
-        transition: border-color 0.2s, background-color 0.2s;
-    }
-
-    .panelInput:focus {
-        background-color: #ffffff;
-        border-color: #d1d5db;
-    }
-
-    .panelSubmitBtn {
-        background: none;
-        border: none;
-        color: #3b82f6;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        padding: 0 4px;
-        transition: opacity 0.2s;
-    }
-
-    .panelSubmitBtn:disabled {
-        color: #9ca3af;
-        cursor: not-allowed;
     }
 }
 
-/* ==========================================================================
-   MOBILE & TABLET SIZE (Width < 1024px)
-   ========================================================================== */
 @media (max-width: 1023px) {
-    .bodyWrapper {
-        background: #000000;
-    }
-
+    .bodyWrapper { background: #000000; }
     .contentLayoutContainer {
         width: 100vw;
         height: 100vh;
         max-height: none;
         padding: 0;
-        
     }
-
     .feedWrapper {
         border-radius: 0;
         border: none;
         height: 100vh;
     }
-
-    .postCard {
-        height: 100vh;
+    .postCard { height: 100vh; }
+    .dotsIndicatorContainer {
+        bottom: 135px;
     }
-
     .imageOverlayMetadata {
-        padding: 20px 80px 40px 20px;
+        padding: 20px 85px 70px 20px;
         width: 100vw;
     }
-
     .floatingActions {
         right: 16px;
-        bottom: 50px;
-        gap: 14px;
+        bottom: 80px;
     }
-
-    .actionCircle {
-        width: 42px;
-        height: 42px;
-        font-size: 16px;
-    }
-
-    .feedScrollControls {
-        display: none;
-    }
- .imageOverlayMetadata {
-        padding-bottom: 60px;
-    }
+    .feedScrollControls { display: none; }
 }

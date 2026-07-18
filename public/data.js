@@ -2095,10 +2095,17 @@ export const Breeders = [
     verified: true,
     rating: 4.9,
     bio: "Passionate ornamental fish breeder.",
-    description: "Passionate ornamental fish breeder with over 5 years of hands-on experience in cultivating premium varieties. Specializing in vibrant Japanese Koi strains and high-quality Bettas, my primary mission is to provide healthy, top-tier lines to hobbyists across Kerala. We focus heavily on selective genetics and robust water parameters to ensure long-term sustainability and flawless development.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 101, name: "Ameen Ali", userName: "@ameen", userAvatar: "/images/users/user1.jpg" }],
-    following: [{ id: 102, name: "Niyas", userName: "@niyas", userAvatar: "/images/users/user4.jpg" }],
+    description: "Passionate ornamental fish breeder specializing in vibrant Japanese Koi strains and high-quality Bettas for hobbyists across Kerala.",
+    counts: { followers: 3, following: 2, posts: 2 },
+    followers: [
+      { id: 101, name: "Ameen Ali", userName: "@ameen", userAvatar: "/images/users/user1.jpg" },
+      { id: 121, name: "Faisal Khan", userName: "@faisal_k", userAvatar: "/images/users/user31.jpg" },
+      { id: 122, name: "Hiba Thasni", userName: "@hiba_t", userAvatar: "/images/users/user32.jpg" }
+    ],
+    following: [
+      { id: 102, name: "Niyas", userName: "@niyas", userAvatar: "/images/users/user4.jpg" },
+      { id: 123, name: "Zayan", userName: "@zayan_aqua", userAvatar: "/images/users/user33.jpg" }
+    ],
     contact: {
       email: "shibil@example.com",
       phone: "+91 98765 43210",
@@ -2106,9 +2113,13 @@ export const Breeders = [
       facebook: "https://facebook.com/technovastudio"
     },
     shorts: [
-      { id: 1, videoURL: "./dumo.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 }
+      { id: 1, videoURL: "./dumo.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
+      { id: 2, videoURL: "./shorts/koi_feeding.mp4", likes: 950, comments: 30, shares: 85, views: 18000 }
     ],
-    posts: [{ id: 1, image: "https://c4.wallpaperflare.com/wallpaper/934/955/692/animal-betta-siamese-fighting-fish-wallpaper-preview.jpg", caption: "Premium Japanese Koi Available", likes: 542, views: 8200, shares: 18, comments: [{ userName: "@rahul", name: "Rahul Joseph", userAvatar: "/images/users/user2.jpg", content: "Beautiful koi!" }] },]
+    posts: [
+      { id: 1, image: "https://c4.wallpaperflare.com/wallpaper/934/955/692/animal-betta-siamese-fighting-fish-wallpaper-preview.jpg", caption: "Premium Japanese Koi Available", likes: 542, views: 8200, shares: 18, comments: [{ userName: "@rahul", name: "Rahul Joseph", userAvatar: "/images/users/user2.jpg", content: "Beautiful koi!" }] },
+      { id: 11, image: "/images/posts/betta_pair.jpg", caption: "New Betta pairs ready for their new homes.", likes: 340, views: 5100, shares: 12, comments: [{ userName: "@asif", name: "Asif Ali", userAvatar: "/images/users/user34.jpg", content: "Price please?" }] }
+    ]
   },
   {
     id: 2,
@@ -2125,10 +2136,17 @@ export const Breeders = [
     verified: true,
     rating: 4.8,
     bio: "Specializing in exotic cichlids.",
-    description: "Dedicated aquatic specialist specializing in exotic South American cichlids, primarily Discus and Angelfish. With an 8-year track record, our facility maintains rigorous quarantine protocols and a strict feeding regimen to achieve optimal coloration and growth. Providing expert consultations for advanced aquarium setups and specialized breeding programs tailored for serious collectors.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 103, name: "Sneha P", userName: "@sneha", userAvatar: "/images/users/user6.jpg" }],
-    following: [{ id: 104, name: "Vikram S", userName: "@vikram", userAvatar: "/images/users/user7.jpg" }],
+    description: "Dedicated aquatic specialist focusing on premium South American cichlids, primarily high-grade Discus and Angelfish variants.",
+    counts: { followers: 3, following: 2, posts: 2 },
+    followers: [
+      { id: 103, name: "Sneha P", userName: "@sneha", userAvatar: "/images/users/user6.jpg" },
+      { id: 124, name: "Riya Mathew", userName: "@riya_m", userAvatar: "/images/users/user35.jpg" },
+      { id: 125, name: "Gautham S", userName: "@gautham", userAvatar: "/images/users/user36.jpg" }
+    ],
+    following: [
+      { id: 104, name: "Vikram S", userName: "@vikram", userAvatar: "/images/users/user7.jpg" },
+      { id: 126, name: "Aquatic Hub", userName: "@aquatic_hub", userAvatar: "/images/users/user37.jpg" }
+    ],
     contact: {
       email: "anjali@example.com",
       phone: "+91 98765 43211",
@@ -2136,9 +2154,13 @@ export const Breeders = [
       facebook: "https://facebook.com/anjali_aquatics"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/anjali_discus_care.mp4", likes: 2300, comments: 89, shares: 310, views: 42000 }
+      { id: 1, videoURL: "/videos/shorts/anjali_discus_care.mp4", likes: 2300, comments: 89, shares: 310, views: 42000 },
+      { id: 2, videoURL: "/videos/shorts/angel_breeding.mp4", likes: 1400, comments: 42, shares: 110, views: 23000 }
     ],
-    posts: [{ id: 2, image: "/images/posts/discus1.jpg", caption: "Stunning Discus pairing", likes: 890, views: 12000, shares: 45, comments: [{ userName: "@fishfan", name: "Anil Kumar", userAvatar: "/images/users/user3.jpg", content: "Amazing colors!" }] }]
+    posts: [
+      { id: 2, image: "/images/posts/discus1.jpg", caption: "Stunning Discus pairing", likes: 890, views: 12000, shares: 45, comments: [{ userName: "@fishfan", name: "Anil Kumar", userAvatar: "/images/users/user3.jpg", content: "Amazing colors!" }] },
+      { id: 12, image: "/images/posts/angel1.jpg", caption: "Albino Platinum Angelfish fry.", likes: 450, views: 6700, shares: 20, comments: [{ userName: "@kerala_fish", name: "Manoj K", userAvatar: "/images/users/user38.jpg", content: "Superb quality." }] }
+    ]
   },
   {
     id: 3,
@@ -2155,10 +2177,16 @@ export const Breeders = [
     verified: false,
     rating: 4.5,
     bio: "Home-based breeder of fancy guppies.",
-    description: "Home-based breeder deeply invested in the art of fancy guppy lines and vibrant livebearers. Operating out of Thrissur, my focus centers heavily on line breeding to fix specific genetic traits like Full Red and Blue Topaz variations. We offer high-grade fry and healthy breeding pairs perfect for beginners looking to venture into advanced aquatic genetics.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 105, name: "Arun Das", userName: "@arun", userAvatar: "/images/users/user8.jpg" }],
-    following: [{ id: 106, name: "Meena K", userName: "@meena", userAvatar: "/images/users/user9.jpg" }],
+    description: "Home-based breeder in Thrissur deeply invested in line breeding high-grade fancy guppy variations and healthy livebearers.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 105, name: "Arun Das", userName: "@arun", userAvatar: "/images/users/user8.jpg" },
+      { id: 127, name: "Deepak V", userName: "@deepak_v", userAvatar: "/images/users/user39.jpg" }
+    ],
+    following: [
+      { id: 106, name: "Meena K", userName: "@meena", userAvatar: "/images/users/user9.jpg" },
+      { id: 128, name: "Guppy Club", userName: "@guppy_club", userAvatar: "/images/users/user40.jpg" }
+    ],
     contact: {
       email: "rahul@example.com",
       phone: "+91 98765 43212",
@@ -2166,9 +2194,13 @@ export const Breeders = [
       facebook: "https://facebook.com/rahul_guppy"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/rahul_guppy_room.mp4", likes: 450, comments: 14, shares: 25, views: 8900 }
+      { id: 1, videoURL: "/videos/shorts/rahul_guppy_room.mp4", likes: 450, comments: 14, shares: 25, views: 8900 },
+      { id: 2, videoURL: "/videos/shorts/guppy_sorting.mp4", likes: 310, comments: 9, shares: 15, views: 5600 }
     ],
-    posts: [{ id: 3, image: "/images/posts/guppy1.jpg", caption: "Full Red Guppy fry ready.", likes: 250, views: 3000, shares: 5, comments: [{ userName: "@joji", name: "Joji T", userAvatar: "/images/users/user10.jpg", content: "Great strain." }] }]
+    posts: [
+      { id: 3, image: "/images/posts/guppy1.jpg", caption: "Full Red Guppy fry ready.", likes: 250, views: 3000, shares: 5, comments: [{ userName: "@joji", name: "Joji T", userAvatar: "/images/users/user10.jpg", content: "Great strain." }] },
+      { id: 13, image: "/images/posts/molly1.jpg", caption: "Black Balloon Mollies.", likes: 180, views: 2100, shares: 2, comments: [{ userName: "@binu", name: "Binu S", userAvatar: "/images/users/user41.jpg", content: "Healthy fishes!" }] }
+    ]
   },
   {
     id: 4,
@@ -2185,10 +2217,16 @@ export const Breeders = [
     verified: true,
     rating: 4.7,
     bio: "Expert in traditional Japanese Goldfish.",
-    description: "With over a decade of industry expertise, I focus strictly on traditional Japanese Goldfish variants, including high-grade Ranchu and Orandas. Our specialized facility mimics natural seasonal shifts to encourage organic spawning cycles and premium wen growth. Trusted by collectors statewide for supplying robust, show-quality specimens built to last.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 107, name: "Devi M", userName: "@devi", userAvatar: "/images/users/user11.jpg" }],
-    following: [{ id: 108, name: "Ravi K", userName: "@ravi", userAvatar: "/images/users/user12.jpg" }],
+    description: "Expert breeder focused strictly on traditional Japanese Goldfish variants, supplying robust, show-quality specimens built to last.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 107, name: "Devi M", userName: "@devi", userAvatar: "/images/users/user11.jpg" },
+      { id: 129, name: "Madhavan E", userName: "@madhav_e", userAvatar: "/images/users/user42.jpg" }
+    ],
+    following: [
+      { id: 108, name: "Ravi K", userName: "@ravi", userAvatar: "/images/users/user12.jpg" },
+      { id: 130, name: "Goldfish Asia", userName: "@goldfish_asia", userAvatar: "/images/users/user43.jpg" }
+    ],
     contact: {
       email: "suresh@example.com",
       phone: "+91 98765 43213",
@@ -2196,9 +2234,13 @@ export const Breeders = [
       facebook: "https://facebook.com/suresh_gold"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/suresh_ranchu_growth.mp4", likes: 980, comments: 52, shares: 95, views: 18500 }
+      { id: 1, videoURL: "/videos/shorts/suresh_ranchu_growth.mp4", likes: 980, comments: 52, shares: 95, views: 18500 },
+      { id: 2, videoURL: "/videos/shorts/oranda_wen.mp4", likes: 750, comments: 38, shares: 60, views: 14200 }
     ],
-    posts: [{ id: 4, image: "/images/posts/goldfish1.jpg", caption: "High-grade Ranchu available.", likes: 410, views: 5600, shares: 12, comments: [{ userName: "@sara", name: "Sara L", userAvatar: "/images/users/user13.jpg", content: "Lovely wen growth." }] }]
+    posts: [
+      { id: 4, image: "/images/posts/goldfish1.jpg", caption: "High-grade Ranchu available.", likes: 410, views: 5600, shares: 12, comments: [{ userName: "@sara", name: "Sara L", userAvatar: "/images/users/user13.jpg", content: "Lovely wen growth." }] },
+      { id: 14, image: "/images/posts/oranda1.jpg", caption: "Giant Red-Cap Orandas.", likes: 380, views: 4900, shares: 15, comments: [{ userName: "@unni", name: "Unni Krishnan", userAvatar: "/images/users/user44.jpg", content: "Stunning!" }] }
+    ]
   },
   {
     id: 5,
@@ -2215,10 +2257,16 @@ export const Breeders = [
     verified: true,
     rating: 4.9,
     bio: "Selective breeding of Halfmoon Bettas.",
-    description: "An avid aquarist focusing purely on the selective breeding of show-grade Halfmoon and Crowntail Betta fish. Every single line is meticulously cataloged for ideal fin shape, symmetry, and intense coloration over a rewarding 4-year journey. Based in Thiruvananthapuram, we ship premium show pairs safely across the region with live-arrival guarantees.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 109, name: "Kiran P", userName: "@kiran", userAvatar: "/images/users/user14.jpg" }],
-    following: [{ id: 110, name: "Latha B", userName: "@latha", userAvatar: "/images/users/user15.jpg" }],
+    description: "Avid aquarist focusing purely on the selective breeding and safe regional shipping of show-grade Halfmoon and Crowntail Betta fish.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 109, name: "Kiran P", userName: "@kiran", userAvatar: "/images/users/user14.jpg" },
+      { id: 131, name: "Nandana J", userName: "@nandana_j", userAvatar: "/images/users/user45.jpg" }
+    ],
+    following: [
+      { id: 110, name: "Latha B", userName: "@latha", userAvatar: "/images/users/user15.jpg" },
+      { id: 132, name: "Betta World", userName: "@betta_world", userAvatar: "/images/users/user46.jpg" }
+    ],
     contact: {
       email: "deepa@example.com",
       phone: "+91 98765 43214",
@@ -2226,9 +2274,13 @@ export const Breeders = [
       facebook: "https://facebook.com/deepa_betta"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/deepa_halfmoon_flare.mp4", likes: 1500, comments: 73, shares: 210, views: 31000 }
+      { id: 1, videoURL: "/videos/shorts/deepa_halfmoon_flare.mp4", likes: 1500, comments: 73, shares: 210, views: 31000 },
+      { id: 2, videoURL: "/videos/shorts/crowntail_show.mp4", likes: 1100, comments: 45, shares: 130, views: 22000 }
     ],
-    posts: [{ id: 5, image: "/images/posts/betta1.jpg", caption: "New Betta line released.", likes: 620, views: 9000, shares: 30, comments: [{ userName: "@anil", name: "Anil R", userAvatar: "/images/users/user3.jpg", content: "Stunning finnage." }] }]
+    posts: [
+      { id: 5, image: "/images/posts/betta1.jpg", caption: "New Betta line released.", likes: 620, views: 9000, shares: 30, comments: [{ userName: "@anil", name: "Anil R", userAvatar: "/images/users/user3.jpg", content: "Stunning finnage." }] },
+      { id: 15, image: "/images/posts/betta2.jpg", caption: "Avatar Betta pairs available.", likes: 480, views: 7200, shares: 22, comments: [{ userName: "@achu", name: "Achu S", userAvatar: "/images/users/user47.jpg", content: "PM price please." }] }
+    ]
   },
   {
     id: 6,
@@ -2245,10 +2297,16 @@ export const Breeders = [
     verified: true,
     rating: 4.6,
     bio: "Breeding premium monster fish.",
-    description: "Specialized monster fish breeder catering to large-scale aggressive community setups, featuring premium Super Red Arowanas and Tiger Oscars. With 6 years in the trade, we prioritize massive custom filtration networks and dynamic live-foraging diets. Offering heavy-duty livestock capable of anchoring any flagship showroom display tank effortlessly.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 111, name: "Tom S", userName: "@tom", userAvatar: "/images/users/user16.jpg" }],
-    following: [{ id: 112, name: "Jerry J", userName: "@jerry", userAvatar: "/images/users/user17.jpg" }],
+    description: "Specialized monster fish breeder catering to large-scale setups with premium Super Red Arowanas and Tiger Oscars.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 111, name: "Tom S", userName: "@tom", userAvatar: "/images/users/user16.jpg" },
+      { id: 133, name: "Vipin Das", userName: "@vipin_monster", userAvatar: "/images/users/user48.jpg" }
+    ],
+    following: [
+      { id: 112, name: "Jerry J", userName: "@jerry", userAvatar: "/images/users/user17.jpg" },
+      { id: 134, name: "Monster Tankers", userName: "@monster_tanks", userAvatar: "/images/users/user49.jpg" }
+    ],
     contact: {
       email: "arjun@example.com",
       phone: "+91 98765 43215",
@@ -2256,9 +2314,13 @@ export const Breeders = [
       facebook: "https://facebook.com/arjun_monster"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/arjun_arowana_feed.mp4", likes: 3400, comments: 195, shares: 520, views: 65000 }
+      { id: 1, videoURL: "/videos/shorts/arjun_arowana_feed.mp4", likes: 3400, comments: 195, shares: 520, views: 65000 },
+      { id: 2, videoURL: "/videos/shorts/oscar_tank_cleaning.mp4", likes: 1800, comments: 64, shares: 140, views: 29000 }
     ],
-    posts: [{ id: 6, image: "/images/posts/arowana1.jpg", caption: "Super Red Arowana.", likes: 950, views: 15000, shares: 60, comments: [{ userName: "@vinod", name: "Vinod N", userAvatar: "/images/users/user18.jpg", content: "Majestic!" }] }]
+    posts: [
+      { id: 6, image: "/images/posts/arowana1.jpg", caption: "Super Red Arowana.", likes: 950, views: 15000, shares: 60, comments: [{ userName: "@vinod", name: "Vinod N", userAvatar: "/images/users/user18.jpg", content: "Majestic!" }] },
+      { id: 16, image: "/images/posts/oscar2.jpg", caption: "Chilli Red Oscar juvenile batch.", likes: 510, views: 7800, shares: 25, comments: [{ userName: "@praveen", name: "Praveen K", userAvatar: "/images/users/user50.jpg", content: "Healthy active fish." }] }
+    ]
   },
   {
     id: 7,
@@ -2275,10 +2337,16 @@ export const Breeders = [
     verified: false,
     rating: 4.2,
     bio: "Dedicated to colorful community fish.",
-    description: "A dedicated community fish breeder striving to bring nano tank options like schooling Neon and Cardinal Tetras into mainstream popularity. Over the past 2 years, we've optimized low-pH biotopes to mimic natural Amazonian streams, driving unmatched schooling behavior. Ideal configurations for beautifully planted aquascapes and desktop layouts.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 113, name: "Ali M", userName: "@ali", userAvatar: "/images/users/user19.jpg" }],
-    following: [{ id: 114, name: "Sara F", userName: "@sara", userAvatar: "/images/users/user20.jpg" }],
+    description: "Dedicated community fish breeder specializing in beautiful nano tank schooling options like Neon and Cardinal Tetras.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 113, name: "Ali M", userName: "@ali", userAvatar: "/images/users/user19.jpg" },
+      { id: 135, name: "Sana Farooq", userName: "@sana_f", userAvatar: "/images/users/user51.jpg" }
+    ],
+    following: [
+      { id: 114, name: "Sara F", userName: "@sara", userAvatar: "/images/users/user20.jpg" },
+      { id: 136, name: "Nano Scapes", userName: "@nano_scapes", userAvatar: "/images/users/user52.jpg" }
+    ],
     contact: {
       email: "fathima@example.com",
       phone: "+91 98765 43216",
@@ -2286,9 +2354,13 @@ export const Breeders = [
       facebook: "https://facebook.com/fathima_tanks"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/fathima_neon_school.mp4", likes: 320, comments: 8, shares: 12, views: 5400 }
+      { id: 1, videoURL: "/videos/shorts/fathima_neon_school.mp4", likes: 320, comments: 8, shares: 12, views: 5400 },
+      { id: 2, videoURL: "/videos/shorts/cardinal_tetra_tank.mp4", likes: 410, comments: 15, shares: 18, views: 6800 }
     ],
-    posts: [{ id: 7, image: "/images/posts/tetra1.jpg", caption: "Schooling Neon Tetras.", likes: 150, views: 2000, shares: 2, comments: [{ userName: "@babu", name: "Babu R", userAvatar: "/images/users/user21.jpg", content: "Very peaceful." }] }]
+    posts: [
+      { id: 7, image: "/images/posts/tetra1.jpg", caption: "Schooling Neon Tetras.", likes: 150, views: 2000, shares: 2, comments: [{ userName: "@babu", name: "Babu R", userAvatar: "/images/users/user21.jpg", content: "Very peaceful." }] },
+      { id: 17, image: "/images/posts/tetra2.jpg", caption: "Rummy Nose Tetras healthy and active.", likes: 190, views: 2800, shares: 5, comments: [{ userName: "@amal", name: "Amal Dev", userAvatar: "/images/users/user53.jpg", content: "Perfect for my setup." }] }
+    ]
   },
   {
     id: 8,
@@ -2305,10 +2377,16 @@ export const Breeders = [
     verified: true,
     rating: 4.8,
     bio: "Specialist in high-grade Flowerhorns.",
-    description: "Specialist in elite-grade Flowerhorns, dedicated to cultivating impressive kok development, deep pearl distributions, and highly interactive temperaments. Seven years of selective breeding have led to adaptive strains that thrive smoothly in diverse indoor tank environments. We provide customized nutrition maps alongside every single fish sale.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 115, name: "Manu V", userName: "@manu", userAvatar: "/images/users/user22.jpg" }],
-    following: [{ id: 116, name: "Priya S", userName: "@priya", userAvatar: "/images/users/user23.jpg" }],
+    description: "Flowerhorn specialist focused on cultivating elite specimens with exceptional kok development and interactive temperaments.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 115, name: "Manu V", userName: "@manu", userAvatar: "/images/users/user22.jpg" },
+      { id: 137, name: "Siddharth R", userName: "@sid_horn", userAvatar: "/images/users/user54.jpg" }
+    ],
+    following: [
+      { id: 116, name: "Priya S", userName: "@priya", userAvatar: "/images/users/user23.jpg" },
+      { id: 138, name: "Cichlid Arena", userName: "@cichlid_arena", userAvatar: "/images/users/user55.jpg" }
+    ],
     contact: {
       email: "vishnu@example.com",
       phone: "+91 98765 43217",
@@ -2316,9 +2394,13 @@ export const Breeders = [
       facebook: "https://facebook.com/vishnu_aquatics"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/vishnu_flowerhorn_kok.mp4", likes: 1100, comments: 41, shares: 88, views: 19000 }
+      { id: 1, videoURL: "/videos/shorts/vishnu_flowerhorn_kok.mp4", likes: 1100, comments: 41, shares: 88, views: 19000 },
+      { id: 2, videoURL: "/videos/shorts/flowerhorn_interaction.mp4", likes: 1350, comments: 50, shares: 92, views: 21000 }
     ],
-    posts: [{ id: 8, image: "/images/posts/flowerhorn1.jpg", caption: "KML Flowerhorn.", likes: 500, views: 7000, shares: 22, comments: [{ userName: "@shibu", name: "Shibu K", userAvatar: "/images/users/user24.jpg", content: "Nice kok!" }] }]
+    posts: [
+      { id: 8, image: "/images/posts/flowerhorn1.jpg", caption: "KML Flowerhorn.", likes: 500, views: 7000, shares: 22, comments: [{ userName: "@shibu", name: "Shibu K", userAvatar: "/images/users/user24.jpg", content: "Nice kok!" }] },
+      { id: 18, image: "/images/posts/flowerhorn2.jpg", caption: "Thai Silk Flowerhorn juvenile.", likes: 420, views: 5900, shares: 14, comments: [{ userName: "@akhil", name: "Akhil Raj", userAvatar: "/images/users/user56.jpg", content: "Super pearl lines." }] }
+    ]
   },
   {
     id: 9,
@@ -2335,10 +2417,16 @@ export const Breeders = [
     verified: true,
     rating: 5.0,
     bio: "Professional Koi breeder.",
-    description: "Professional Koi master breeder operating extensive mud pond systems modeled directly after Niigata benchmarks. Celebrating a decade of success in producing highly sought-after Kohaku, Sanke, and Showa lineages. Our fish boast incredible growth parameters, robust body confirmation, and exceptionally crisp pattern boundaries for discerning yard pond enthusiasts.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 117, name: "John D", userName: "@john", userAvatar: "/images/users/user25.jpg" }],
-    following: [{ id: 118, name: "Anu R", userName: "@anu", userAvatar: "/images/users/user26.jpg" }],
+    description: "Professional Koi master breeder operating mud pond systems to produce highly sought-after Kohaku, Sanke, and Showa lineages.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 117, name: "John D", userName: "@john", userAvatar: "/images/users/user25.jpg" },
+      { id: 139, name: "Kavya Madhavan", userName: "@kavya_nair", userAvatar: "/images/users/user57.jpg" }
+    ],
+    following: [
+      { id: 118, name: "Anu R", userName: "@anu", userAvatar: "/images/users/user26.jpg" },
+      { id: 140, name: "Niigata Farms", userName: "@niigata_koi", userAvatar: "/images/users/user58.jpg" }
+    ],
     contact: {
       email: "meera@example.com",
       phone: "+91 98765 43218",
@@ -2346,9 +2434,13 @@ export const Breeders = [
       facebook: "https://facebook.com/meera_koi"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/meera_pond_harvest.mp4", likes: 4100, comments: 280, shares: 730, views: 87000 }
+      { id: 1, videoURL: "/videos/shorts/meera_pond_harvest.mp4", likes: 4100, comments: 280, shares: 730, views: 87000 },
+      { id: 2, videoURL: "/videos/shorts/koi_growth_stages.mp4", likes: 2900, comments: 140, shares: 320, views: 54000 }
     ],
-    posts: [{ id: 9, image: "/images/posts/koi2.jpg", caption: "Kohaku Koi growth update.", likes: 1200, views: 20000, shares: 80, comments: [{ userName: "@dev", name: "Dev A", userAvatar: "/images/users/user27.jpg", content: "Incredible size." }] }]
+    posts: [
+      { id: 9, image: "/images/posts/koi2.jpg", caption: "Kohaku Koi growth update.", likes: 1200, views: 20000, shares: 80, comments: [{ userName: "@dev", name: "Dev A", userAvatar: "/images/users/user27.jpg", content: "Incredible size." }] },
+      { id: 19, image: "/images/posts/koi3.jpg", caption: "Showa lineage collection selection.", likes: 980, views: 14000, shares: 45, comments: [{ userName: "@renjith", name: "Renjith P", userAvatar: "/images/users/user59.jpg", content: "Patterns are crisp." }] }
+    ]
   },
   {
     id: 10,
@@ -2365,10 +2457,16 @@ export const Breeders = [
     verified: false,
     rating: 4.4,
     bio: "Passionate about healthy aquarium fish.",
-    description: "An energetic aquarist managing a diverse multi-strain hatchery up in the clean climates of Wayanad. Five years deep into refining robust Albino and Tiger Oscar lineages while maintaining natural ecosystem balance. Our primary focus is building strong immune systems and flawless skeletal development for lifetime pet vitality.",
-    counts: { followers: 1, following: 1, posts: 1 },
-    followers: [{ id: 119, name: "Rahul M", userName: "@rahulm", userAvatar: "/images/users/user28.jpg" }],
-    following: [{ id: 120, name: "Suresh K", userName: "@suresh", userAvatar: "/images/users/user29.jpg" }],
+    description: "Energetic aquarist managing a multi-strain hatchery in Wayanad focused on robust Albino and Tiger Oscar lineages.",
+    counts: { followers: 2, following: 2, posts: 2 },
+    followers: [
+      { id: 119, name: "Rahul M", userName: "@rahulm", userAvatar: "/images/users/user28.jpg" },
+      { id: 141, name: "Sharat Kumar", userName: "@sharat_k", userAvatar: "/images/users/user60.jpg" }
+    ],
+    following: [
+      { id: 120, name: "Suresh K", userName: "@suresh", userAvatar: "/images/users/user29.jpg" },
+      { id: 142, name: "Wayanad Aquas", userName: "@wayanad_aquas", userAvatar: "/images/users/user61.jpg" }
+    ],
     contact: {
       email: "jithin@example.com",
       phone: "+91 98765 43219",
@@ -2376,8 +2474,12 @@ export const Breeders = [
       facebook: "https://facebook.com/jithin_fish"
     },
     shorts: [
-      { id: 1, videoURL: "/videos/shorts/jithin_oscar_batch.mp4", likes: 670, comments: 19, shares: 34, views: 11500 }
+      { id: 1, videoURL: "/videos/shorts/jithin_oscar_batch.mp4", likes: 670, comments: 19, shares: 34, views: 11500 },
+      { id: 2, videoURL: "/videos/shorts/oscar_feeding_time.mp4", likes: 520, comments: 12, shares: 20, views: 9200 }
     ],
-    posts: [{ id: 10, image: "/images/posts/oscar1.jpg", caption: "New Oscar batch arrival.", likes: 310, views: 4500, shares: 5, comments: [{ userName: "@aquaholic", name: "Manu V", userAvatar: "/images/users/user30.jpg", content: "Great size!" }] }]
+    posts: [
+      { id: 10, image: "/images/posts/oscar1.jpg", caption: "New Oscar batch arrival.", likes: 310, views: 4500, shares: 5, comments: [{ userName: "@aquaholic", name: "Manu V", userAvatar: "/images/users/user30.jpg", content: "Great size!" }] },
+      { id: 20, image: "/images/posts/oscar2.jpg", caption: "Albino Oscars ready to ship.", likes: 240, views: 3200, shares: 8, comments: [{ userName: "@haris", name: "Haris P", userAvatar: "/images/users/user62.jpg", content: "Beautiful fins." }] }
+    ]
   }
 ];

@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default async function VideoDetails({ params }) {
-  // Await the params to safely read the dynamic ID
+  // Await the params object according to modern Next.js conventions
   const resolvedParams = await params;
   const id = resolvedParams?.id;
 
@@ -56,7 +56,6 @@ export default async function VideoDetails({ params }) {
         </div>
         
         <main className="main-section">
-          {/* <div className="mobile-only"><MobileHeader /></div> */}
           <VideoPlay id={id} />
         </main>
 

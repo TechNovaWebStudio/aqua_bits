@@ -1,4 +1,6 @@
-/* Container Layout */
+/* ==========================================================================
+   Container Layout
+   ========================================================================== */
 .breeders-container {
     width: 100%;
     margin: 0 auto;
@@ -38,28 +40,9 @@
     border-radius: 50%;
 }
 
-.see-all-btn {
-    background-color: #dcfce7;
-    color: #4f46e5;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-/* Grid System: Clean 1, 2, and 3 column switches */
-.breeders-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-
-/* Card Styling with Uniform Alignment Locks */
+/* ==========================================================================
+   Card Styling (Desktop/Tablet Defaults)
+   ========================================================================== */
 .card {
     background: #ffffff;
     border-radius: 6px;
@@ -68,9 +51,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Locks header to top and actions to bottom */
     min-height: 340px;
     border: 1px solid rgb(238, 236, 236);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Top Block alignment */
@@ -78,7 +61,6 @@
     display: flex;
     gap: 14px;
     align-items: center;
-    margin-bottom: 12px;
 }
 
 .avatar-circle {
@@ -87,7 +69,6 @@
     border-radius: 50%;
     background-color: #cbd5e1;
     flex-shrink: 0;
-    /* Prevents avatar from squeezing */
 }
 
 .avatar-circle img {
@@ -95,12 +76,12 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #008000
+    border: 2px solid #008000;
 }
 
 .doctor-info {
     min-width: 0;
-    /* Fixes flexbox text overflow issues */
+    flex: 1;
 }
 
 .doctor-name {
@@ -111,7 +92,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* Truncates clean if name is too long */
 }
 
 .doctor-title {
@@ -141,13 +121,8 @@
 }
 
 .rating-badge.high {
-    background-color: #dcfce7; /* Light Green */
-    color: #15803d;            /* Dark Green Text */
-}
-
-.rating-badge.average {
-    background-color: #fef3c7; /* Light Orange/Amber */
-    color: #b45309;            /* Dark Orange Text */
+    background-color: #dcfce7;
+    color: #15803d;
 }
 
 .location-text {
@@ -164,7 +139,6 @@
     color: #64748b;
     margin-bottom: 16px;
     height: 40px;
-    /* Locks structural height for descriptions */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -179,10 +153,8 @@
 .tags-container {
     display: flex;
     flex-wrap: nowrap;
-    /* Forces tags into a clean single line alignment */
     overflow: hidden;
     gap: 6px;
-    margin-bottom: 20px;
     height: 24px;
     align-items: center;
 }
@@ -196,42 +168,19 @@
     white-space: nowrap;
 }
 
-.tag-item.extra {
-    font-weight: 600;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-}
-
-.card-divider {
-    border: 0;
-    border-top: 1px solid #f1f5f9;
-    margin: 0 0 16px 0;
-}
-
 /* Card Footer alignment (Pricing & Button) */
 .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: auto; */
     width: 100%;
     gap: 10px;
-}
-
-
-
-.type-text {
-    font-size: 11px;
-    color: #94a3b8;
 }
 
 .book-btn {
     width: 50%;
     color: #ffffff;
-    /* Ultra Clean Vibrant Emerald Gradient Background Matrix */
     background: linear-gradient(135deg, #2d9d5e, #16a34a);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    /* Specular Internal Gloss Bloom & Dynamic Drop Shadows combined safely */
     box-shadow:
         0 8px 20px rgba(34, 197, 94, 0.25),
         0 2px 5px rgba(0, 0, 0, 0.02),
@@ -242,7 +191,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: opacity 0.2s ease;
     white-space: nowrap;
 }
 
@@ -254,55 +203,102 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
     white-space: nowrap;
     color: #16a34a;
     background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(45, 157, 94, 0.2);
     backdrop-filter: blur(8px);
-    transform: translateX(2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
 }
 
 .book-btn:hover {
-    background-color: #1d4ed8;
+    opacity: 0.9;
 }
 
-/* Mobile Overrides */
-@media (max-width: 639px) {
-    .stats-row, .tags-container {
-        display: none !important;
-    }
-
-    .mobile-follow-count {
-        display: block;
-        font-size: 11px;
-        color: #64748b;
-        margin: 4px 0 0 0;
-    }
-
-    .card {
-        min-height: auto; /* Shrinks the card height on mobile */
-        padding: 16px;
-    }
+.mess-btn:hover {
+    background-color: #16a34a;
+    color: #ffffff;
 }
 
-/* Desktop Defaults */
 .mobile-follow-count {
-    display: none; /* Hide on desktop */
+    display: none;
 }
 
-/* Ensure Grid remains responsive */
+/* ==========================================================================
+   Responsive Grid System
+   ========================================================================== */
 .breeders-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 15px; /* Default gap for base viewports if overridden, mobile reset below */
 }
 
 @media (min-width: 640px) {
-    .breeders-grid { grid-template-columns: repeat(2, 1fr); }
+    .breeders-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px; 
+    }
 }
 
 @media (min-width: 1024px) {
-    .breeders-grid { grid-template-columns: repeat(3, 1fr); }
+    .breeders-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 20px;
+    }
+}
+
+/* ==========================================================================
+   Mobile Specific View Overrides (Max-width: 639px)
+   ========================================================================== */
+@media (max-width: 639px) {
+    /* Removes the layout engine spacing completely between rows */
+    .breeders-grid { 
+        gap: 0 !important; 
+    }
+
+    .card {
+        min-height: unset;
+        padding: 12px 16px;
+        flex-direction: row; /* Switches entire card block into a clean horizontal line layout */
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-radius: 0;
+        
+        /* Removes bottom spacing and collapses overlapping borders */
+        margin-bottom: 0;
+        border-bottom: none; 
+    }
+
+    /* Adds a clean bottom boundary row to the absolute last card in your list */
+    .card:last-child {
+        border-bottom: 1px solid rgb(238, 236, 236);
+    }
+
+    /* Keep Top content block contextually grouped */
+    .card-top {
+        margin-bottom: 0;
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Completely strips extra fields to match design rules */
+    .desktop-middle-content,
+    .book-btn {
+        display: none !important;
+    }
+
+    /* Alters the layout of the footer container on mobile screens */
+    .card-footer {
+        width: auto;
+        margin-top: 0;
+        gap: 0;
+    }
+
+    .mess-btn {
+        width: auto;
+        padding: 8px 16px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
 }

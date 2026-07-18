@@ -1,207 +1,294 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Breeders } from "../../../../public/data";
 import './BreederProfile.css';
 
-export default function BreederProfile({ breederData }) {
+export default function BreederProfile() {
+    const params = useParams();
+    const router = useRouter();
     const [activeTab, setActiveTab] = useState('posts');
     const [isContactOpen, setIsContactOpen] = useState(false);
-    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null;
-    console.log(breederData);
+    const [isFollowing, setIsFollowing] = useState(false);
+    
+    // Modal states for social lookup
+    const [socialModal, setSocialModal] = useState({ isOpen: false, type: '', data: [] });
 
-    // Destructure values with fallback values to ensure rendering safety
+    // Dynamic Route Lookup
+    const targetId = params?.id ? parseInt(params.id, 10) : 1;
+    const currentProfile = Breeders.find(b => b.id === targetId) || Breeders[0];
+
+    // Destructure properties safely
     const {
-        name = "",
-        userName = "",
+        name = "Muhammed Shibil",
+        userName = "@technovastudio",
         profileImage = "",
         coverImage = "",
-        location = "",
-        categories = [],
-        experience = "",
+        location = "Malappuram, Kerala",
+        bio = "Passionate ornamental fish breeder.",
         description = "",
-        bio = "",
+        verified = true,
         counts = { followers: 0, following: 0, posts: 0 },
+        followers = [],
+        following = [], // Safely mapping following data if present
+        contact = {},
         posts = [],
-        shorts = [], 
-        saved = [],
-        contact = {}
-    } = breederData || {};
+        shorts = []
+    } = currentProfile || {};
 
-    const toggleContact = () => {
-        setIsContactOpen(!isContactOpen);
+    const toggleFollow = () => setIsFollowing(!isFollowing);
+
+    // Dynamic compact pipeline numbering pipeline formatter
+    const formatMetricNumber = (num) => {
+        if (!num || isNaN(num)) return '0';
+        if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'm';
+        if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        return num.toString();
     };
 
-    const renderGridItems = () => {
-        switch (activeTab) {
-            case 'shorts':
-                if (shorts && shorts.length > 0) {
-                    return shorts.map((short) => (
-                        <div key={short.id} className="grid-tile-item asset-shorts animate-fade-in">
-                            <i className="fa-solid fa-play media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> {short.views || 0}</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {short.likes || 0}</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {short.comments?.length || short.comments || 0}</span>
-                            </div>
-                            {/* Uses videoURL fallback if explicit preview image path does not exist */}
-                            <img src={short.image || short.videoURL || "/images/default-video-placeholder.jpg"} alt={short.caption || "Shorts Video"} />
-                        </div>
-                    ));
-                }
-                return <p className="no-data-msg">No shorts available.</p>;
-
-            case 'saved':
-                if (saved && saved.length > 0) {
-                    return saved.map((item) => (
-                        <div key={item.id} className="grid-tile-item animate-fade-in">
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {item.likes || 0}</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {item.comments?.length || 0}</span>
-                            </div>
-                            <img src={item.image} alt={item.caption || "Saved Post"} />
-                        </div>
-                    ));
-                }
-                return <p className="no-data-msg">No saved items available.</p>;
-
-            case 'posts':
-            default:
-                if (posts && posts.length > 0) {
-                    return posts.map((post) => (
-                        <div key={post.id} className="grid-tile-item" onClick={() => alert(`Opening: ${post.caption}`)}>
-                            <i className="fa-solid fa-image media-badge-icon"></i>
-                            <div className="grid-hover-overlay">
-                                <span className="hover-stat-metric"><i className="fa-solid fa-eye"></i> {post.views || 0}</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-heart"></i> {post.likes || 0}</span>
-                                <span className="hover-stat-metric"><i className="fa-solid fa-comment"></i> {post.comments?.length || 0}</span>
-                            </div>
-                            <img src={post.image} alt={post.caption || "Post Image"} />
-                        </div>
-                    ));
-                }
-                return <p className="no-data-msg">No posts available.</p>;
+    const getActiveData = () => {
+        if (activeTab === 'reels') {
+            return shorts.map(short => ({
+                id: short.id,
+                image: short.image || coverImage, 
+                likes: short.likes,
+                comments: short.comments,
+                type: 'video'
+            }));
         }
+        if (activeTab === 'saved') return [];
+
+        return posts.map(post => ({
+            id: post.id,
+            image: post.image,
+            likes: post.likes,
+            comments: post.comments?.length || 0,
+            type: 'image'
+        }));
+    };
+
+    const openSocialModal = (type, listData) => {
+        setSocialModal({
+            isOpen: true,
+            type,
+            data: listData || []
+        });
+    };
+
+    const closeSocialModal = () => {
+        setSocialModal({ isOpen: false, type: '', data: [] });
     };
 
     return (
-        <div className="breeder-profile-wrapper">
-            <main className="main-content">
-                {/* PROFILE BANNER ELEMENT */}
-                <section className="profile-banner">
-                    <img src={coverImage || "/images/default-cover.jpg"} alt={`${name}'s Profile Banner`} />
-                    {role === 'breeder' && (
-                        <div className="banner-overlay-tag">
-                            <i className="fa-solid fa-pen-to-square"></i> Edit Banner
-                        </div>
-                    )}
-                </section>
+        <div className="instagram-premium-wrapper">
+            {/* NON-WHITE BACKGROUND BANNER WITH ACTION LAYER */}
+            <div className="profile-top-banner">
+                <button className="banner-back-arrow" onClick={() => router.back()} aria-label="Go back">
+                    <i className="fa-solid fa-arrow-left"></i>
+                </button>
+                
+                {coverImage ? (
+                    <img src={coverImage} alt="Premium Banner Background" />
+                ) : (
+                    <div className="banner-solid-fallback"></div>
+                )}
+                <div className="banner-gradient-shield"></div>
+            </div>
 
-                {/* PROFILE CARD */}
-                <div className="profile-card-wrapper">
-                    <header className="profile-header-container">
-                        <div className="profile-avatar-left">
-                            <img src={profileImage || "/images/default-avatar.jpg"} alt={`${name}'s Profile Avatar`} />
+            <main className="profile-center-container">
+                {/* METADATA OVERVIEW */}
+                <header className="user-profile-header">
+                    <div className="header-left-avatar-zone">
+                        <div className="avatar-border-gradient">
+                            <div className="avatar-white-inner">
+                                <img src={profileImage} alt={`${name}'s Profile`} />
+                            </div>
                         </div>
+                    </div>
 
-                        <div className="profile-details-right">
-                            <div className='usename-section'>
-                                <div>
-                                    <h2>{name}</h2>
-                                    <p className='username'>{userName}</p>
-                                </div>
+                    <div className="header-right-info-zone">
+                        {/* LINE 1: NAME, HANDLE & EQUAL-WIDTH ACTION ZONE */}
+                        <div className="info-username-row">
+                            <div className="profile-names-container">
+                                <h2 className="profile-handle">
+                                    {name}
+                                    {verified && (
+                                        <i className="fa-solid fa-circle-check model-verified-badge" title="Verified Creator"></i>
+                                    )}
+                                </h2>
+                                <span className='username'>{userName}</span>
                             </div>
 
-                            <div className="username-row">
-                                <button className="btn-action btn-follow-alt">Follow</button>
+                            <div className="profile-action-buttons">
+                                <button
+                                    className={`action-btn balance-width ${isFollowing ? 'following-state' : 'follow-state'}`}
+                                    onClick={toggleFollow}
+                                >
+                                    {isFollowing ? 'Following ' : 'Follow'}
+                                    {isFollowing && <i className="fa-solid fa-chevron-down minimal-arrow"></i>}
+                                </button>
 
-                                <div className="contact-wrapper-anchor">
-                                    <button className="btn-action" onClick={toggleContact}>Contact</button>
+                                <div className="message-dropdown-container balance-width">
+                                    <button className="action-btn message-state full-width-target" onClick={() => setIsContactOpen(!isContactOpen)}>
+                                        Message
+                                    </button>
 
-                                    {/* COMPACT CONTACT POPUP */}
-                                    {isContactOpen && contact && (
-                                        <div className="compact-settings-popup contact-popup animate-popup-scale">
-                                            {contact.phone && (
-                                                <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="popup-option">
-                                                    <i className="fa-solid fa-phone color-phone"></i> {contact.phone}
-                                                </a>
-                                            )}
-                                            
-                                            {contact.email && (
-                                                <a href={`mailto:${contact.email}`} className="popup-option">
-                                                    <i className="fa-solid fa-envelope color-email"></i> Email Channel
-                                                </a>
-                                            )}
-                                            
-                                            {contact.instagram && (
-                                                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="popup-option">
-                                                    <i className="fa-brands fa-instagram color-instagram"></i> Instagram
-                                                </a>
-                                            )}
-                                            
-                                            {contact.facebook && (
-                                                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="popup-option">
-                                                    <i className="fa-brands fa-facebook color-facebook"></i> Facebook
-                                                </a>
-                                            )}
+                                    {isContactOpen && (
+                                        <div className="minimal-contact-card animate-pop-in">
+                                            <div className="card-inner-title">Direct Bookings</div>
+                                            {contact.email && <a href={`mailto:${contact.email}`} className="contact-link"><i className="fa-regular fa-envelope"></i> Email Agency</a>}
+                                            {contact.phone && <a href={`tel:${contact.phone}`} className="contact-link"><i className="fa-brands fa-whatsapp"></i> WhatsApp</a>}
+                                            {contact.instagram && <a href={contact.instagram} target="_blank" rel="noreferrer" className="contact-link"><i className="fa-brands fa-instagram"></i> Instagram DM</a>}
+                                            {contact.facebook && <a href={contact.facebook} target="_blank" rel="noreferrer" className="contact-link"><i className="fa-brands fa-facebook"></i> Facebook</a>}
                                         </div>
                                     )}
                                 </div>
                             </div>
+                        </div>
 
-                            <section className="stats-grid">
-                                <div className="stat-card">
-                                    <div className="stat-value">{counts.posts}</div>
-                                    <div className="stat-label">Posts</div>
-                                </div>
-                                <div className="stat-card">
-                                    <div className="stat-value" id="followerCount">{counts.followers}</div>
-                                    <div className="stat-label">Followers</div>
-                                </div>
-                                <div className="stat-card">
-                                    <div className="stat-value">{counts.following}</div>
-                                    <div className="stat-label">Following</div>
-                                </div>
-                            </section>
-
-                            {/* BIO BOX */}
-                            <div className="bio-row-detailed">
-                                {experience && <span className="bio-category">Experience: {experience}</span>}
-                                <div className="bio-six-lines">
-                                    <p>{description || bio}</p>
-                                    <div className="bio-tags-row">
-                                        {categories.map((categoryItem, index) => (
-                                            <span key={index} className="bio-inline-tag">
-                                                #{categoryItem.replace(/\s+/g, '')}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
+                        {/* LINE 2: METRIC BOX ARCHITECTURE */}
+                        <div className="info-metrics-row">
+                            <div className="metric-box">
+                                <span className="metric-number">{formatMetricNumber(counts.posts)}</span>
+                                <span className="metric-label">posts</span>
+                            </div>
+                            <div className="metric-box status-clickable" onClick={() => openSocialModal('Followers', followers)}>
+                                <span className="metric-number">{formatMetricNumber(counts.followers)}</span>
+                                <span className="metric-label">followers</span>
+                            </div>
+                            <div className="metric-box status-clickable" onClick={() => openSocialModal('Following', following)}>
+                                <span className="metric-number">{formatMetricNumber(counts.following)}</span>
+                                <span className="metric-label">following</span>
                             </div>
                         </div>
-                    </header>
-                </div>
 
-                {/* POST FILTER SECTION */}
-                <div className="profile-tabs-nav-container">
-                    <div className="profile-tabs-nav">
-                        <button className={`tab-item-btn ${activeTab === 'posts' ? 'active' : ''}`} onClick={() => setActiveTab('posts')}>
-                            <i className="fa-solid fa-table-cells"></i> <span>Posts</span>
+                        {/* LINE 3: STREAMLINED BIOGRAPHY AND LINE DISPLAYS */}
+                        <div className="info-bio-row">
+                            <h1 className="profile-real-name">{name}</h1>
+                            <div className="bio-structured-lines">
+                                <p className="bio-bullet-line">{bio}</p>
+                                {description && description.split('\n').map((line, index) => (
+                                    <p key={index} className="bio-description-text">{line}</p>
+                                ))}
+                            </div>
+
+                            {location && (
+                                <div className="bio-location-badge">
+                                    <i className="fa-solid fa-location-dot location-icon"></i>
+                                    <span className="location-text">{location}</span>
+                                </div>
+                            )}
+
+                            {/* SOCIAL CONTEXT OVERLAY */}
+                            {followers.length > 0 && (
+                                <div className="followed-by-context" onClick={() => openSocialModal('Followers', followers)}>
+                                    <div className="avatar-overlapping-stack">
+                                        {followers.slice(0, 3).map((follower) => (
+                                            <img
+                                                key={follower.id}
+                                                src={follower.userAvatar}
+                                                alt={follower.name}
+                                                className="stacked-inline-avatar"
+                                                title={follower.name}
+                                            />
+                                        ))}
+                                    </div>
+                                    <span className="social-context-text">
+                                        Followed by <strong>{followers[0].userName}</strong>
+                                        {followers.length > 1 && ` + ${followers.length - 1} others`}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </header>
+
+                {/* APPLE/TELEGRAM FLUID LIQUID MORPHING TAB SELECTION LAYER */}
+                <div className="navigation-tabs-outer-wrapper">
+                    <div className="navigation-tabs-flex-glass">
+                        {/* Dynamic sliding fluid element selector block */}
+                        <div className={`liquid-slider-bead active-tab-${activeTab}`} />
+
+                        <button className={`tab-button-glass ${activeTab === 'posts' ? 'glass-active' : ''}`} onClick={() => setActiveTab('posts')}>
+                            <i className="fa-solid fa-table-cells"></i>
+                            <span>Posts</span>
                         </button>
-                        <button className={`tab-item-btn ${activeTab === 'shorts' ? 'active' : ''}`} onClick={() => setActiveTab('shorts')}>
-                            <i className="fa-solid fa-clapperboard"></i> <span>Shorts</span>
+                        <button className={`tab-button-glass ${activeTab === 'reels' ? 'glass-active' : ''}`} onClick={() => setActiveTab('reels')}>
+                            <i className="fa-solid fa-clapperboard"></i>
+                            <span>Reels</span>
                         </button>
-                        <button className={`tab-item-btn ${activeTab === 'saved' ? 'active' : ''}`} onClick={() => setActiveTab('saved')}>
-                            <i className="fa-solid fa-bookmark"></i> <span>Saved</span>
+                        <button className={`tab-button-glass ${activeTab === 'saved' ? 'glass-active' : ''}`} onClick={() => setActiveTab('saved')}>
+                            <i className="fa-solid fa-bookmark"></i>
+                            <span>Saved</span>
                         </button>
                     </div>
                 </div>
 
-                {/* DYNAMIC MEDIA DISPLAY GRID */}
-                <div className="media-grid-view">
-                    {renderGridItems()}
+                {/* VISUAL LAYOUT PICTURE STREAM CONTAINER */}
+                <div className="instagram-photo-matrix">
+                    {getActiveData().length > 0 ? (
+                        getActiveData().map((item) => (
+                            <div className="matrix-tile-item" key={item.id}>
+                                {item.type === 'video' ? (
+                                    <i className="fa-solid fa-clapperboard grid-media-indicator"></i>
+                                ) : (
+                                    <i className="fa-solid fa-clone grid-media-indicator"></i>
+                                )}
+
+                                <div className="tile-hover-curtain">
+                                    <div className="hover-metrics-values">
+                                        <span><i className="fa-solid fa-heart"></i> {formatMetricNumber(item.likes)}</span>
+                                        <span><i className="fa-solid fa-comment"></i> {formatMetricNumber(item.comments)}</span>
+                                    </div>
+                                </div>
+
+                                <img src={item.image} alt="Grid Asset Gallery" />
+                            </div>
+                        ))
+                    ) : (
+                        <div className="empty-matrix-fallback">
+                            <i className="fa-solid fa-camera-retro"></i>
+                            <p>No content captured yet</p>
+                        </div>
+                    )}
                 </div>
             </main>
+
+            {/* DYNAMIC METRIC INTERACTIVE MODAL COMPONENT */}
+            {socialModal.isOpen && (
+                <div className="social-modal-overlay" onClick={closeSocialModal}>
+                    <div className="social-modal-container animate-modal-slide" onClick={(e) => e.stopPropagation()}>
+                        <header className="social-modal-header">
+                            <h3>{socialModal.type}</h3>
+                            <button className="modal-close-btn" onClick={closeSocialModal} aria-label="Close interface">
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
+                        </header>
+                        
+                        <div className="social-modal-content">
+                            {socialModal.data.length > 0 ? (
+                                socialModal.data.map((user) => (
+                                    <div className="social-user-card" key={user.id || user.userName}>
+                                        <img src={user.userAvatar || user.profileImage || "/fallback-avatar.png"} alt={user.name} className="user-card-avatar" />
+                                        <div className="user-card-details">
+                                            <span className="user-card-name">{user.name}</span>
+                                            <span className="user-card-username">{user.userName || `@${user.name.toLowerCase().replace(/\s+/g, '')}`}</span>
+                                        </div>
+                                        <button className="user-card-action-btn">View</button>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="modal-empty-state">
+                                    <i className="fa-regular fa-user"></i>
+                                    <p>No accounts listed yet.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

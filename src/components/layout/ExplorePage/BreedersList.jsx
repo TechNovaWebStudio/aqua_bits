@@ -20,7 +20,7 @@ export default function BreedersList({ activeTag, setActiveTag }) {
         // 3. Dispatch the custom event so ProfileSection updates immediately if already mounted
         window.dispatchEvent(new Event("local-storage-update"));
 
-        // 4. Navigate to the dynamic profile page (Fixed: Using dynamic template literals)
+        // 4. Navigate to the dynamic profile page
         router.push(`/profile/${breeder.id}`);
     };
 
@@ -38,9 +38,10 @@ export default function BreedersList({ activeTag, setActiveTag }) {
             <div className="breeders-grid">
                 {Breeders.map((doc) => (
                     <div key={doc.id} className="card">
+                        {/* Top Section containing Avatar, Name, and Username */}
                         <div className="card-top">
                             <div className="avatar-circle">
-                                <img src={doc.profileImage} alt='image' />
+                                <img src={doc.profileImage} alt={doc.name} />
                             </div>
                             <div className="doctor-info">
                                 <h3 className="doctor-name">{doc.name}</h3>
@@ -49,31 +50,34 @@ export default function BreedersList({ activeTag, setActiveTag }) {
                             </div>
                         </div>
 
-                        <div className="metrics-row">
-                            <span className="rating-badge high"><FaStar /> {doc.rating}</span>
-                            <span className="location-text"><FaMapMarkerAlt /> {doc.location}</span>
+                        {/* Mid Section Containing Ratings, Stats, and Tags (Completely hidden on Mobile view) */}
+                        <div className="desktop-middle-content">
+                            <div className="metrics-row">
+                                <span className="rating-badge high"><FaStar /> {doc.rating}</span>
+                                <span className="location-text"><FaMapMarkerAlt /> {doc.location}</span>
+                            </div>
+
+                            <div className="desktop-only-content">
+                                <div className="stats-row">
+                                    <p><FaEye /> {doc.experience} Experience</p>
+                                    <p><FaComment /> {doc.bio}</p>
+                                </div>
+                                <div className="tags-container">
+                                    {doc.categories.map((tag, idx) => (
+                                        <span key={idx} className="tag-item">#{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="desktop-only-content">
-                            <div className="stats-row">
-                                <p><FaEye /> {doc.experience} Experience</p>
-                                <p><FaComment /> {doc.bio}</p>
-                            </div>
-                            <div className="tags-container">
-                                {doc.categories.map((tag, idx) => (
-                                    <span key={idx} className="tag-item">#{tag}</span>
-                                ))}
-                            </div>
-                        </div>
-
+                        {/* Card Actions Footer containing Buttons */}
                         <div className="card-footer">
                             <button className="book-btn">Follow</button>
-                            {/* Click Handler */}
                             <button 
                                 className="mess-btn" 
                                 onClick={() => handleViewProfile(doc)}
                             >
-                                view
+                                View
                             </button>
                         </div>
                     </div>
