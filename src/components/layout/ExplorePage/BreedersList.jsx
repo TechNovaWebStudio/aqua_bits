@@ -38,34 +38,37 @@ export default function BreedersList({ activeTag, setActiveTag }) {
             <div className="breeders-grid">
                 {Breeders.map((doc) => (
                     <div key={doc.id} className="card">
-                        {/* Top Section containing Avatar, Name, and Username */}
-                        <div className="card-top">
-                            <div className="avatar-circle">
-                                <img src={doc.profileImage} alt={doc.name} />
-                            </div>
-                            <div className="doctor-info">
-                                <h3 className="doctor-name">{doc.name}</h3>
-                                <p className="doctor-title">{doc.userName}</p>
-                                <p className="mobile-follow-count">{doc.counts.followers} followers</p>
-                            </div>
-                        </div>
-
-                        {/* Mid Section Containing Ratings, Stats, and Tags (Completely hidden on Mobile view) */}
-                        <div className="desktop-middle-content">
-                            <div className="metrics-row">
-                                <span className="rating-badge high"><FaStar /> {doc.rating}</span>
-                                <span className="location-text"><FaMapMarkerAlt /> {doc.location}</span>
-                            </div>
-
-                            <div className="desktop-only-content">
-                                <div className="stats-row">
-                                    <p><FaEye /> {doc.experience} Experience</p>
-                                    <p><FaComment /> {doc.bio}</p>
+                        {/* Wrapper to cleanly separate text details from the button group */}
+                        <div className="card-main-content">
+                            {/* Top Section containing Avatar, Name, and Username */}
+                            <div className="card-top">
+                                <div className="avatar-circle">
+                                    <img src={doc.profileImage} alt={doc.name} />
                                 </div>
-                                <div className="tags-container">
-                                    {doc.categories.map((tag, idx) => (
-                                        <span key={idx} className="tag-item">#{tag}</span>
-                                    ))}
+                                <div className="doctor-info">
+                                    <h3 className="doctor-name">{doc.name}</h3>
+                                    <p className="doctor-title">{doc.userName}</p>
+                                    <p className="mobile-follow-count">{doc.counts.followers} followers</p>
+                                </div>
+                            </div>
+
+                            {/* Mid Section Containing Ratings, Stats, and Tags */}
+                            <div className="desktop-middle-content">
+                                <div className="metrics-row">
+                                    <span className="rating-badge high"><FaStar /> {doc.rating}</span>
+                                    <span className="location-text"><FaMapMarkerAlt /> {doc.location}</span>
+                                </div>
+
+                                <div className="desktop-only-content">
+                                    <div className="stats-row">
+                                        <p className="stats-item"><FaEye /> <span>{doc.experience} Experience</span></p>
+                                        <p className="stats-item"><FaComment /> <span>{doc.bio}</span></p>
+                                    </div>
+                                    <div className="tags-container">
+                                        {doc.categories.map((tag, idx) => (
+                                            <span key={idx} className="tag-item">#{tag}</span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

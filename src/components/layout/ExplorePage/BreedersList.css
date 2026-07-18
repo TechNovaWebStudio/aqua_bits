@@ -3,10 +3,12 @@
    ========================================================================== */
 .breeders-container {
     width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     font-family: system-ui, -apple-system, sans-serif;
-    background-color: #f8fafd;
+    background-color: #ffffff;
+    box-sizing: border-box;
     overflow-y: auto;
 }
 
@@ -16,12 +18,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    width: 100%;
 }
 
 .header-title-group {
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
 }
 
 .header-title {
@@ -29,6 +33,9 @@
     font-weight: 700;
     color: #1e293b;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .badge-count {
@@ -38,6 +45,7 @@
     font-weight: 400;
     padding: 6px 10px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -51,9 +59,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 340px;
-    border: 1px solid rgb(238, 236, 236);
+    min-height: 360px;
+    /* border: 1px solid rgb(238, 236, 236); */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 0; /* Prevents card grid blowing up on flex children overflow */
+    box-sizing: border-box;
+}
+
+/* Keeps upper blocks from breaking height expectations */
+.card-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
 }
 
 /* Top Block alignment */
@@ -61,6 +79,7 @@
     display: flex;
     gap: 14px;
     align-items: center;
+    min-width: 0;
 }
 
 .avatar-circle {
@@ -104,11 +123,18 @@
 }
 
 /* Metrics (Rating/Location) Row Alignment */
+.desktop-middle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
 .metrics-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    min-width: 0;
 }
 
 .rating-badge {
@@ -118,6 +144,9 @@
     border-radius: 12px;
     color: white;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .rating-badge.high {
@@ -131,32 +160,60 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
 }
 
-/* Experience Block Height Lock */
+/* Experience/Bio Layout Containment */
+.desktop-only-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    
+}
+
 .stats-row {
     font-size: 13px;
     color: #64748b;
-    margin-bottom: 16px;
-    height: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 6px;
+    min-width: 0;
 }
 
-.stats-row p {
+.stats-item {
     margin: 0;
     line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
 }
 
-/* Tags Block Row Lock */
+/* Dynamic handling for multi-line user bios */
+.stats-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+}
+
+/* Tags Block Row Lock — Horizontal scrolling fallback if tags overflow desktop box width */
 .tags-container {
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow-x: auto;
     gap: 6px;
-    height: 24px;
+    height: 28px;
     align-items: center;
+    width: 100%;
+    scrollbar-width: none; 
+    
+}
+
+.tags-container::-webkit-scrollbar {
+    display: none;
 }
 
 .tag-item {
@@ -166,45 +223,44 @@
     padding: 4px 10px;
     border-radius: 12px;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* Card Footer alignment (Pricing & Button) */
+/* Card Footer alignment */
 .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 10px;
+    /* margin-top: 16px; */
+}
+
+.book-btn, .mess-btn {
+    width: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Fallback text handler for tiny grid configurations */
+    box-sizing: border-box;
 }
 
 .book-btn {
-    width: 50%;
     color: #ffffff;
     background: linear-gradient(135deg, #2d9d5e, #16a34a);
     box-shadow:
         0 8px 20px rgba(34, 197, 94, 0.25),
         0 2px 5px rgba(0, 0, 0, 0.02),
         inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-    white-space: nowrap;
 }
 
 .mess-btn {
-    width: 50%;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    white-space: nowrap;
     color: #16a34a;
     background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(45, 157, 94, 0.2);
@@ -230,13 +286,13 @@
 .breeders-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px; /* Default gap for base viewports if overridden, mobile reset below */
+    gap: 16px;
+    width: 100%;
 }
 
 @media (min-width: 640px) {
     .breeders-grid { 
         grid-template-columns: repeat(2, 1fr); 
-        gap: 16px; 
     }
 }
 
@@ -251,7 +307,10 @@
    Mobile Specific View Overrides (Max-width: 639px)
    ========================================================================== */
 @media (max-width: 639px) {
-    /* Removes the layout engine spacing completely between rows */
+    .breeders-container {
+        padding: 12px;
+    }
+
     .breeders-grid { 
         gap: 0 !important; 
     }
@@ -259,40 +318,50 @@
     .card {
         min-height: unset;
         padding: 12px 16px;
-        flex-direction: row; /* Switches entire card block into a clean horizontal line layout */
+        flex-direction: row; /* Horizontal setup layout */
         align-items: center;
         justify-content: space-between;
         gap: 16px;
         border-radius: 0;
-        
-        /* Removes bottom spacing and collapses overlapping borders */
         margin-bottom: 0;
         border-bottom: none; 
     }
 
-    /* Adds a clean bottom boundary row to the absolute last card in your list */
+    .card-main-content {
+        flex: 1;
+        min-width: 0;
+        gap: 0;
+    }
+
     .card:last-child {
         border-bottom: 1px solid rgb(238, 236, 236);
     }
 
-    /* Keep Top content block contextually grouped */
     .card-top {
-        margin-bottom: 0;
         flex: 1;
         min-width: 0;
     }
 
-    /* Completely strips extra fields to match design rules */
     .desktop-middle-content,
     .book-btn {
         display: none !important;
     }
 
-    /* Alters the layout of the footer container on mobile screens */
+    .mobile-follow-count {
+        display: block;
+        font-size: 12px;
+        color: #64748b;
+        margin: 2px 0 0 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .card-footer {
         width: auto;
         margin-top: 0;
         gap: 0;
+        flex-shrink: 0;
     }
 
     .mess-btn {

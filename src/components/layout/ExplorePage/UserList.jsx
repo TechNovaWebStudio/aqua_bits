@@ -1,17 +1,9 @@
 import React from 'react';
 import { ExploreNavBar } from './ExploreNavBar';
 import './UserList.css';
+import { Users } from '../../../../public/data';
 
-const users = [
-  { id: 1, name: 'Maryam Amiri', username: 'maryam_amiri', role: 'Designer', avatar: 'https://i.pravatar.cc/150?u=maryam' },
-  { id: 2, name: 'Hossein Shams', username: 'h_shams', role: 'Full Stack Developer', avatar: 'https://i.pravatar.cc/150?u=hossein' },
-  { id: 3, name: 'Sarah Conner', username: 'sconner', role: 'Support Agent', avatar: '' }, // Tests initials fallback
-  { id: 4, name: 'Frank Camly', username: 'frank_c', role: 'Support Agent', avatar: 'https://i.pravatar.cc/150?u=frank' },
-  { id: 5, name: 'Freddie Arendes', username: 'fred_mkt', role: 'Marketing Department', avatar: 'https://i.pravatar.cc/150?u=freddie' },
-  { id: 6, name: 'Gary Camara', username: 'gary_cam', role: 'Marketing Department', avatar: 'https://i.pravatar.cc/150?u=gary' },
-  { id: 7, name: 'Tim Hank', username: 'timmy_h', role: 'Marketing Department', avatar: '' }, // Tests initials fallback
-  { id: 8, name: 'Fidel Tonn', username: 'fidel_t', role: 'Support Agent', avatar: 'https://i.pravatar.cc/150?u=fidel' },
-];
+
 
 const getInitials = (name) => {
   if (!name) return '??';
@@ -38,7 +30,7 @@ export function UserList({ activeTag, setActiveTag }) {
       </header>
       
       <div className="users-grid">
-        {users.map((user) => (
+        {Users.map((user) => (
           <div key={user.id} className="user-card">
             
             {/* Avatar Section */}
