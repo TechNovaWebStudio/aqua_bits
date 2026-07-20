@@ -21,9 +21,9 @@ export default function VideoPlay({ id: propId }) {
     const params = useParams();
     
     const activeId = propId || params?.id;
-    const [VIDEO_DATA] = useState(() => (Array.isArray(SHORTS_DATA) ? SHORTS_DATA : []));
     
-    // Default hydration state safely sets to 0 on Server side
+    // Maintain a steady state list to prevent re-shuffling on standard renders
+    const [videoData, setVideoData] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [likedVideos, setLikedVideos] = useState({});
     const [isRotated, setIsRotated] = useState(false);
@@ -33,34 +33,47 @@ export default function VideoPlay({ id: propId }) {
 
     const containerRef = useRef(null);
     const videoRefs = useRef([]);
+    const isScrollingRef = useRef(false);
 
-    // Reset reference registry lengths accurately
-    videoRefs.current = videoRefs.current.slice(0, VIDEO_DATA.length);
-
-    // Dynamic state synchronizer safely waiting for browser paint hydration
+    // 1. Safe Shuffling on Client Mount to match targeted route query index accurately
     useEffect(() => {
-        if (activeId && VIDEO_DATA.length > 0) {
-            const targetIndex = VIDEO_DATA.findIndex(video => String(video.id) === String(activeId));
-            if (targetIndex !== -1) {
-                setCurrentIndex(targetIndex);
+        let baseData = Array.isArray(SHORTS_DATA) ? [...SHORTS_DATA] : [];
+        
+        if (baseData.length > 0) {
+            // Find the matching targeted short if it exists in the query parameters
+            const targetedShort = baseData.find(v => String(v.id) === String(activeId));
+            const remainingShorts = baseData.filter(v => String(v.id) !== String(activeId));
+            
+            // Fisher-Yates Shuffle implementation for remaining assets
+            for (let i = remainingShorts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [remainingShorts[i], remainingShorts[j]] = [remainingShorts[j], remainingShorts[i]];
             }
+            
+            // If we have an activeId target, force it to sit at index 0 for refresh integrity
+            const finalOrderedData = targetedShort ? [targetedShort, ...remainingShorts] : remainingShorts;
+            setVideoData(finalOrderedData);
+            setCurrentIndex(0);
         }
-    }, [activeId, VIDEO_DATA]);
+    }, [activeId]);
 
-    // 1. Precise Initial Scroll Positioning Fix
+    // Update reference element registration caps dynamically
+    videoRefs.current = videoRefs.current.slice(0, videoData.length);
+
+    // 2. Initial Positioning Scroll Snap Fix 
     useEffect(() => {
-        if (containerRef.current && VIDEO_DATA.length > 0) {
+        if (containerRef.current && videoData.length > 0) {
             const targetCard = containerRef.current.children[currentIndex];
             if (targetCard) {
                 containerRef.current.scrollTop = targetCard.offsetTop;
             }
         }
-    }, [VIDEO_DATA, currentIndex]);
+    }, [videoData]);
 
-    // 2. High performance viewport scroll indexing tracking
+    // 3. High performance viewport scroll tracking with infinite update filters
     useEffect(() => {
         const container = containerRef.current;
-        if (!container || VIDEO_DATA.length === 0) return;
+        if (!container || videoData.length === 0) return;
 
         const observerOptions = {
             root: container,
@@ -69,6 +82,9 @@ export default function VideoPlay({ id: propId }) {
         };
 
         const observerCallback = (entries) => {
+            // Drop tracking execution completely if programmatic navigation actions are running
+            if (isScrollingRef.current) return;
+
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const index = parseInt(entry.target.getAttribute('data-index'), 10);
@@ -84,19 +100,19 @@ export default function VideoPlay({ id: propId }) {
         Array.from(container.children).forEach((child) => observer.observe(child));
 
         return () => observer.disconnect();
-    }, [VIDEO_DATA, currentIndex]);
+    }, [videoData, currentIndex]);
 
-    // 3. Prevent URL mutation race conditions during dynamic indexing transitions
+    // 4. Update url slug to mirror index position changes
     useEffect(() => {
-        if (VIDEO_DATA.length > 0 && VIDEO_DATA[currentIndex]) {
-            const currentVideoId = VIDEO_DATA[currentIndex].id;
+        if (videoData.length > 0 && videoData[currentIndex]) {
+            const currentVideoId = videoData[currentIndex].id;
             if (activeId && String(currentVideoId) !== String(activeId)) {
                 router.replace(`/shorts/${currentVideoId}`, { scroll: false });
             }
         }
-    }, [currentIndex, activeId, VIDEO_DATA, router]);
+    }, [currentIndex, activeId, videoData, router]);
 
-    // 4. Clean playback action handling for active elements
+    // 5. Clean media streams management
     useEffect(() => {
         if (videoRefs.current.length === 0) return;
 
@@ -107,7 +123,7 @@ export default function VideoPlay({ id: propId }) {
                     const playPromise = video.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(err => {
-                            console.log("Auto-playback system flag caught context switch:", err);
+                            console.log("Auto-playback structural context break checked:", err);
                         });
                     }
                 } else {
@@ -115,7 +131,7 @@ export default function VideoPlay({ id: propId }) {
                 }
             }
         });
-    }, [currentIndex, globalMuted]);
+    }, [currentIndex, globalMuted, videoData]);
 
     const handleVideoLoaded = (index) => {
         setLoadedVideos(prev => ({ ...prev, [index]: true }));
@@ -123,12 +139,19 @@ export default function VideoPlay({ id: propId }) {
 
     const scrollToIndex = (index) => {
         if (containerRef.current && containerRef.current.children[index]) {
+            isScrollingRef.current = true;
+            setCurrentIndex(index);
             containerRef.current.children[index].scrollIntoView({ behavior: 'smooth' });
+            
+            // Open window locks safely after user swipe/click animation ticks clear out
+            setTimeout(() => {
+                isScrollingRef.current = false;
+            }, 600);
         }
     };
 
     const handleNextVideo = () => {
-        if (currentIndex < VIDEO_DATA.length - 1) scrollToIndex(currentIndex + 1);
+        if (currentIndex < videoData.length - 1) scrollToIndex(currentIndex + 1);
     };
 
     const handlePrevVideo = () => {
@@ -162,7 +185,15 @@ export default function VideoPlay({ id: propId }) {
         router.push(`/shorts/${videoId}`); 
     };
 
-    const currentVideo = VIDEO_DATA[currentIndex] || {};
+    const handleProfileClick = (videoItem) => {
+        // Fallbacks back seamlessly to standard userId structures if custom properties don't exist
+        const breederId = videoItem.breeder_id || videoItem.userId || videoItem.id;
+        if (breederId) {
+            router.push(`/profile/${breederId}`);
+        }
+    };
+
+    const currentVideo = videoData[currentIndex] || {};
 
     return (
         <div className={styles.bodyWrapper}>
@@ -170,7 +201,7 @@ export default function VideoPlay({ id: propId }) {
                 <div className={styles.contentLayoutContainer}>
                     
                     <div className={styles.feedWrapper} ref={containerRef}>
-                        {VIDEO_DATA.map((video, idx) => {
+                        {videoData.map((video, idx) => {
                             const isLiked = !!likedVideos[video.id];
                             const isActive = idx === currentIndex;
                             return (
@@ -205,7 +236,11 @@ export default function VideoPlay({ id: propId }) {
                                     </video>
 
                                     <div className={styles.videoOverlayInfo}>
-                                        <div className={styles.userInfo}>
+                                        <div 
+                                            className={styles.userInfo} 
+                                            onClick={() => handleProfileClick(video)}
+                                            style={{ cursor: 'pointer' }}
+                                        >
                                             <div className={styles.avatar}>
                                                 <img className={styles.avatarImg} src={video.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"} alt="Avatar" />
                                             </div>
@@ -213,7 +248,7 @@ export default function VideoPlay({ id: propId }) {
                                                 <span className={styles.username}>{video.username || 'Anonymous'}</span>
                                                 <p className={styles.timestamp}>{video.userTitle || 'Creator'}</p>
                                             </div>
-                                            <button className={styles.followBtn}>Follow</button>
+                                            <button className={styles.followBtn} onClick={(e) => e.stopPropagation()}>Follow</button>
                                         </div>
                                         <div className={styles.descriptionContainer}>
                                             <p className={styles.description}>

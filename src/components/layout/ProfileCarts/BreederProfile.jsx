@@ -22,6 +22,7 @@ export default function BreederProfile() {
 
     // Destructure properties safely
     const {
+        id: breederId = 1,
         name = "Muhammed Shibil",
         userName = "@technovastudio",
         profileImage = "",
@@ -30,9 +31,8 @@ export default function BreederProfile() {
         bio = "Passionate ornamental fish breeder.",
         description = "",
         verified = true,
-        counts = { followers: 0, following: 0, posts: 0 },
         followers = [],
-        following = [], // Safely mapping following data if present
+        following = [], 
         contact = {},
         posts = [],
         shorts = []
@@ -52,7 +52,7 @@ export default function BreederProfile() {
         if (activeTab === 'reels') {
             return shorts.map(short => ({
                 id: short.id,
-                image: short.image || coverImage, 
+                mediaUrl: short.videoURL, 
                 likes: short.likes,
                 comments: short.comments,
                 type: 'video'
@@ -62,7 +62,7 @@ export default function BreederProfile() {
 
         return posts.map(post => ({
             id: post.id,
-            image: post.image,
+            mediaUrl: post.image,
             likes: post.likes,
             comments: post.comments?.length || 0,
             type: 'image'
@@ -79,6 +79,41 @@ export default function BreederProfile() {
 
     const closeSocialModal = () => {
         setSocialModal({ isOpen: false, type: '', data: [] });
+    };
+
+    // Safe Video Autoplay handlers on hover (fixes AbortError exceptions)
+    const handleMouseEnter = (e) => {
+        const videoElement = e.currentTarget.querySelector('.grid-video-preview');
+        if (videoElement) {
+            videoElement.muted = true; 
+            
+            // Catch and suppress browser abort exceptions if user moves mouse away instantly
+            const playPromise = videoElement.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    if (err.name !== 'AbortError') {
+                        console.log("Autoplay issue:", err);
+                    }
+                });
+            }
+        }
+    };
+
+    const handleMouseLeave = (e) => {
+        const videoElement = e.currentTarget.querySelector('.grid-video-preview');
+        if (videoElement) {
+            videoElement.pause();
+            videoElement.currentTime = 0; // Resets back to initial frame
+        }
+    };
+
+    // Navigation Layer
+    const handleMediaClick = (type, itemId) => {
+        if (type === 'video') {
+            router.push(`/shorts/${itemId}`);
+        } else {
+            router.push(`/post-feed/${itemId}`);
+        }
     };
 
     return (
@@ -103,13 +138,12 @@ export default function BreederProfile() {
                     <div className="header-left-avatar-zone">
                         <div className="avatar-border-gradient">
                             <div className="avatar-white-inner">
-                                <img src={profileImage} alt={`${name}'s Profile`} />
+                                <img src={profileImage || "/fallback-avatar.png"} alt={`${name}'s Profile`} />
                             </div>
                         </div>
                     </div>
 
                     <div className="header-right-info-zone">
-                        {/* LINE 1: NAME, HANDLE & EQUAL-WIDTH ACTION ZONE */}
                         <div className="info-username-row">
                             <div className="profile-names-container">
                                 <h2 className="profile-handle">
@@ -148,23 +182,22 @@ export default function BreederProfile() {
                             </div>
                         </div>
 
-                        {/* LINE 2: METRIC BOX ARCHITECTURE */}
                         <div className="info-metrics-row">
                             <div className="metric-box">
-                                <span className="metric-number">{formatMetricNumber(counts.posts)}</span>
+                                <span className="metric-number">{formatMetricNumber(posts.length)}</span>
                                 <span className="metric-label">posts</span>
                             </div>
+                            
                             <div className="metric-box status-clickable" onClick={() => openSocialModal('Followers', followers)}>
-                                <span className="metric-number">{formatMetricNumber(counts.followers)}</span>
+                                <span className="metric-number">{formatMetricNumber(followers.length)}</span>
                                 <span className="metric-label">followers</span>
                             </div>
                             <div className="metric-box status-clickable" onClick={() => openSocialModal('Following', following)}>
-                                <span className="metric-number">{formatMetricNumber(counts.following)}</span>
+                                <span className="metric-number">{formatMetricNumber(following.length)}</span>
                                 <span className="metric-label">following</span>
                             </div>
                         </div>
 
-                        {/* LINE 3: STREAMLINED BIOGRAPHY AND LINE DISPLAYS */}
                         <div className="info-bio-row">
                             <h1 className="profile-real-name">{name}</h1>
                             <div className="bio-structured-lines">
@@ -181,7 +214,6 @@ export default function BreederProfile() {
                                 </div>
                             )}
 
-                            {/* SOCIAL CONTEXT OVERLAY */}
                             {followers.length > 0 && (
                                 <div className="followed-by-context" onClick={() => openSocialModal('Followers', followers)}>
                                     <div className="avatar-overlapping-stack">
@@ -205,10 +237,9 @@ export default function BreederProfile() {
                     </div>
                 </header>
 
-                {/* APPLE/TELEGRAM FLUID LIQUID MORPHING TAB SELECTION LAYER */}
+                {/* TAB SELECTION LAYER */}
                 <div className="navigation-tabs-outer-wrapper">
                     <div className="navigation-tabs-flex-glass">
-                        {/* Dynamic sliding fluid element selector block */}
                         <div className={`liquid-slider-bead active-tab-${activeTab}`} />
 
                         <button className={`tab-button-glass ${activeTab === 'posts' ? 'glass-active' : ''}`} onClick={() => setActiveTab('posts')}>
@@ -230,11 +261,32 @@ export default function BreederProfile() {
                 <div className="instagram-photo-matrix">
                     {getActiveData().length > 0 ? (
                         getActiveData().map((item) => (
-                            <div className="matrix-tile-item" key={item.id}>
+                            <div 
+                                className="matrix-tile-item" 
+                                key={item.id}
+                                onMouseEnter={item.type === 'video' ? handleMouseEnter : undefined}
+                                onMouseLeave={item.type === 'video' ? handleMouseLeave : undefined}
+                                onClick={() => handleMediaClick(item.type, item.id)}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 {item.type === 'video' ? (
-                                    <i className="fa-solid fa-clapperboard grid-media-indicator"></i>
+                                    <>
+                                        <i className="fa-solid fa-clapperboard grid-media-indicator"></i>
+                                        <video 
+                                            src={item.mediaUrl} 
+                                            muted 
+                                            loop 
+                                            playsInline
+                                            preload="auto"
+                                            className="grid-video-preview" 
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                                        />
+                                    </>
                                 ) : (
-                                    <i className="fa-solid fa-clone grid-media-indicator"></i>
+                                    <>
+                                        <i className="fa-solid fa-clone grid-media-indicator"></i>  
+                                        <img src={item.mediaUrl} alt="Grid Asset Gallery" />
+                                    </>
                                 )}
 
                                 <div className="tile-hover-curtain">
@@ -243,8 +295,6 @@ export default function BreederProfile() {
                                         <span><i className="fa-solid fa-comment"></i> {formatMetricNumber(item.comments)}</span>
                                     </div>
                                 </div>
-
-                                <img src={item.image} alt="Grid Asset Gallery" />
                             </div>
                         ))
                     ) : (
@@ -256,7 +306,7 @@ export default function BreederProfile() {
                 </div>
             </main>
 
-            {/* DYNAMIC METRIC INTERACTIVE MODAL COMPONENT */}
+            {/* INTERACTIVE MODAL COMPONENT */}
             {socialModal.isOpen && (
                 <div className="social-modal-overlay" onClick={closeSocialModal}>
                     <div className="social-modal-container animate-modal-slide" onClick={(e) => e.stopPropagation()}>

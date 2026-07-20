@@ -6,9 +6,10 @@ export const POSTS_DATA = [
             "https://media.istockphoto.com/id/1364941913/photo/colorful-goldfish-freshwater-aquarium-fish.jpg?s=1024x1024&w=is&k=20&c=Old-hU6ModbX9J3yH-BxUi6mCYsTTOTTpwP4tIMzNkw=",
             "https://media.istockphoto.com/id/1137091440/photo/goldfish-in-an-aquarium.jpg?s=1024x1024&w=is&k=20&c=LlDtmzxSzMvV5PKE3RiZrBmXcX6_gol5BXgMlmJ_BjE="
         ],
-        username: "alex_travels",
-        userTitle: "Landscape Photographer",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "Exploring the beautiful landscapes today! Swipe to see more. 🏔️✨ #nature #adventure #travelphotography",
         likes: 12100,
         likedBy: [
@@ -94,9 +95,10 @@ export const POSTS_DATA = [
         images: [
             "https://upload.wikimedia.org/wikipedia/commons/1/19/Indian_fantail%28black_self%29.jpg"
         ],
-        username: "em1_1999s",
-        userTitle: "Astro Enthusiast",
-        avatar: "https://images.unsplash.com/photo-15007003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "Stargazing on a clear night sky. Absolute bliss. 🌌 #universe #galaxy #longexposure #space",
         likes: 8400,
         likedBy: [
@@ -169,9 +171,10 @@ export const POSTS_DATA = [
             "https://www.newyorkbirdsupply.com/cdn/shop/products/zebra-white-finch-996171_1024x1024.jpg?v=1679640856",
             "https://i.ytimg.com/vi/lWZOwXPWqf4/maxresdefault.jpg"
         ],
-        username: "culinary_art",
-        userTitle: "Pastry Chef & Food Stylist",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "✨ Beautiful Finches Available Now! Vibrant, cheerful birds raised with care and ready for a loving home.",
         likes: 9320,
         likedBy: [
@@ -246,9 +249,10 @@ export const POSTS_DATA = [
             "https://www.kaytee.com/-/media/Project/OneWeb/Kaytee/US/learn-care/everything-you-need-to-know-about-pet-finches/everything-you-need-to-know-about-pet-finches.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3BVfF-GWMJ4h5HhuKvPVLIIiq69on2Z9Z8YjMgIfMUdbAyXTiRZsO4-E&s=10"
         ],
-        username: "urban_explorer",
-        userTitle: "Architectural Designer",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "✨ Beautiful Finches Available Now! Vibrant, cheerful birds raised with care and ready for a loving home.",
         likes: 15400,
         likedBy: [
@@ -312,9 +316,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr9uKlv_YILnGBFJkI3yciaw8xdxqTXbcy7cCEeL5nvkssiU6cqqpElQ0&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBGXegFD-bH0nKUBiXZnvyZv3LWpr169QwlR9Htq9A6KrRR4wFvq0E09A&s=10"
         ],
-        username: "wild_eyes",
-        userTitle: "Wildlife Documentarian",
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "🐠 Premium Albino Koi Guppies for Sale! Healthy, vibrant fish with stunning colors and graceful fins, ready for your aquarium.",
         likes: 18900,
         likedBy: [
@@ -389,9 +394,10 @@ export const POSTS_DATA = [
             "https://freshwateraquatica.org/cdn/shop/products/product-jpeg-500x500_37d8c073-878d-4aa7-b5d5-9d609b76002a.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRytIaVcSrsX7v9xoicQhnITTWvhnPuAOuuguUhgdEsz5lA592Q2M3TjIHG&s=10"
         ],
-        username: "street_threads",
-        userTitle: "Stylist & Visual Artist",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐟 Premium Koi Fish for Sale! Healthy, vibrant koi with stunning colors, perfect for ponds and water gardens.",
         likes: 7230,
         likedBy: [
@@ -454,9 +460,10 @@ export const POSTS_DATA = [
             "https://upload.wikimedia.org/wikipedia/commons/1/10/HM_Orange_M_Sarawut.jpg",
             "https://www.aquariumcoop.com/cdn/shop/articles/what-are-the-different-types-of-betta-fish-1396383.jpg"
         ],
-        username: "cozy_spaces",
-        userTitle: "Interior Designer",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐠 Premium Betta Fish for Sale! Stunning colors, elegant fins, and healthy bettas ready to brighten your aquarium.",
         likes: 11050,
         likedBy: [
@@ -542,9 +549,10 @@ export const POSTS_DATA = [
         images: [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpwCgBR2alHhOsdIuH-XLLl3EVjTLEXblgcMBAg9SIENdmFtfMWD0OOBs&s=10"
         ],
-        username: "runner_zen",
-        userTitle: "Ultra Marathon Runner",
-        avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐔 Healthy Hens for Sale! Strong, active, and well-cared-for hens ready for your farm or backyard.",
         likes: 6540,
         likedBy: [
@@ -604,9 +612,10 @@ export const POSTS_DATA = [
             "https://www.simpsonspremium.com/cdn/shop/articles/persian-cat.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA3puTqDj085E6i24WgCtwIyksB6_p4RXEDzLI2tGEFveTOjxkjmZnYDE&s=10"
         ],
-        username: "deep_blue",
-        userTitle: "Marine Biologist",
-        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐱 Premium Persian Cats for Sale! Beautiful, fluffy, and loving companions with charming personalities.",
         likes: 14200,
         likedBy: [
@@ -679,9 +688,10 @@ export const POSTS_DATA = [
             "https://static.vecteezy.com/system/resources/previews/011/374/721/large_2x/portrait-little-white-rabbit-on-the-ground-free-photo.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyyMZTuNgxKXRXesmkptdCKKQ6o1dkTdRoE05a22L5mFYka69oOm2Va8o&s=10"
         ],
-        username: "neo_tokyo",
-        userTitle: "Visual Concept Creator",
-        avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "✨ Beautiful Rabbits Available Now! Playful, gentle companions raised with care for loving families.",
         likes: 22800,
         likedBy: [
@@ -756,9 +766,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo1hz1ALdKa6va1R6U60QlXSQiWZ7A8vGLGaIKVv7vBCtoBaeqGdc4XmRu&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Bcx9z04OEBoDzTPU6NRAfbeN_KkbLUPM7BJIdj0KHEn0TMxy2vtYTFI3&s=10"
         ],
-        username: "paws_and_tails",
-        userTitle: "Canine behaviorist",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🐕 Playful Golden Retriever Puppies! Exceptionally intelligent, family-friendly, and looking for their forever homes. 🐾 #puppies #goldenretriever",
         likes: 31200,
         likedBy: [
@@ -818,9 +829,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHAmTqcqrNYiQpsMl1l0uodGhT0SnRUHQ7oI8yrHkNZJn0Bz9Ph3VpzxO6&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSecZKujjlimpfvvZ1XXMLoSYkl3NCc7POYHbKwwt716z3KCMk2R9NjGBc&s=10"
         ],
-        username: "feline_fancy",
-        userTitle: "Cattery Manager",
-        avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🐱 Gorgeous Scottish Fold Kittens available. Super affectionate, owl-like appearance, perfectly socialized.",
         likes: 16750,
         likedBy: [
@@ -869,9 +881,10 @@ export const POSTS_DATA = [
             "https://media.istockphoto.com/id/172223453/photo/twin-tweeters.jpg?s=612x612&w=0&k=20&c=a2KA7wiBQMkQfZ1o1tou42USgjBOSK-QjSbuBLWhw4A=",
             "https://www.upoharbd.com/images/uploads/Household/Lutino-Cockatiels.jpg"
         ],
-        username: "exotic_avians",
-        userTitle: "Avian Researcher",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦜 Vibrant Cockatiel Breeding Pairs. Excellent whistlers, healthy feathers, dynamic active behaviors.",
         likes: 9840,
         likedBy: [
@@ -921,9 +934,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCirQ5ZSqXS6ztFRbwqK7qnPa5fmomqimvl4oJJBrW7w&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6v4YkKrF7xyn3IX7DEFDznW6aXayyIIDaSjt3MlDMTrik1be_7zVj7Yb&s=10"
         ],
-        username: "aqua_scape_pro",
-        userTitle: "Aquatic Designer",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🐠 High-grade Neon Tetras. Schooling beautifully, intensely luminous red and blue accents.",
         likes: 14300,
         likedBy: [
@@ -973,9 +987,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_4DxEsnHELWc_AKxJr2-udbCd_sDGVK_nHbx4Lpov--fS2VOwOiwCNf0&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3FrUhxCZMGp_BqoLlveJVTrs6vI2iFBjSxm4DN6V6iWrZmWhCNGULYU8A&s=10"
         ],
-        username: "farm_fresh_life",
-        userTitle: "Homestead Farmer",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦆 Crested Ducklings ready for pastures. Great foragers, high egg yield potential, extremely cute.",
         likes: 8320,
         likedBy: [
@@ -1022,9 +1037,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMrSY3jhY1vpFfyxVBQZp5bMQAuC1rflZXiOOMKqpNUw&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBDqfoxw9BvfdxWw7SVUdzC1UqZo8XlSzbQalYK1nSkg&s=10"
         ],
-        username: "himalayan_co",
-        userTitle: "Persian Breed Specialist",
-        avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐱 Calico Persian Kittens. Triple coat, punch face traits, show quality potential lines.",
         likes: 19800,
         likedBy: [
@@ -1071,9 +1087,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPhw6RwCq0EUHkZT2T1gk5fZiQR_kEqlcImDbQPz3zR69k0cRTOElUtkR2&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYpZPVBGAYlnmjmar3sKdMCb3t681rTpNb3hA5L4ojeg&s=10"
         ],
-        username: "k9_elite_kennels",
-        userTitle: "Working Dog Trainer",
-        avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐕 German Shepherd Puppies. Outstanding drive, strong bone structure, brilliant companion alerts.",
         likes: 24500,
         likedBy: [
@@ -1119,9 +1136,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiygWuyr6XV9YpnH-Xe4eIdogJN5ivHfwY87pYVDuAXIClf_ZA4Ewa0lo&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS21VB8do3MWmniwgMeVQZe3TK9-vG5nJbCcIJiyHVAJw&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1SLyZxREmSUrgHLWPtsq7n9PYr_e9BRRQAFcjv15gTQ&s=10"],
-        username: "cichlid_hub",
-        userTitle: "Cichlid Breeder",
-        avatar: "https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐠 African Cichlids. Radiant coloration, aggressive feeding displays, fantastic active dynamics.",
         likes: 6400,
         likedBy: [
@@ -1169,9 +1187,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9bzLG8p3KSTKOT_Mwu5WGjgM_xAXHDNetv79JuocH9w&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLuRH8LT8LU8dZjQLc7RAXmCFAYd8VEM-uCy7eg8cq1w&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmVEWb_IYM7EGcvDbGQd0HuHEb8RP_EeLrvQNmKyKWIA&s=10"],
-        username: "bunnies_wonderland",
-        userTitle: "Rabbitry Ethologist",
-        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "✨ Compact Netherland Dwarf Rabbits. Stays small, incredibly social, signature tiny erect ears.",
         likes: 18900,
         likedBy: [
@@ -1220,9 +1239,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLHtLiRi3tvi7n8DOV5rJbTQ3NWeBn7-Xa0M5l3pPfMQ&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRswmE7O_BiW41hzI4Ev02boWyZfNm5tZAP7CjLV39xQ&s=10"
         ],
-        username: "furry_features",
-        userTitle: "Small Animal Expert",
-        avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐹 Active Syrian Hamsters. Beautiful coat colors, comfortable with handling, ideal low maintenance starter companion.",
         likes: 5400,
         likedBy: [
@@ -1269,9 +1289,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmOyhcGLBDDRAp5DYkZQ7FxQPWum0BVrHpxYITPgv3w&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ258XI6SmQJj8LAZ0AZop6pY_bmjLt9vv9JvquwusLBg&s=10"
         ],
-        username: "fancy_budgies",
-        userTitle: "Parrot Aviary Owner",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🦜 Show-bench Budgerigars. Gorgeous color variations, energetic chirping, beautifully feathered crests.",
         likes: 7120,
         likedBy: [
@@ -1319,9 +1340,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9rG4AL5nZu0UZ26TbjAWp4-ZJDr7PVBnSQW_ZWjLCYQ&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1hrK8JrACu4ArFU5TF2258G49iYn7jjDDnMkohJ726CQO1ORP2IBs2xg&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR45HwULF3gx4E9l0OOlyuzzEE57eEybYJWy0K83py0Tg&s=10"],
-        username: "flowerhorn_king",
-        userTitle: "Monster Fish Keepers",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐠 Premium Kamfa Flowerhorn Fish. Prominent head kok structure, cross-pearl patterns, outstandingly aggressive.",
         likes: 13900,
         likedBy: [
@@ -1366,9 +1388,10 @@ export const POSTS_DATA = [
     {
         id: 23,
         images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX5om9VaX0emg_LgfVMOOpv4tuePLWYbME2RClWJFFLg&s=10"],
-        username: "terrier_town",
-        userTitle: "Canine Show Judge",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐕 Charming Pomeranian Puppies. Pocket-sized teddy bear coats, energetic temperament, perfect companions.",
         likes: 28400,
         likedBy: [
@@ -1413,9 +1436,10 @@ export const POSTS_DATA = [
         images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pW2OJH5kWmx3lhWNmKQBhDqBySuRjTqk44I3Jm5XGg&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRj6RsDAu9Yf1WnnGQO_cfRWNC7QiyYuI511_5ruVTgc8UVDNUUi0oZAw&s=10"
         ],
-        username: "bengal_palace",
-        userTitle: "Exotic Cat Register",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐱 Rosetted Bengal Kittens. Leopard lookalikes, highly communicative, playful, athletic behaviors.",
         likes: 21900,
         likedBy: [
@@ -1461,9 +1485,10 @@ export const POSTS_DATA = [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNcU032zxgDMEaPjXAGCJx0lhSEKwHDLeQRGwas6fqHA&s=10",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSjQnb-cG9wzOBQwo50HmiHtO8izzGM9WRptH9q15SMQ&s"
         ],
-        username: "shamo_breeds",
-        userTitle: "Ornamental Fowl Yard",
-        avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐔 Premium Silkie Chickens. Cloud-like hair fluff feathering, quiet docile traits, excellent backyard project birds.",
         likes: 9120,
         likedBy: [
@@ -1510,10 +1535,10 @@ export const SHORTS_DATA = [
     {
         id: 1,
         videoUrl: "./dumo.mp4",
-        Breeder_id: 3,
-        name: "Rahul Varma",
-        userName: "@rahul_guppy",
-        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "Checking out this incredible aquatic setup today! Sound on 🔊✨ #aquarium #fishkeeper #exoticpets",
         likes: 8900,
         likedBy: [
@@ -1554,10 +1579,10 @@ export const SHORTS_DATA = [
     {
         id: 2,
         videoUrl: "./dumo2.mp4",
-        Breeder_id: 4,
-        name: "Suresh Babu",
-        userName: "@suresh_gold",
-        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDcTZFC0D8jijS4E3UyLS3_BUdFpp1VE0miKX8Yi_oD_mXXw7tO7H3QVk&s=10",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "✨ Active & Playful Rabbits Ready for a Loving Home! Snatch them up before they hop away 🐰💨",
         likes: 31200,
         likedBy: [
@@ -1620,9 +1645,10 @@ export const SHORTS_DATA = [
     {
         id: 3,
         videoUrl: "./dumo3.mp4",
-        name: "Anas Vengara",
-        userName: "@malabar_integrated",
-        profileImage: "https://static.vecteezy.com/system/resources/thumbnails/070/041/667/small/a-modern-and-stylized-koi-fish-logo-featuring-an-orange-koi-swimming-in-a-circular-motion-vector.jpg",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "🐠 Brighten up your workspace standard! Premium Halfmoon Bettas boasting majestic fins now ready for purchase.",
         likes: 14200,
         likedBy: [
@@ -1673,9 +1699,10 @@ export const SHORTS_DATA = [
     {
         id: 4,
         videoUrl: "./dumo4.mp4",
-        username: "culinary_art",
-        userTitle: "Pastry Chef & Food Stylist",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "✨ Vibrant, cheerful Finches singing beautifully! Perfect additions to any home aviary. 🐦🎶",
         likes: 9320,
         likedBy: [
@@ -1726,9 +1753,10 @@ export const SHORTS_DATA = [
     {
         id: 5,
         videoUrl: "https://www.pexels.com/download/video/5544231/",
-        username: "wild_eyes",
-        userTitle: "Wildlife Documentarian",
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 1,
+        username: "@Pet_Zoon",
+        userTitle: "PetZoon",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqCAJVtteQ2zz0BcHY8ogP9QCjz2nxQPzYbxIqGlJQGfG3vTBQdWc05E&s=10",
         description: "🐠 Premium Albino Koi Guppies showing off their flowing tails. High-grade strains available! #guppies #aquascaping",
         likes: 18900,
         likedBy: [
@@ -1779,9 +1807,10 @@ export const SHORTS_DATA = [
     {
         id: 6,
         videoUrl: "https://www.pexels.com/download/video/37685390/",
-        username: "street_threads",
-        userTitle: "Stylist & Visual Artist",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐟 Imported Japanese Nishikigoi Koi gliding gracefully. Transform your pond today! #koipond #zengarden",
         likes: 7230,
         likedBy: [
@@ -1832,9 +1861,10 @@ export const SHORTS_DATA = [
     {
         id: 7,
         videoUrl: "https://www.pexels.com/download/video/35147318/",
-        username: "runner_zen",
-        userTitle: "Ultra Marathon Runner",
-        avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐔 High productivity egg layers right here! Healthy Point of Lay hens ready for homesteading. #backyardchickens",
         likes: 6540,
         likedBy: [
@@ -1885,9 +1915,10 @@ export const SHORTS_DATA = [
     {
         id: 8,
         videoUrl: "https://www.pexels.com/download/video/36093643/",
-        username: "deep_blue",
-        userTitle: "Marine Biologist",
-        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐱 Doll-faced White Persian Kittens playing around. Completely litter trained and super affectionate! 🤍",
         likes: 14200,
         likedBy: [
@@ -1938,9 +1969,10 @@ export const SHORTS_DATA = [
     {
         id: 9,
         videoUrl: "https://www.pexels.com/download/video/17325162/",
-        username: "urban_explorer",
-        userTitle: "Architectural Designer",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🐹 Fluffy Winter White Dwarf Hamsters having their lunch break! Tiny, energetic, and completely adorable. #pocketpets",
         likes: 12400,
         likedBy: [
@@ -1991,9 +2023,10 @@ export const SHORTS_DATA = [
     {
         id: 10,
         videoUrl: "https://www.pexels.com/download/video/34663989/",
-        username: "jdm_culture",
-        userTitle: "Automotive Enthusiast",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+        breeder_id: 2,
+        username: "@anjali_aquatics",
+        userTitle: "Anjali Raj",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
         description: "🦎 Captive Bred Veiled Chameleons displaying beautiful natural shades. Perfect choice for reptile hobbyists!",
         likes: 21500,
         likedBy: [
@@ -2043,9 +2076,10 @@ export const SHORTS_DATA = [
     {
         id: 11,
         videoUrl: "https://www.pexels.com/download/video/37649670/",
-        username: "wild_eyes",
-        userTitle: "Wildlife Documentarian",
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦜 Highly intelligent hand-reared Scarlet Macaws! Hand-fed from birth and ready for lifelong companions. 🌟",
         likes: 45000,
         likedBy: [
@@ -2096,9 +2130,10 @@ export const SHORTS_DATA = [
     {
         id: 12,
         videoUrl: "https://www.pexels.com/download/video/12715060/",
-        username: "cozy_spaces",
-        userTitle: "Interior Designer",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🐶 Purebred French Bulldog puppies running around! Microchipped, dewormed, and AKC registered. 🐾",
         likes: 38900,
         likedBy: [
@@ -2149,9 +2184,10 @@ export const SHORTS_DATA = [
     {
         id: 13,
         videoUrl: "https://www.pexels.com/download/video/3912656/",
-        username: "deep_blue",
-        userTitle: "Marine Biologist",
-        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦐 High-grade Fire Red Cherry Shrimp clearing out algae lines seamlessly! Great for nano tanks. #shrimptank",
         likes: 5400,
         likedBy: [
@@ -2201,9 +2237,10 @@ export const SHORTS_DATA = [
     {
         id: 14,
         videoUrl: "https://www.pexels.com/download/video/12715038/",
-        username: "alex_travels",
-        userTitle: "Landscape Photographer",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦦 Crazy energetic Marshall Ferrets having absolute fun in the tunnel system! Incredibly goofy pets.",
         likes: 16700,
         likedBy: [
@@ -2254,9 +2291,10 @@ export const SHORTS_DATA = [
     {
         id: 15,
         videoUrl: "https://www.pexels.com/download/video/9026085/",
-        username: "neo_tokyo",
-        userTitle: "Visual Concept Creator",
-        avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 3,
+        username: "@rahul_guppy",
+        userTitle: "Rahul Varma ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
         description: "🦎 Check out this amazing Crested Gecko eye lick macro! Highly interactive and peaceful reptiles. 🍓",
         likes: 28900,
         likedBy: [
@@ -2307,9 +2345,10 @@ export const SHORTS_DATA = [
     {
         id: 16,
         videoUrl: "https://www.pexels.com/download/video/35325398/",
-        username: "culinary_art",
-        userTitle: "Pastry Chef & Food Stylist",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "✨ Sweet hand-fed Cockatiels whistling cute custom tunes! Super interactive house companions. 🐥💛",
         likes: 11200,
         likedBy: [
@@ -2360,9 +2399,10 @@ export const SHORTS_DATA = [
     {
         id: 17,
         videoUrl: "https://www.pexels.com/download/video/35378358/",
-        username: "street_threads",
-        userTitle: "Stylist & Visual Artist",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐟 Leucistic Axolotls floating around peacefully. The ultimate aquatic desk companion! 🌌 #axolotl",
         likes: 19800,
         likedBy: [
@@ -2413,9 +2453,10 @@ export const SHORTS_DATA = [
     {
         id: 18,
         videoUrl: "https://www.pexels.com/download/video/11103259/",
-        username: "runner_zen",
-        userTitle: "Ultra Marathon Runner",
-        avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐱 Playful Calico kittens up for adoption! Vocal, spunky, and fully house trained. 🐾🧡🖤",
         likes: 15400,
         likedBy: [
@@ -2466,9 +2507,10 @@ export const SHORTS_DATA = [
     {
         id: 19,
         videoUrl: "https://www.pexels.com/download/video/27778266/",
-        username: "urban_explorer",
-        userTitle: "Architectural Designer",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐚 Active Purple Pincher Hermit Crabs changing out shells! Easy low maintenance desk pets. 🏖️",
         likes: 4200,
         likedBy: [
@@ -2518,9 +2560,10 @@ export const SHORTS_DATA = [
     {
         id: 20,
         videoUrl: "https://www.pexels.com/download/video/5930448/",
-        username: "jdm_culture",
-        userTitle: "Automotive Enthusiast",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+        breeder_id: 4,
+        username: "@suresh_gold ",
+        userTitle: "Suresh Babu",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
         description: "🐍 High-expression Banana Morph Ball Pythons sliding around. Docile temperaments guaranteed! 🍌",
         likes: 17300,
         likedBy: [
@@ -2570,9 +2613,10 @@ export const SHORTS_DATA = [
     {
         id: 21,
         videoUrl: "https://www.pexels.com/download/video/15870616/",
-        username: "alex_travels",
-        userTitle: "Landscape Photographer",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐶 Pembroke Welsh Corgi puppies showing off their short legs! Incredibly energetic and friendly. 🍞✨",
         likes: 41200,
         likedBy: [
@@ -2623,9 +2667,10 @@ export const SHORTS_DATA = [
     {
         id: 22,
         videoUrl: "https://www.pexels.com/download/video/29336604/",
-        username: "culinary_art",
-        userTitle: "Pastry Chef & Food Stylist",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "✨ High-flier Indian Fantail Pigeons strutting their elegant feather structures. Absolutely beautiful structures. 🕊️",
         likes: 8100,
         likedBy: [
@@ -2675,9 +2720,10 @@ export const SHORTS_DATA = [
     {
         id: 23,
         videoUrl: "https://www.pexels.com/download/video/36404697/",
-        username: "deep_blue",
-        userTitle: "Marine Biologist",
-        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐢 Red Eared Slider Turtles paddling around their basking docks. Highly active dynamic setups! ☀️",
         likes: 6200,
         likedBy: [
@@ -2727,9 +2773,10 @@ export const SHORTS_DATA = [
     {
         id: 24,
         videoUrl: "https://www.pexels.com/download/video/34657868/",
-        username: "wild_eyes",
-        userTitle: "Wildlife Documentarian",
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "✨ Watch this sugar glider pull off a perfect launch to hand leap! Hand-reared joeys looking for homes. 🌌",
         likes: 34500,
         likedBy: [
@@ -2780,9 +2827,10 @@ export const SHORTS_DATA = [
     {
         id: 25,
         videoUrl: "https://www.pexels.com/download/video/37697636/",
-        username: "cozy_spaces",
-        userTitle: "Interior Designer",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        breeder_id: 5,
+        username: "@deepa_betta ",
+        userTitle: "Deepa Menon ",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
         description: "🐭 Pure bliss! Ultra-soft Standard Grey Chinchillas enjoying their morning chin scratches. 🐭☁️",
         likes: 27100,
         likedBy: [
@@ -2837,8 +2885,8 @@ export const SHORTS_DATA = [
 export const Breeders = [
     {
         id: 1,
-        name: "Muhammed Shibil",
-        userName: "@technovastudio",
+        name: "PetZoon",
+        userName: "@Pet_Zoon",
         email: "shibil@example.com",
         password: "12345678",
         role: "breeder",
@@ -2853,9 +2901,106 @@ export const Breeders = [
         description: "Passionate ornamental fish breeder specializing in vibrant Japanese Koi strains and high-quality Bettas for hobbyists across Kerala.",
         counts: { followers: 3, following: 2, posts: 2 },
         followers: [
-            { id: 101, name: "Ameen Ali", userName: "@ameen", userAvatar: "/images/users/user1.jpg" },
-            { id: 121, name: "Faisal Khan", userName: "@faisal_k", userAvatar: "/images/users/user31.jpg" },
-            { id: 122, name: "Hiba Thasni", userName: "@hiba_t", userAvatar: "/images/users/user32.jpg" }
+            { id: 1, name: 'Maryam Amiri', userName: 'maryam_amiri', userAvatar: 'https://i.pravatar.cc/150?u=maryam', role: 'user' },
+            { id: 2, name: 'Hossein Shams', userName: 'h_shams', userAvatar: 'https://i.pravatar.cc/150?u=hossein', role: 'user' },
+            { id: 3, name: 'Sarah Conner', userName: 'sconner', userAvatar: '', role: 'user' },
+            { id: 4, name: 'Frank Camly', userName: 'frank_c', userAvatar: 'https://i.pravatar.cc/150?u=frank', role: 'user' },
+            { id: 5, name: 'Freddie Arendes', userName: 'fred_mkt', userAvatar: 'https://i.pravatar.cc/150?u=freddie', role: 'user' },
+            { id: 6, name: 'Gary Camara', userName: 'gary_cam', userAvatar: 'https://i.pravatar.cc/150?u=gary', role: 'user' },
+            { id: 7, name: 'Tim Hank', userName: 'timmy_h', userAvatar: '', role: 'user' },
+            { id: 8, name: 'Fidel Tonn', userName: 'fidel_t', userAvatar: 'https://i.pravatar.cc/150?u=fidel', role: 'user' },
+            { id: 9, name: 'Emma Watson', userName: 'emma_w', userAvatar: 'https://i.pravatar.cc/150?u=emma', role: 'user' },
+            { id: 10, name: 'Liam Neeson', userName: 'liam_n', userAvatar: '', role: 'user' },
+            { id: 11, name: 'Olivia Thirlby', userName: 'olivia_t', userAvatar: 'https://i.pravatar.cc/150?u=olivia', role: 'user' },
+            { id: 12, name: 'Noah Centineo', userName: 'noah_c', userAvatar: 'https://i.pravatar.cc/150?u=noah', role: 'user' },
+            { id: 13, name: 'Ava DuVernay', userName: 'ava_d', userAvatar: 'https://i.pravatar.cc/150?u=ava', role: 'user' },
+            { id: 14, name: 'Oliver Twist', userName: 'oliver_t', userAvatar: '', role: 'user' },
+            { id: 15, name: 'Sophia Loren', userName: 'sophia_l', userAvatar: 'https://i.pravatar.cc/150?u=sophia', role: 'user' },
+            { id: 16, name: 'Elijah Wood', userName: 'elijah_w', userAvatar: 'https://i.pravatar.cc/150?u=elijah', role: 'user' },
+            { id: 17, name: 'Isabella Rossellini', userName: 'isabella_r', userAvatar: 'https://i.pravatar.cc/150?u=isabella', role: 'user' },
+            { id: 18, name: 'James Bond', userName: 'james_b', userAvatar: '', role: 'user' },
+            { id: 19, name: 'Mia Farrow', userName: 'mia_f', userAvatar: 'https://i.pravatar.cc/150?u=mia', role: 'user' },
+            { id: 20, name: 'Benjamin Franklin', userName: 'ben_f', userAvatar: 'https://i.pravatar.cc/150?u=ben', role: 'user' },
+            { id: 21, name: 'Charlotte Bronte', userName: 'charlotte_b', userAvatar: 'https://i.pravatar.cc/150?u=charlotte', role: 'user' },
+            { id: 22, name: 'Lucas Hedges', userName: 'lucas_h', userAvatar: '', role: 'user' },
+            { id: 23, name: 'Amelia Earhart', userName: 'amelia_e', userAvatar: 'https://i.pravatar.cc/150?u=amelia', role: 'user' },
+            { id: 24, name: 'Mason Mount', userName: 'mason_m', userAvatar: 'https://i.pravatar.cc/150?u=mason', role: 'user' },
+            { id: 25, name: 'Harper Lee', userName: 'harper_l', userAvatar: 'https://i.pravatar.cc/150?u=harper', role: 'user' },
+            { id: 26, name: 'Ethan Hawke', userName: 'ethan_h', userAvatar: '', role: 'user' },
+            { id: 27, name: 'Evelyn Waugh', userName: 'evelyn_w', userAvatar: 'https://i.pravatar.cc/150?u=evelyn', role: 'user' },
+            { id: 28, name: 'Logan Paul', userName: 'logan_p', userAvatar: 'https://i.pravatar.cc/150?u=logan', role: 'user' },
+            { id: 29, name: 'Abigail Breslin', userName: 'abigail_b', userAvatar: 'https://i.pravatar.cc/150?u=abigail', role: 'user' },
+            { id: 30, name: 'Alexander Great', userName: 'alex_g', userAvatar: '', role: 'user' },
+            { id: 31, name: 'Emily Blunt', userName: 'emily_b', userAvatar: 'https://i.pravatar.cc/150?u=emily', role: 'user' },
+            { id: 32, name: 'Michael Jordan', userName: 'mj_23', userAvatar: 'https://i.pravatar.cc/150?u=mj', role: 'user' },
+            { id: 33, name: 'Elizabeth Taylor', userName: 'liz_t', userAvatar: 'https://i.pravatar.cc/150?u=liz', role: 'user' },
+            { id: 34, name: 'Daniel Craig', userName: 'daniel_c', userAvatar: '', role: 'user' },
+            { id: 35, name: 'Sofia Vergara', userName: 'sofia_v', userAvatar: 'https://i.pravatar.cc/150?u=sofia', role: 'user' },
+            { id: 36, name: 'Henry Cavill', userName: 'henry_c', userAvatar: 'https://i.pravatar.cc/150?u=henry', role: 'user' },
+            { id: 37, name: 'Avery Jackson', userName: 'avery_j', userAvatar: 'https://i.pravatar.cc/150?u=avery', role: 'user' },
+            { id: 38, name: 'Jackson Pollock', userName: 'jackson_p', userAvatar: '', role: 'user' },
+            { id: 39, name: 'Scarlett Johansson', userName: 'scarlett_j', userAvatar: 'https://i.pravatar.cc/150?u=scarlett', role: 'user' },
+            { id: 40, name: 'Sebastian Stan', userName: 'sebastian_s', userAvatar: 'https://i.pravatar.cc/150?u=sebastian', role: 'user' },
+            { id: 41, name: 'Madison Beer', userName: 'madison_b', userAvatar: 'https://i.pravatar.cc/150?u=madison', role: 'user' },
+            { id: 42, name: 'Matthew Perry', userName: 'matthew_p', userAvatar: '', role: 'user' },
+            { id: 43, name: 'Layla Ali', userName: 'layla_a', userAvatar: 'https://i.pravatar.cc/150?u=layla', role: 'user' },
+            { id: 44, name: 'Samuel Jackson', userName: 'sam_j', userAvatar: 'https://i.pravatar.cc/150?u=sam', role: 'user' },
+            { id: 45, name: 'Chloe Grace', userName: 'chloe_g', userAvatar: 'https://i.pravatar.cc/150?u=chloe', role: 'user' },
+            { id: 46, name: 'David Beckham', userName: 'david_b', userAvatar: '', role: 'user' },
+            { id: 47, name: 'Victoria Beckham', userName: 'vic_b', userAvatar: 'https://i.pravatar.cc/150?u=victoria', role: 'user' },
+            { id: 48, name: 'Joseph Gordon', userName: 'joseph_g', userAvatar: 'https://i.pravatar.cc/150?u=joseph', role: 'user' },
+            { id: 49, name: 'Grace Kelly', userName: 'grace_k', userAvatar: 'https://i.pravatar.cc/150?u=grace', role: 'user' },
+            { id: 50, name: 'Carter Bland', userName: 'carter_b', userAvatar: '', role: 'user' },
+            { id: 51, name: 'Riley Reid', userName: 'riley_r', userAvatar: 'https://i.pravatar.cc/150?u=riley', role: 'user' },
+            { id: 52, name: 'Owen Wilson', userName: 'owen_w', userAvatar: 'https://i.pravatar.cc/150?u=owen', role: 'user' },
+            { id: 53, name: 'Zoey Deutch', userName: 'zoey_d', userAvatar: 'https://i.pravatar.cc/150?u=zoey', role: 'user' },
+            { id: 54, name: 'Wyatt Russell', userName: 'wyatt_r', userAvatar: '', role: 'user' },
+            { id: 55, name: 'Lily Collins', userName: 'lily_c', userAvatar: 'https://i.pravatar.cc/150?u=lily', role: 'user' },
+            { id: 56, name: 'John Doe', userName: 'john_d', userAvatar: 'https://i.pravatar.cc/150?u=john', role: 'user' },
+            { id: 57, name: 'Jane Doe', userName: 'jane_d', userAvatar: 'https://i.pravatar.cc/150?u=jane', role: 'user' },
+            { id: 58, name: 'Luke Skywalker', userName: 'luke_s', userAvatar: '', role: 'user' },
+            { id: 59, name: 'Hannah Baker', userName: 'hannah_b', userAvatar: 'https://i.pravatar.cc/150?u=hannah', role: 'user' },
+            { id: 60, name: 'Dylan Minnette', userName: 'dylan_m', userAvatar: 'https://i.pravatar.cc/150?u=dylan', role: 'user' },
+            { id: 61, name: 'Addison Rae', userName: 'addison_r', userAvatar: 'https://i.pravatar.cc/150?u=addison', role: 'user' },
+            { id: 62, name: 'Gabriel Machado', userName: 'gabriel_m', userAvatar: '', role: 'user' },
+            { id: 63, name: 'Natalie Portman', userName: 'natalie_p', userAvatar: 'https://i.pravatar.cc/150?u=natalie', role: 'user' },
+            { id: 64, name: 'Julian Alvarez', userName: 'julian_a', userAvatar: 'https://i.pravatar.cc/150?u=julian', role: 'user' },
+            { id: 65, name: 'Stella Maxwell', userName: 'stella_m', userAvatar: 'https://i.pravatar.cc/150?u=stella', role: 'user' },
+            { id: 66, name: 'Ryan Reynolds', userName: 'ryan_r', userAvatar: '', role: 'user' },
+            { id: 67, name: 'Zendaya Coleman', userName: 'zendaya', userAvatar: 'https://i.pravatar.cc/150?u=zendaya', role: 'user' },
+            { id: 68, name: 'Tom Holland', userName: 'tom_h', userAvatar: 'https://i.pravatar.cc/150?u=tom', role: 'user' },
+            { id: 69, name: 'Bella Hadid', userName: 'bella_h', userAvatar: 'https://i.pravatar.cc/150?u=bella', role: 'user' },
+            { id: 70, name: 'Gigi Hadid', userName: 'gigi_h', userAvatar: '', role: 'user' },
+            { id: 71, name: 'Kendall Jenner', userName: 'kendall_j', userAvatar: 'https://i.pravatar.cc/150?u=kendall', role: 'user' },
+            { id: 72, name: 'Kylie Jenner', userName: 'kylie_j', userAvatar: 'https://i.pravatar.cc/150?u=kylie', role: 'user' },
+            { id: 73, name: 'Kim Kardashian', userName: 'kim_k', userAvatar: 'https://i.pravatar.cc/150?u=kim', role: 'user' },
+            { id: 74, name: 'Kourtney K', userName: 'kourt_k', userAvatar: '', role: 'user' },
+            { id: 75, name: 'Khloe Kardashian', userName: 'khloe_k', userAvatar: 'https://i.pravatar.cc/150?u=khloe', role: 'user' },
+            { id: 76, name: 'Travis Scott', userName: 'travis_s', userAvatar: 'https://i.pravatar.cc/150?u=travis', role: 'user' },
+            { id: 77, name: 'Justin Bieber', userName: 'justin_b', userAvatar: 'https://i.pravatar.cc/150?u=justin', role: 'user' },
+            { id: 78, name: 'Hailey Bieber', userName: 'hailey_b', userAvatar: '', role: 'user' },
+            { id: 79, name: 'Selena Gomez', userName: 'selena_g', userAvatar: 'https://i.pravatar.cc/150?u=selena', role: 'user' },
+            { id: 80, name: 'Taylor Swift', userName: 'taylor_s', userAvatar: 'https://i.pravatar.cc/150?u=taylor', role: 'user' },
+            { id: 81, name: 'Bruno Mars', userName: 'bruno_m', userAvatar: 'https://i.pravatar.cc/150?u=bruno', role: 'user' },
+            { id: 82, name: 'The Weeknd', userName: 'abel_t', userAvatar: '', role: 'user' },
+            { id: 83, name: 'Drake Graham', userName: 'drake_g', userAvatar: 'https://i.pravatar.cc/150?u=drake', role: 'user' },
+            { id: 84, name: 'Rihanna Fenty', userName: 'rihanna_f', userAvatar: 'https://i.pravatar.cc/150?u=rihanna', role: 'user' },
+            { id: 85, name: 'A$AP Rocky', userName: 'asap_r', userAvatar: 'https://i.pravatar.cc/150?u=asap', role: 'user' },
+            { id: 86, name: 'Beyonce Knowles', userName: 'beyonce_k', userAvatar: '', role: 'user' },
+            { id: 87, name: 'Jay Z', userName: 'jay_z', userAvatar: 'https://i.pravatar.cc/150?u=jayz', role: 'user' },
+            { id: 88, name: 'Kanye West', userName: 'kanye_w', userAvatar: 'https://i.pravatar.cc/150?u=kanye', role: 'user' },
+            { id: 89, name: 'Kim GoEun', userName: 'goeun_k', userAvatar: 'https://i.pravatar.cc/150?u=goeun', role: 'user' },
+            { id: 90, name: 'Gong Yoo', userName: 'gong_yoo', userAvatar: '', role: 'user' },
+            { id: 91, name: 'Lee MinHo', userName: 'minho_l', userAvatar: 'https://i.pravatar.cc/150?u=minho', role: 'user' },
+            { id: 92, name: 'Park SeoJoon', userName: 'seojoon_p', userAvatar: 'https://i.pravatar.cc/150?u=seojoon', role: 'user' },
+            { id: 93, name: 'Han SoHee', userName: 'sohee_h', userAvatar: 'https://i.pravatar.cc/150?u=sohee', role: 'user' },
+            { id: 94, name: 'Song Kang', userName: 'song_k', userAvatar: '', role: 'user' },
+            { id: 95, name: 'IU Lee', userName: 'iu_lee', userAvatar: 'https://i.pravatar.cc/150?u=iu', role: 'user' },
+            { id: 96, name: 'Jungkook Jeon', userName: 'jk_bts', userAvatar: 'https://i.pravatar.cc/150?u=jk', role: 'user' },
+            { id: 97, name: 'Jimin Park', userName: 'jimin_p', userAvatar: 'https://i.pravatar.cc/150?u=jimin', role: 'user' },
+            { id: 98, name: 'Taehyung Kim', userName: 'v_bts', userAvatar: '', role: 'user' },
+            { id: 99, name: 'Suga Min', userName: 'suga_m', userAvatar: 'https://i.pravatar.cc/150?u=suga', role: 'user' },
+            { id: 100, name: 'Jin Kim', userName: 'jin_k', userAvatar: 'https://i.pravatar.cc/150?u=jink', role: 'user' }
         ],
         following: [
             { id: 102, name: "Niyas", userName: "@niyas", userAvatar: "/images/users/user4.jpg" },
@@ -2869,11 +3014,18 @@ export const Breeders = [
         },
         shorts: [
             { id: 1, videoURL: "./dumo.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
-            { id: 2, videoURL: "./shorts/koi_feeding.mp4", likes: 950, comments: 30, shares: 85, views: 18000 }
+            { id: 2, videoURL: "./dumo1.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 3, videoURL: "./dumo2.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 4, videoURL: "./dumo3.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 5, videoURL: "./dumo4.mp4", likes: 1200, comments: 45, shares: 150, views: 25000 },
         ],
         posts: [
-            { id: 1, image: "https://c4.wallpaperflare.com/wallpaper/934/955/692/animal-betta-siamese-fighting-fish-wallpaper-preview.jpg", caption: "Premium Japanese Koi Available", likes: 542, views: 8200, shares: 18, comments: [{ userName: "@rahul", name: "Rahul Joseph", userAvatar: "/images/users/user2.jpg", content: "Beautiful koi!" }] },
-            { id: 11, image: "/images/posts/betta_pair.jpg", caption: "New Betta pairs ready for their new homes.", likes: 340, views: 5100, shares: 12, comments: [{ userName: "@asif", name: "Asif Ali", userAvatar: "/images/users/user34.jpg", content: "Price please?" }] }
+            { id: 1, image: "https://images.unsplash.com/photo-1647862622825-97c260fcbc84?q=80&w=870&auto=format&fit=crop", likes: 340, views: 5100, shares: 12, },
+            { id: 2, image: "https://upload.wikimedia.org/wikipedia/commons/1/19/Indian_fantail%28black_self%29.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 3, image: "https://catholicreview.org/wp-content/uploads/2021/09/FinchBD-siblings.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 4, image: "https://www.kaytee.com/-/media/Project/OneWeb/Kaytee/US/learn-care/everything-you-need-to-know-about-pet-finches/everything-you-need-to-know-about-pet-finches.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRglYIyPoNZTjfl_FMQViKF7A-V8s26pOl8vUgMMyQ4dos0eWVhfEViO0&s=10", likes: 340, views: 5100, shares: 12, },
+
         ]
     },
     {
@@ -2884,7 +3036,7 @@ export const Breeders = [
         password: "password123",
         role: "breeder",
         profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE62C6u37TKvxTzW2Exw4RSozAq6ZVm3PY2er06LY_Vw&s",
-        coverImage: "/images/covers/cover2.jpg",
+        coverImage: "https://www.tfhmagazine.com/-/media/Project/OneWeb/TFH/US/articles/385_the_south_american_silver_arowana.jpg",
         location: "Kochi, Kerala",
         categories: ["Discus", "Angelfish"],
         experience: "8 Years",
@@ -2909,23 +3061,30 @@ export const Breeders = [
             facebook: "https://facebook.com/anjali_aquatics"
         },
         shorts: [
-            { id: 1, videoURL: "/videos/shorts/anjali_discus_care.mp4", likes: 2300, comments: 89, shares: 310, views: 42000 },
-            { id: 2, videoURL: "/videos/shorts/angel_breeding.mp4", likes: 1400, comments: 42, shares: 110, views: 23000 }
+            { id: 6, videoURL: "https://www.pexels.com/download/video/37685390/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 7, videoURL: "https://www.pexels.com/download/video/35147318/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 8, videoURL: "https://www.pexels.com/download/video/36093643/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 9, videoURL: "https://www.pexels.com/download/video/17325162/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 10, videoURL: "https://www.pexels.com/download/video/34663989/", likes: 1200, comments: 45, shares: 150, views: 25000 },
         ],
         posts: [
-            { id: 2, image: "/images/posts/discus1.jpg", caption: "Stunning Discus pairing", likes: 890, views: 12000, shares: 45, comments: [{ userName: "@fishfan", name: "Anil Kumar", userAvatar: "/images/users/user3.jpg", content: "Amazing colors!" }] },
-            { id: 12, image: "/images/posts/angel1.jpg", caption: "Albino Platinum Angelfish fry.", likes: 450, views: 6700, shares: 20, comments: [{ userName: "@kerala_fish", name: "Manoj K", userAvatar: "/images/users/user38.jpg", content: "Superb quality." }] }
+            { id: 6, image: "https://freshwateraquatica.org/cdn/shop/products/product-jpeg-500x500_37d8c073-878d-4aa7-b5d5-9d609b76002a.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 7, image: "https://upload.wikimedia.org/wikipedia/commons/1/10/HM_Orange_M_Sarawut.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 8, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpwCgBR2alHhOsdIuH-XLLl3EVjTLEXblgcMBAg9SIENdmFtfMWD0OOBs&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 9, image: "https://www.simpsonspremium.com/cdn/shop/articles/persian-cat.jpg", likes: 340, views: 5100, shares: 12, },
+            { id: 10, image: "https://www.strathspey-herald.co.uk/_media/img/750x0/BRN4IIBWKJONNY3RK37E.jpg", likes: 340, views: 5100, shares: 12, },
+
         ]
     },
     {
         id: 3,
-        name: "Rahul Varma",
+        name: "Rahul Varma ",
         userName: "@rahul_guppy",
         email: "rahul@example.com",
         password: "securepassword",
         role: "breeder",
         profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4k0aG4-7EZAx0c55NU8Qj6ycuE5J_vTeKddg8lV_xW4gAipHgks7M-M&s=10",
-        coverImage: "/images/covers/cover3.jpg",
+        coverImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1h_-B0MJR_r3T7Vji_OM_k0-gHWtG3I_CzK_4lgK1GUek14_SuHgH3H4R&s=10",
         location: "Thrissur, Kerala",
         categories: ["Guppy", "Molly"],
         experience: "3 Years",
@@ -2949,12 +3108,19 @@ export const Breeders = [
             facebook: "https://facebook.com/rahul_guppy"
         },
         shorts: [
-            { id: 1, videoURL: "/videos/shorts/rahul_guppy_room.mp4", likes: 450, comments: 14, shares: 25, views: 8900 },
-            { id: 2, videoURL: "/videos/shorts/guppy_sorting.mp4", likes: 310, comments: 9, shares: 15, views: 5600 }
+            { id: 11, videoURL: "https://www.pexels.com/download/video/37649670/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 12, videoURL: "https://www.pexels.com/download/video/12715060/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 13, videoURL: "https://www.pexels.com/download/video/3912656/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 14, videoURL: "https://www.pexels.com/download/video/12715038/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 15, videoURL: "https://www.pexels.com/download/video/9026085/", likes: 1200, comments: 45, shares: 150, views: 25000 },
         ],
         posts: [
-            { id: 3, image: "/images/posts/guppy1.jpg", caption: "Full Red Guppy fry ready.", likes: 250, views: 3000, shares: 5, comments: [{ userName: "@joji", name: "Joji T", userAvatar: "/images/users/user10.jpg", content: "Great strain." }] },
-            { id: 13, image: "/images/posts/molly1.jpg", caption: "Black Balloon Mollies.", likes: 180, views: 2100, shares: 2, comments: [{ userName: "@binu", name: "Binu S", userAvatar: "/images/users/user41.jpg", content: "Healthy fishes!" }] }
+            { id: 11, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN_J4JQ3W0iAuERHutwiqQ8t5X-ATCD9mRGUjmjqKFXTKdK6yz-2U6xC1i&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 12, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEBQvwVYpJ9xYhQ16iXmqZmkUSuHpXsaNKAxQpiPwllg&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 13, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrnW-56UQNwG54qBF80yWawhBPAJaQ45uIsfatiIGvIMJAZASCE5sSAnI&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 14, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZLITe-LVctkFwThleLEoVfVhNgxq3Qw15SZiZXHfLpaZM6noM7OH-uNq&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 15, image: "https://cdn11.bigcommerce.com/s-25ghynqpgv/images/stencil/1280w/products/5802/4221/Y564_-_White_Crested_Ducklings__32384.1675376603.jpg?c=1", likes: 340, views: 5100, shares: 12, },
+
         ]
     },
     {
@@ -2964,8 +3130,8 @@ export const Breeders = [
         email: "suresh@example.com",
         password: "pass1234",
         role: "breeder",
-        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDcTZFC0D8jijS4E3UyLS3_BUdFpp1VE0miKX8Yi_oD_mXXw7tO7H3QVk&s=10",
-        coverImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRspsH8vCF6L_3bt3KwEg8sGhSZYO2H4AWLL9Fkg4QXN9H1jdNUG27x2--Q&s=10",
+        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4zuwypEZNCFMSNdpi3vpTNciW7Ct4dvF5AJOHpH7Opo0hlVrTyW69OU8&s=10",
+        coverImage: "https://images5.alphacoders.com/388/thumb-1920-388293.jpg",
         location: "Kozhikode, Kerala",
         categories: ["Goldfish"],
         experience: "12 Years",
@@ -2989,23 +3155,30 @@ export const Breeders = [
             facebook: "https://facebook.com/suresh_gold"
         },
         shorts: [
-            { id: 1, videoURL: "/videos/shorts/suresh_ranchu_growth.mp4", likes: 980, comments: 52, shares: 95, views: 18500 },
-            { id: 2, videoURL: "/videos/shorts/oranda_wen.mp4", likes: 750, comments: 38, shares: 60, views: 14200 }
+            { id: 16, videoURL: "https://www.pexels.com/download/video/35325398/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 17, videoURL: "https://www.pexels.com/download/video/35378358/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 18, videoURL: "https://www.pexels.com/download/video/11103259/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 19, videoURL: "https://www.pexels.com/download/video/27778266/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 20, videoURL: "https://www.pexels.com/download/video/5930448/", likes: 1200, comments: 45, shares: 150, views: 25000 },
         ],
         posts: [
-            { id: 4, image: "/images/posts/goldfish1.jpg", caption: "High-grade Ranchu available.", likes: 410, views: 5600, shares: 12, comments: [{ userName: "@sara", name: "Sara L", userAvatar: "/images/users/user13.jpg", content: "Lovely wen growth." }] },
-            { id: 14, image: "/images/posts/oranda1.jpg", caption: "Giant Red-Cap Orandas.", likes: 380, views: 4900, shares: 15, comments: [{ userName: "@unni", name: "Unni Krishnan", userAvatar: "/images/users/user44.jpg", content: "Stunning!" }] }
+            { id: 16, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNHyzfRbzXY_Dz8mNrefAYt-ijZJL3cTIF3VmAGhSsmSpFIMHnBokOlVA&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 17, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmURdVT7TE7OpW1T0nBKI5l8HTHjtaVjClRcm3RjusKQ&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 18, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiygWuyr6XV9YpnH-Xe4eIdogJN5ivHfwY87pYVDuAXIClf_ZA4Ewa0lo&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 19, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9bzLG8p3KSTKOT_Mwu5WGjgM_xAXHDNetv79JuocH9w&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pW2OJH5kWmx3lhWNmKQBhDqBySuRjTqk44I3Jm5XGg&s=10", likes: 340, views: 5100, shares: 12, },
+
         ]
     },
     {
         id: 5,
-        name: "Deepa Menon",
+        name: "Deepa Menon ",
         userName: "@deepa_betta",
         email: "deepa@example.com",
         password: "mypassword",
         role: "breeder",
         profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_8IFSkCHg5xPNhUxfQk4dDBdxrv1TMPPvMgO5F5K3Q&s",
-        coverImage: "/images/covers/cover5.jpg",
+        coverImage: "https://intanaquariumfeeds.com/cdn/shop/articles/DeWatermark.ai_1756199605368_eec0dc59-8498-490e-a4e8-eae0f45cfdfa.jpg?v=1756716072",
         location: "Thiruvananthapuram, Kerala",
         categories: ["Betta Fish"],
         experience: "4 Years",
@@ -3029,12 +3202,19 @@ export const Breeders = [
             facebook: "https://facebook.com/deepa_betta"
         },
         shorts: [
-            { id: 1, videoURL: "/videos/shorts/deepa_halfmoon_flare.mp4", likes: 1500, comments: 73, shares: 210, views: 31000 },
-            { id: 2, videoURL: "/videos/shorts/crowntail_show.mp4", likes: 1100, comments: 45, shares: 130, views: 22000 }
+            { id: 21, videoURL: "https://www.pexels.com/download/video/15870616/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 22, videoURL: "https://www.pexels.com/download/video/29336604/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 23, videoURL: "https://www.pexels.com/download/video/36404697/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 24, videoURL: "https://www.pexels.com/download/video/34657868/", likes: 1200, comments: 45, shares: 150, views: 25000 },
+            { id: 25, videoURL: "https://www.pexels.com/download/video/37697636/", likes: 1200, comments: 45, shares: 150, views: 25000 },
         ],
         posts: [
-            { id: 5, image: "/images/posts/betta1.jpg", caption: "New Betta line released.", likes: 620, views: 9000, shares: 30, comments: [{ userName: "@anil", name: "Anil R", userAvatar: "/images/users/user3.jpg", content: "Stunning finnage." }] },
-            { id: 15, image: "/images/posts/betta2.jpg", caption: "Avatar Betta pairs available.", likes: 480, views: 7200, shares: 22, comments: [{ userName: "@achu", name: "Achu S", userAvatar: "/images/users/user47.jpg", content: "PM price please." }] }
+            { id: 21, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGzllxgoTDT4xBKpb-DZ0eUeZZjHN1WaGFHLB9vlDd4Q&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 22, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9rG4AL5nZu0UZ26TbjAWp4-ZJDr7PVBnSQW_ZWjLCYQ&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 23, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX5om9VaX0emg_LgfVMOOpv4tuePLWYbME2RClWJFFLg&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 24, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pW2OJH5kWmx3lhWNmKQBhDqBySuRjTqk44I3Jm5XGg&s=10", likes: 340, views: 5100, shares: 12, },
+            { id: 25, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDt5tEHtsqcXMH48WtqLiNVlJEQ9mGSX7xQpv9OvmPQA&s=10", likes: 340, views: 5100, shares: 12, },
+
         ]
     },
     {

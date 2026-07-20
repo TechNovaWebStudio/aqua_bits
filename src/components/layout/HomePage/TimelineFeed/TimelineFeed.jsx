@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./TimelineFeed.css";
 import { useRouter } from "next/navigation";
 import CommentPop from "@/components/common/CommentPop/CommentPop";
@@ -56,7 +56,6 @@ function PostCard({ post }) {
   const timeAgo = (date) => {
     const now = new Date();
     const past = new Date(date);
-
     const seconds = Math.floor((now - past) / 1000);
 
     const intervals = [
@@ -70,15 +69,6 @@ function PostCard({ post }) {
 
     for (const interval of intervals) {
       const count = Math.floor(seconds / interval.seconds);
-
-      if (count >= 1) {
-        return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
-      }
-    }
-
-    for (const interval of intervals) {
-      const count = Math.floor(seconds / interval.seconds);
-
       if (count >= 1) {
         return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
       }
@@ -87,7 +77,6 @@ function PostCard({ post }) {
     return "just now";
   };
 
-  // Safely get a primitive value for likes display text
   const renderLikesDisplay = () => {
     if (typeof post.likes === "object" && post.likes !== null) {
       return post.likes.user || "Someone";
@@ -95,7 +84,6 @@ function PostCard({ post }) {
     return post.likes;
   };
 
-  // Format numbers to 1K, 10K, 100K, 1M, etc.
   const formatCount = (num) => {
     if (!num || isNaN(num)) return "0";
     const numericValue = typeof num === "string" ? parseFloat(num) : num;
@@ -109,10 +97,7 @@ function PostCard({ post }) {
     return numericValue.toString();
   };
 
-  // FIX: Safely calculate comment length since post.comments is an array of objects
   const commentCount = Array.isArray(post.comments) ? post.comments.length : (post.comments || 0);
-
-  // Safely track share counts if present in data, otherwise default to 0
   const shareCount = post.shares || 0;
 
   return (
@@ -170,20 +155,17 @@ function PostCard({ post }) {
             <span>{formatCount(typeof renderLikesDisplay() === 'string' ? 1000 : renderLikesDisplay())}</span>
           </button>
 
-          {/* FIX APPLIED HERE: rendering commentCount instead of post.comments */}
           <button className="action-button-trigger" onClick={() => setIsCommentsOpen(true)}>
             <i className="fa-regular fa-comment"></i>
             <span>{formatCount(commentCount)}</span>
           </button>
 
-          {/* Added Share Action Button */}
           <button className="action-button-trigger">
             <i className="fa-regular fa-share-from-square"></i>
             <span>{formatCount(shareCount)}</span>
           </button>
         </div>
         <button className="action-button-buynow" onClick={() => router.push(`/pet-details/${post.id}`)}>
-
           View Details
         </button>
       </div>
@@ -212,11 +194,56 @@ function PostCard({ post }) {
 }
 
 export default function TimelineFeed() {
+  const [feedPosts, setFeedPosts] = useState([]);
+  const loaderRef = useRef(null);
+
+  // Helper method to randomize arrays seamlessly
+  const shuffleArray = (array) => {
+    const target = [...array];
+    for (let i = target.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [target[i], target[j]] = [target[j], target[i]];
+    }
+    return target;
+  };
+
+  // Run on mount (refresh time) to randomize initial sequence safely without SSR errors
+  useEffect(() => {
+    setFeedPosts(shuffleArray(POSTS_DATA));
+  }, []);
+
+  // Intersection Observer implementation for an endless looping layout
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && feedPosts.length > 0) {
+          // Whenever target wrapper is hit, append a newly shuffled batch of data
+          setFeedPosts((prev) => [...prev, ...shuffleArray(POSTS_DATA)]);
+        }
+      },
+      { threshold: 0.1, rootMargin: "100px" } // Triggers slightly before hitting actual page bottom
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [feedPosts]);
+
   return (
     <div className="timeline-feed-container">
-      {POSTS_DATA.map((post) => (
-        <PostCard key={post.id} post={post} />
+      {feedPosts.map((post, index) => (
+        // Compounding index to id guarantees React elements maintain unique DOM tracking keys
+        <PostCard key={`${post.id}-${index}`} post={post} />
       ))}
+      
+      {/* Invisible anchor targeting infinite layout loads */}
+      <div ref={loaderRef} className="infinite-scroll-trigger" style={{ height: "10px" }} />
     </div>
   );
 }

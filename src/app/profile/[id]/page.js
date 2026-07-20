@@ -7,12 +7,10 @@ export const metadata = {
     description: "Breeder Profile page.",
 };
 
-// 1. Mark the function as async
 export default async function DynamicProfilePage({ params }) {
-    
-    // 2. Await the params promise to extract the id
+    // 1. Await the params promise to extract userName instead of id
     const resolvedParams = await params;
-    const profileId = resolvedParams?.id;
+    const userName = resolvedParams?.userName; 
 
     return (
         <>
@@ -74,8 +72,8 @@ export default async function DynamicProfilePage({ params }) {
                 <SidebarLeft />
 
                 <main className="main-content-stream">
-                    {/* 3. Pass the successfully unwrapped profileId */}
-                    <ProfileSection profileId={profileId} />
+                    {/* 2. Pass the dynamic userName text identifier prop down */}
+                    <ProfileSection userName={userName} />
                 </main>
 
                 <MobileNavbar />

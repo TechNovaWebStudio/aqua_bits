@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './PostFeed.module.css';
 import CommentPop from '@/components/common/CommentPop/CommentPop';
 import { POSTS_DATA } from '../../../../public/data';
 
 export default function PostFeed({ targetId, onBack }) {
+    const router = useRouter();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [likedPosts, setLikedPosts] = useState({});
     const [bookmarkedPosts, setBookmarkedPosts] = useState({});
@@ -15,20 +17,34 @@ export default function PostFeed({ targetId, onBack }) {
     
     const trackRef = useRef(null);
 
+    // Initializes feed with randomized/no order posts + handles refresh state updates
     const [feedPosts, setFeedPosts] = useState(() => {
-        if (!targetId) return POSTS_DATA;
-        const matchedPost = POSTS_DATA.find(post => String(post.id) === String(targetId));
+        const shuffleArray = (array) => {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        };
+
+        const randomizedData = shuffleArray(POSTS_DATA);
+
+        if (!targetId) return randomizedData;
+        
+        const matchedPost = randomizedData.find(post => String(post.id) === String(targetId));
         if (matchedPost) {
-            const remainingPosts = POSTS_DATA.filter(post => String(post.id) !== String(targetId));
+            const remainingPosts = randomizedData.filter(post => String(post.id) !== String(targetId));
             return [matchedPost, ...remainingPosts];
         }
-        return POSTS_DATA;
+        return randomizedData;
     });
 
     const [isCommentPopOpen, setIsCommentPopOpen] = useState(false);
     const [isLaptopSize, setIsLaptopSize] = useState(false);
 
-    const activePost = feedPosts[currentIndex];
+    // Safe fallback to prevent runtime reading errors
+    const activePost = feedPosts[currentIndex] || feedPosts[0] || null;
 
     useEffect(() => {
         setIsDescExpanded(false);
@@ -36,6 +52,7 @@ export default function PostFeed({ targetId, onBack }) {
 
     const handleTrackScroll = (e) => {
         const { scrollTop, clientHeight } = e.currentTarget;
+        if (clientHeight === 0) return;
         const nextIndex = Math.round(scrollTop / clientHeight);
         if (nextIndex !== currentIndex && nextIndex >= 0 && nextIndex < feedPosts.length) {
             setCurrentIndex(nextIndex);
@@ -53,15 +70,32 @@ export default function PostFeed({ targetId, onBack }) {
         }
     };
 
+    // Infinite loop scrolling handler (next)
     const handleNextPost = () => {
         if (currentIndex < feedPosts.length - 1) {
             scrollToPostIndex(currentIndex + 1);
+        } else {
+            // Unending loop back to the first post smoothly
+            setCurrentIndex(0);
+            scrollToPostIndex(0);
         }
     };
 
+    // Infinite loop scrolling handler (prev)
     const handlePrevPost = () => {
         if (currentIndex > 0) {
             scrollToPostIndex(currentIndex - 1);
+        } else {
+            // Unending loop forward to the last post smoothly
+            const lastIdx = feedPosts.length - 1;
+            setCurrentIndex(lastIdx);
+            scrollToPostIndex(lastIdx);
+        }
+    };
+
+    const handleProfileClick = (breederId) => {
+        if (breederId) {
+            router.push(`/profile/${breederId}`);
         }
     };
 
@@ -84,12 +118,14 @@ export default function PostFeed({ targetId, onBack }) {
 
     const handleImageHorizontalScroll = (postId, e) => {
         const { scrollLeft, clientWidth } = e.currentTarget;
+        if (clientWidth === 0) return;
         const index = Math.round(scrollLeft / clientWidth);
         setActiveImageIndexes(prev => ({ ...prev, [postId]: index }));
     };
 
     const handleCommentSubmit = (e) => {
         e.preventDefault();
+        if (!activePost) return;
         const postId = activePost.id;
         const text = customComments[postId] || '';
         if (!text.trim()) return;
@@ -133,6 +169,8 @@ export default function PostFeed({ targetId, onBack }) {
                             {feedPosts.map((post) => {
                                 const isLiked = !!likedPosts[post.id];
                                 const isBookmarked = !!bookmarkedPosts[post.id];
+                                // Safe assignment: fallback to 0 if images count doesn't exist yet
+                                const totalImagesCount = post.images ? post.images.length : 0;
                                 const currentImgIdx = activeImageIndexes[post.id] || 0;
 
                                 return (
@@ -145,10 +183,10 @@ export default function PostFeed({ targetId, onBack }) {
                                                     <i className="fa-solid fa-chevron-left"></i>
                                                 </button>
                                                 
-                                                {/* Premium Floating Media Count Pill Layout */}
-                                                {post.images.length > 1 && (
+                                                {/* Fixed: Safe verification that images exists and count evaluates securely */}
+                                                {totalImagesCount > 1 && (
                                                     <div className={styles.premiumCountBadge}>
-                                                        <span>{currentImgIdx + 1} / {post.images.length}</span>
+                                                        <span>{currentImgIdx + 1} / {totalImagesCount}</span>
                                                     </div>
                                                 )}
                                             </div>
@@ -158,7 +196,7 @@ export default function PostFeed({ targetId, onBack }) {
                                                 className={styles.imageScrollTrack}
                                                 onScroll={(e) => handleImageHorizontalScroll(post.id, e)}
                                             >
-                                                {post.images.map((imgUrl, imgIdx) => (
+                                                {post.images && post.images.map((imgUrl, imgIdx) => (
                                                     <div key={imgIdx} className={styles.imageSlide}>
                                                         <img
                                                             src={imgUrl}
@@ -172,8 +210,8 @@ export default function PostFeed({ targetId, onBack }) {
 
                                             <div className={styles.bottomShadowScrim} />
 
-                                            {/* Dot Trackers Layer: Explicitly structured inside bottom zone */}
-                                            {post.images.length > 1 && (
+                                            {/* Dot Trackers Layer */}
+                                            {totalImagesCount > 1 && (
                                                 <div className={styles.dotsIndicatorContainer}>
                                                     {post.images.map((_, imgIdx) => (
                                                         <span
@@ -187,7 +225,11 @@ export default function PostFeed({ targetId, onBack }) {
                                             {/* Text Metadata Panel */}
                                             <div className={styles.imageOverlayMetadata}>
                                                 <div className={styles.profileRow}>
-                                                    <div className={styles.profileMeta}>
+                                                    <div 
+                                                        className={styles.profileMeta} 
+                                                        onClick={() => handleProfileClick(post.breeder_id || post.id)}
+                                                        style={{ cursor: 'pointer' }}
+                                                    >
                                                         <div className={styles.avatarWrapper}>
                                                             <img src={post.avatar} className={styles.avatarImg} alt={post.username} />
                                                             <span className={styles.onlineBadge}></span>
@@ -277,7 +319,7 @@ export default function PostFeed({ targetId, onBack }) {
 
                 {/* Vertical Scroll Handlers */}
                 <div className={styles.feedScrollControls}>
-                    <button className={styles.controlArrow} onClick={handlePrevPost} disabled={currentIndex === 0}>
+                    <button className={styles.controlArrow} onClick={handlePrevPost}>
                         <i className="fa-solid fa-chevron-up"></i>
                     </button>
                     <div className={styles.pagerNode}>
@@ -285,7 +327,7 @@ export default function PostFeed({ targetId, onBack }) {
                         <span className={styles.pageDivider}>/</span>
                         <span className={styles.totalPage}>{feedPosts.length}</span>
                     </div>
-                    <button className={styles.controlArrow} onClick={handleNextPost} disabled={currentIndex === feedPosts.length - 1}>
+                    <button className={styles.controlArrow} onClick={handleNextPost}>
                         <i className="fa-solid fa-chevron-down"></i>
                     </button>
                 </div>
